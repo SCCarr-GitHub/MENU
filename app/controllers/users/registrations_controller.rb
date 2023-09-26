@@ -14,7 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super do |resource|
       if resource.restaurant
         sign_in resource
-        redirect_to root_path and return
+        redirect_to new_user_restaurant_path(resource.id) and return
       else
         sign_in resource
         redirect_to new_user_customer_path(resource.id) and return

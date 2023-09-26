@@ -4,6 +4,14 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :customers, only: [:new, :create, :edit, :update]
-    resources :restaurant, only: [:index, :new, :create, :show, :edit, :update]
   end
+  resources :users do
+    resources :restaurants, only: [:new, :create]
+  end
+  resources :restaurants, only: [:index, :show, :edit, :update]
+    # resources :menu, only: [:new, :create]
+  
+  # resources :menu, only: [:show, :edit] do
+  #   resources :items
+  # end
 end

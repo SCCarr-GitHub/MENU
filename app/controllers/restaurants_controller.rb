@@ -1,4 +1,6 @@
 class RestaurantsController < ApplicationController
+  before_action :set_user, only:[:new, :create]
+
   def index
     @restaurants = Restaurant.all
     # @markers = @restaurants.geocoded.map do |restaurant|
@@ -22,9 +24,10 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-    @restaurant = current_user.restaurants.new(restaurant_params)
+    @restaurant = Restaurant.new(restaurant_params)
+    @restaurant.user = @user
     if @restaurant.save
-      redirect_to user_restaurant_path(@restaurant)
+      redirect_to restaurant_path(@restaurant)
     else
       render :new, status: :unprocessable_entity
     end
@@ -47,7 +50,11 @@ class RestaurantsController < ApplicationController
 
   private
 
-  def restuarant_params
-    params.require(:restuarant).permit(:address, :phone_number, :name, :category, :operating_hours, :user_id)
+  def restaurant_params
+    params.require(:restaurant).permit(:address, :phone_number, :name, :category, :operating_hours, :user_id)
+  end
+
+  def set_user
+    @user = User.find(params[:user_id])
   end
 end

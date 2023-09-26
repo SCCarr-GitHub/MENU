@@ -1,0 +1,54 @@
+<div class="restaurant-form">=
+  <div class="restaurant-form-container">
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="text-center w-50">
+        <div class="create-list-container p-4 rounded shadow">
+          <h1 class="restaurant-heading">Update your Restaurant details</h1>
+          <%= simple_form_for [@restaurant] do |f| %>
+            <div class="restaurant-form-group">
+                <%= f.input :name,
+                            required: true,
+                            autofocus: true,
+                            input_html: { autocomplete: "name" },
+                            wrapper_html: { class: 'col-sm-12' },
+                            label_html: { class: 'restaurant-paragraph col-sm-2 control-label' } %>
+            </div>
+            <div class="restaurant-form-group">
+                <%= f.input :address,
+                            required: true,
+                            autofocus: true,
+                            input_html: { autocomplete: "address" },
+                            wrapper_html: { class: 'col-sm-12' },
+                            label_html: { class: 'restaurant-paragraph col-sm-2 control-label' } %>
+            </div>
+            <div class="restaurant-form-group">
+                <%= f.input :phone_number,
+                            required: true,
+                            autofocus: true,
+                            input_html: { autocomplete: "phone_number" },
+                            wrapper_html: { class: 'col-sm-12' },
+                            label_html: { class: 'restaurant-paragraph col-sm-2 control-label' } %>
+            </div>
+                      <div class="restaurant-form-group">
+                <%= f.input :category,
+                            required: true,
+                            autofocus: true,
+                            input_html: { autocomplete: "category" },
+                            wrapper_html: { class: 'col-sm-12' },
+                            label_html: { class: 'restaurant-paragraph col-sm-2 control-label' } %>
+            </div>
+            <div class="restaurant-form-group">
+                <%= f.input :operating_hours,
+                            required: true,
+                            autofocus: true,
+                            input_html: { autocomplete: "operating_hours" },
+                            wrapper_html: { class: 'col-sm-12' },
+                            label_html: { class: 'restaurant-paragraph col-sm-2 control-label' } %>
+            </div>
+              <%= f.submit "Update your Restaurant", class: "btn btn-outline-light shadow-sm mt-3" %>
+            <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

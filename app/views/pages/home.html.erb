@@ -1,3 +1,15 @@
+
+<h1>Pages#home</h1>
+<p>Find me in app/views/pages/home.html.erb</p>
+<% if !user_signed_in? %>
+<%= link_to "Login", new_user_session_path, class: "nav-link" %>
+<%= link_to "Signup", new_user_registration_path, class: "nav-link" %>
+<% end %>
+<% if user_signed_in? %>
+<%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
+<% end %>
+
+
 <h1>Me.N.u</h1>
   <div class="restaurants-row">
     <% @restaurants.each do |restaurant| %>
@@ -18,3 +30,4 @@
     <% end %>
   <% end %>
 </div>
+

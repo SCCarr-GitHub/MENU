@@ -20,38 +20,38 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_25_141648) do
     t.string "name"
     t.string "surname"
     t.string "area"
-    t.bigint "users_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["users_id"], name: "index_customers_on_users_id"
+    t.index ["user_id"], name: "index_customers_on_user_id"
   end
 
   create_table "items", force: :cascade do |t|
     t.string "category"
     t.string "item_name"
     t.integer "item_price"
-    t.bigint "restaurant_menus_id", null: false
+    t.bigint "restaurant_menu_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["restaurant_menus_id"], name: "index_items_on_restaurant_menus_id"
+    t.index ["restaurant_menu_id"], name: "index_items_on_restaurant_menu_id"
   end
 
   create_table "ratings", force: :cascade do |t|
     t.integer "item_upvote"
-    t.bigint "customers_id", null: false
-    t.bigint "items_id", null: false
+    t.bigint "customer_id", null: false
+    t.bigint "item_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["customers_id"], name: "index_ratings_on_customers_id"
-    t.index ["items_id"], name: "index_ratings_on_items_id"
+    t.index ["customer_id"], name: "index_ratings_on_customer_id"
+    t.index ["item_id"], name: "index_ratings_on_item_id"
   end
 
   create_table "restaurant_menus", force: :cascade do |t|
     t.string "description"
-    t.bigint "restaurants_id", null: false
+    t.bigint "restaurant_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["restaurants_id"], name: "index_restaurant_menus_on_restaurants_id"
+    t.index ["restaurant_id"], name: "index_restaurant_menus_on_restaurant_id"
   end
 
   create_table "restaurants", force: :cascade do |t|
@@ -60,21 +60,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_25_141648) do
     t.string "name"
     t.string "category"
     t.time "operating_hours"
-    t.bigint "users_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["users_id"], name: "index_restaurants_on_users_id"
+    t.index ["user_id"], name: "index_restaurants_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
     t.string "comment"
     t.integer "rating"
-    t.bigint "restaurants_id", null: false
-    t.bigint "customers_id", null: false
+    t.bigint "restaurant_id", null: false
+    t.bigint "customer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["customers_id"], name: "index_reviews_on_customers_id"
-    t.index ["restaurants_id"], name: "index_reviews_on_restaurants_id"
+    t.index ["customer_id"], name: "index_reviews_on_customer_id"
+    t.index ["restaurant_id"], name: "index_reviews_on_restaurant_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -90,12 +90,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_25_141648) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "customers", "users", column: "users_id"
-  add_foreign_key "items", "restaurant_menus", column: "restaurant_menus_id"
-  add_foreign_key "ratings", "customers", column: "customers_id"
-  add_foreign_key "ratings", "items", column: "items_id"
-  add_foreign_key "restaurant_menus", "restaurants", column: "restaurants_id"
-  add_foreign_key "restaurants", "users", column: "users_id"
-  add_foreign_key "reviews", "customers", column: "customers_id"
-  add_foreign_key "reviews", "restaurants", column: "restaurants_id"
+  add_foreign_key "customers", "users"
+  add_foreign_key "items", "restaurant_menus"
+  add_foreign_key "ratings", "customers"
+  add_foreign_key "ratings", "items"
+  add_foreign_key "restaurant_menus", "restaurants"
+  add_foreign_key "restaurants", "users"
+  add_foreign_key "reviews", "customers"
+  add_foreign_key "reviews", "restaurants"
 end

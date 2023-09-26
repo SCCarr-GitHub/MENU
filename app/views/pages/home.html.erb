@@ -1,2 +1,20 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<h1>Me.N.u</h1>
+  <div class="restaurants-row">
+    <% @restaurants.each do |restaurant| %>
+      <%= link_to user_restaurant_path(restaurant) do %>
+        <div class="restaurant">
+        <% @restaurant = Restaurant.find(params[:id]) %>
+          <%# user = User.find(restaurant.user_id) %>
+          <h4><%= @restaurant.name %></h4>
+          <br>
+          <div><strong><%= restaurant.category %></strong></div>
+          <br>
+          <div><strong><%= restaurant.address %></strong></div>
+          <br>
+          <div><strong><%= restaurant.phone_number %></strong></div>
+          <br>
+          <div><strong><%= restaurant.operating_hours %></strong></div>
+        </div>
+    <% end %>
+  <% end %>
+</div>

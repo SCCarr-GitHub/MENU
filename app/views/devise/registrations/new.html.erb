@@ -1,0 +1,28 @@
+<div class="sign-up-form-container">
+  <h2 class="homepage-heading text-center">Sign up</h2>
+
+  <%= simple_form_for(resource, as: resource_name, url: user_registration_path, html: { class: 'form-horizontal' }) do |f| %>
+    <%= f.error_notification %>
+    <%= f.input :email,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "email" },
+                wrapper_html: { class: 'col-sm-8 mx-auto' },
+                label_html: { class: 'listing-paragraph col-sm-2 control-label' } %>
+    <p>Are you a restaurant owner?</p>
+    <%= f.check_box :restaurant %>
+    <%= f.input :password,
+                required: true,
+                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                input_html: { autocomplete: "new-password" },
+                wrapper_html: { class: 'col-sm-8 mx-auto' },
+                label_html: { class: 'listing-paragraph col-sm-2 control-label' } %>
+    <%= f.input :password_confirmation,
+                required: true,
+                input_html: { autocomplete: "new-password" },
+                wrapper_html: { class: 'col-sm-8 mx-auto' },
+                label_html: { class: 'listing-paragraph col-sm-2 control-label' } %>
+
+      <%= f.button :submit, "Sign up", class: 'btn btn-primary', data: { disable_with: 'Signing up...' } %>
+  <% end %>
+</div>

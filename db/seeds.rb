@@ -13,25 +13,25 @@ puts "Creating users..."
 User.create!(
   email: "user1@example.com",
   password: "password",
-  restaurant: false
+  restaurant_owner: false
 )
 
 User.create!(
   email: "user2@example.com",
   password: "password",
-  restaurant: false
+  restaurant_owner: false
 )
 
 User.create!(
   email: "user3@example.com",
   password: "password",
-  restaurant: true
+  restaurant_owner: true
 )
 
 User.create!(
   email: "user4@example.com",
   password: "password",
-  restaurant: true
+  restaurant_owner: true
 )
 puts "Finished creating users!"
 

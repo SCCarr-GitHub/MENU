@@ -6,11 +6,10 @@
   <p><%= @restaurant.opening_time %></p>
   <p><%= @restaurant.closing_time %></p>
 
-  <h4 class="m-4">Your Reviews</h4>
+  <h4 class="m-4">Reviews</h4>
   <ul class="list-group m-4">
     <% @restaurant.reviews.each do |review| %>
-    <% if review.restaurant.user_id == current_user.id? %>
-      <li class="list-group-item"><%= review.content %></li>
+      <li class="list-group-item"><%= review.comment %></li>
       <div class="d-flex justify-content-between align-items-center">
         <div>
           <p>Rating:</p>
@@ -21,27 +20,30 @@
           <div class="star <%= 'filled' if review.rating >= 5 %>"></div>
         </div>
         <div>
-          <%= link_to "Delete",
+            <% if review.customer == current_user.customer %>
+              <%= link_to "Delete",
             review_path(review),
             data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
             class: 'btn btn-danger btn-sm' %>
+            <% end %>
         </div>
       </div>
-      <% end %>
     <% end %>
   </ul>
   <br>
-
+<% if current_user.customer %>
   <div class="m-4">
-    <h2>Add a Review</h2>
-    <%= simple_form_for [@restaurant, @review] do |form| %>
-      <%= form.input :content %>
-      <%= form.input :rating, collection: [0, 1, 2, 3, 4, 5], label: "Select Rating" %>
-      <%= form.submit 'Submit', class: 'btn border' %>
-    <% end %>
-  </div>
+  <h2>Add a Review</h2>
+  <%= simple_form_for [@restaurant, @review] do |form| %>
+    <%= form.input :comment %>
+    <%= form.input :rating, collection: [0, 1, 2, 3, 4, 5], label: "Select Rating" %>
+    <%= form.submit 'Submit', class: 'btn border' %>
+  <% end %>
 </div>
-
+<% end %>
+</div>
+<% if current_user.id == @restaurant.user_id %>
 <%= link_to "Add Menu", new_restaurant_restaurant_menu_path(@restaurant), class: "nav-link" %>
-
+<% end %>
 <%= render "restaurant_menus/show" %>
+<%= link_to "Home", root_path, class: "nav-link" %>

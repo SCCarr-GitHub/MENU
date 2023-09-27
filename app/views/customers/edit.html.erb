@@ -1,0 +1,41 @@
+<div class="sign-up-form-container">
+  <h2 class="homepage-heading text-center">Edit your info</h2>
+
+  <%= simple_form_for [@user, @customer] do |f| %>
+    <%= f.error_notification %>
+      <%= f.input :name,
+                  required: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "name" },
+                  wrapper_html: { class: 'col-sm-8 mx-auto' },
+                  label_html: { class: 'listing-paragraph col-sm-2 control-label' } %>
+      <%= f.input :surname,
+                  required: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "surname" },
+                  wrapper_html: { class: 'col-sm-8 mx-auto' },
+                  label_html: { class: 'listing-paragraph col-sm-2 control-label' } %>
+      <%= f.input :address,
+                  required: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "address" },
+                  wrapper_html: { class: 'col-sm-8 mx-auto' },
+                  label_html: { class: 'listing-paragraph col-sm-2 control-label' } %>
+      <%= f.input :area,
+                  required: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "address" },
+                  wrapper_html: { class: 'col-sm-8 mx-auto' },
+                  label_html: { class: 'listing-paragraph col-sm-2 control-label' } %>
+      <%= f.input :phone_number,
+                  required: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "phone_number" },
+                  wrapper_html: { class: 'col-sm-8 mx-auto' },
+                  label_html: { class: 'listing-paragraph col-sm-2 control-label' } %>
+      <%= f.button :submit, "Update info", class: 'btn btn-outline-light', data: { disable_with: 'Updating...' } %>
+        <br>
+      </div>
+    </div>
+  <% end %>
+</div>

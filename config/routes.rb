@@ -7,14 +7,11 @@ Rails.application.routes.draw do
     resources :restaurants, only: [:new, :create] do
       resources :reviews, only: [:index, :new, :create, :show]
     end
+    resources :restaurants, only: [:new, :create] do
+      resources :restaurant_menus, only: [:new, :create]
+    end
   end
-
   resources :restaurants, only: [:index, :show, :edit, :update]
   resources :reviews, only: [:destroy]
-
-    # resources :menu, only: [:new, :create]
-
-  # resources :menu, only: [:show, :edit] do
-  #   resources :items
-  # end
+  resources :restaurant_menus, only: [:show, :edit]
 end

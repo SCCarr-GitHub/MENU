@@ -146,4 +146,4 @@ puts "Finished creating restaurant menus!"
 
 # puts "Finished creating menu items!"
 
-puts "ALL DATA HAS BEEN GENERATED!"
+puts "ALL DATA HAS BEEN GENERATED! (finally)"

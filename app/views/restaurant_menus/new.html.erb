@@ -8,8 +8,8 @@
                             wrapper_html: { class: 'col-sm-12' },
                             label_html: { class: 'menu-paragraph col-sm-2 control-label' } %>
             </div>
-<!--              <div class="menu-form-group">-->
-                <%#= f.input :photos, as: :file, input_html: { multiple: true }, label: 'Upload Menu Images' %>
-<!--            </div>-->
+              <div class="menu-form-group">
+                <%= f.input :photos, as: :file, input_html: { multiple: true }, label: 'Upload Menu Images' %>
+            </div>
               <%= f.submit "Add Menu", class: "btn btn-primary shadow-sm mt-3" %>
             <% end %>

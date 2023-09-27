@@ -4,7 +4,7 @@
       <div class="text-center w-50">
         <div class="create-list-container p-4 rounded shadow">
           <h1 class="restaurant-heading">Create a New Restaurant</h1>
-          <%= simple_form_for [@user, @restaurant] do |f| %>
+          <%= simple_form_for [@restaurant] do |f| %>
             <div class="restaurant-form-group">
                 <%= f.input :name,
                             required: true,

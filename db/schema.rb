@@ -59,7 +59,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_25_141648) do
     t.string "phone_number"
     t.string "name"
     t.string "category"
-    t.time "operating_hours"
+    t.time "opening_time"
+    t.time "closing_time"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

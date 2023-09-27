@@ -12,7 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super do |resource|
-      if resource.restaurant
+      if resource.restaurant_owner
         sign_in resource
         redirect_to new_user_restaurant_path(resource.id) and return
       else

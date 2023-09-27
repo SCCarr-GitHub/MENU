@@ -4,4 +4,38 @@
   <h3><%= @restaurant.address %></h3>
   <h4><%= @restaurant.phone_number %></h4>
   <p><%= @restaurant.operating_hours %></p>
+  <h4 class="m-4">Your Reviews</h4>
+  <ul class="list-group m-4">
+    <% @restaurant.reviews.each do |review| %>
+    <% if review.restaurant.user_id == current_user.id? %>
+      <li class="list-group-item"><%= review.content %></li>
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <p>Rating:</p>
+          <div class="star <%= 'filled' if review.rating >= 1 %>"></div>
+          <div class="star <%= 'filled' if review.rating >= 2 %>"></div>
+          <div class="star <%= 'filled' if review.rating >= 3 %>"></div>
+          <div class="star <%= 'filled' if review.rating >= 4 %>"></div>
+          <div class="star <%= 'filled' if review.rating >= 5 %>"></div>
+        </div>
+        <div>
+          <%= link_to "Delete",
+            review_path(review),
+            data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+            class: 'btn btn-danger btn-sm' %>
+        </div>
+      </div>
+      <% end %>
+    <% end %>
+  </ul>
+  <br>
+
+  <div class="m-4">
+    <h2>Add a Review</h2>
+    <%= simple_form_for [@restaurant, @review] do |form| %>
+      <%= form.input :content %>
+      <%= form.input :rating, collection: [0, 1, 2, 3, 4, 5], label: "Select Rating" %>
+      <%= form.submit 'Submit', class: 'btn border' %>
+    <% end %>
+  </div>
 </div>

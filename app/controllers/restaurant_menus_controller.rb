@@ -35,7 +35,7 @@ class RestaurantMenusController < ApplicationController
   private
 
   def restaurant_menu_params
-    params.require(:restaurant_menu).permit(:description, :restaurant_id)
+    params.require(:restaurant_menu).permit(:description, :restaurant_id, photos: [])
   end
 
   def set_restaurant

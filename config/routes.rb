@@ -8,10 +8,10 @@ Rails.application.routes.draw do
   resources :users do
     resources :restaurants, only: [:new, :create]
   end
-  resources :restaurants, only: [:index, :show, :edit, :update]
-    # resources :menu, only: [:new, :create]
-  
-  # resources :menu, only: [:show, :edit] do
+  resources :restaurants, only: [:index, :show, :edit, :update] do
+    resources :restaurant_menus, only: [:new, :create]
+  end
+  resources :restaurant_menus, only: [:show, :edit]
   #   resources :items
   # end
 end

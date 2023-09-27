@@ -3,5 +3,10 @@
   <h2><%= @restaurant.category %></h2>
   <h3><%= @restaurant.address %></h3>
   <h4><%= @restaurant.phone_number %></h4>
-  <p><%= @restaurant.operating_hours %></p>
+  <p><%= @restaurant.opening_time %></p>
+  <p><%= @restaurant.closing_time %></p>
 </div>
+
+<%= link_to "Add Menu", new_restaurant_restaurant_menu_path(@restaurant), class: "nav-link" %>
+
+<%= render "restaurant_menus/show" %>

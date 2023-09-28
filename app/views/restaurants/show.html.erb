@@ -1,11 +1,12 @@
-<div class="restaurant-show-conatiner">
-  <h1><%= @restaurant.name %></h1>
-  <h2><%= @restaurant.category %></h2>
-  <h3><%= @restaurant.address %></h3>
-  <h4><%= @restaurant.phone_number %></h4>
-  <p><%= @restaurant.opening_time %></p>
-  <p><%= @restaurant.closing_time %></p>
-
+<div class="restaurant-show-container">
+  <div class="restaurant-card ">
+    <h1><%= @restaurant.name %></h1>
+    <h2><%= @restaurant.category %></h2>
+    <h3><%= @restaurant.address %></h3>
+    <h4><%= @restaurant.phone_number %></h4>
+    <p><%= @restaurant.opening_time %></p>
+    <p><%= @restaurant.closing_time %></p>
+  </div>
   <h4 class="m-4">Reviews</h4>
   <ul class="list-group m-4">
     <% @restaurant.reviews.each do |review| %>
@@ -31,6 +32,26 @@
     <% end %>
   </ul>
   <br>
+  <div class="restaurant-show-container">
+    <% if current_user.customer %>
+      <div class="m-4">
+      <h2>Add a Review</h2>
+      <%= simple_form_for [@restaurant, @review] do |form| %>
+        <%= form.input :comment %>
+        <%= form.input :rating, collection: [0, 1, 2, 3, 4, 5], label: "Select Rating" %>
+        <%= form.submit 'Submit', class: 'btn border' %>
+      <% end %>
+    </div>
+    <% end %>
+    </div>
+    <% if current_user.id == @restaurant.user_id %>
+
+
+    <%= link_to "Add Menu", new_restaurant_restaurant_menu_path(@restaurant), class: "nav-link" %>
+    <% end %>
+    <%= render "restaurant_menus/show" %>
+    <%= link_to "Home", root_path, class: "nav-link" %>
+  </div>
 
 <% if current_user.customer %>
   <div class="m-4">
@@ -42,10 +63,5 @@
   <% end %>
 </div>
 <% end %>
-</div>
-<% if current_user.id == @restaurant.user_id %>
 
-<%= link_to "Add Menu", new_restaurant_restaurant_menu_path(@restaurant), class: "nav-link" %>
-<% end %>
-<%= render "restaurant_menus/show" %>
-<%= link_to "Home", root_path, class: "nav-link" %>
+</div>

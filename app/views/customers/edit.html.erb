@@ -39,4 +39,5 @@
   <%= link_to edit_user_registration_path, class: "btn btn-primary" do %>
           Update Details
         <% end %>
+  <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
 </div>

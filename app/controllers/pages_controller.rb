@@ -10,4 +10,13 @@ class PagesController < ApplicationController
     @this_restaurant = Restaurant.find(params[:restaurant_id])
     @items = Item.all
   end
+
+  def search
+    if params[:query].present?
+      @query = params[:query]
+      @search_results = PgSearch.multisearch(@query).includes(:searchable)
+    else
+      @search_results = []
+    end
+  end
 end

@@ -1,0 +1,17 @@
+<%= form_tag(search_pages_path, method: :get) do %>
+  <%= text_field_tag :query, params[:query], placeholder: "Search..." %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+<h1>Search Results</h1>
+<% if @search_results.any? %>
+  <ul>
+    <% @search_results.each do |result| %>
+      <li>
+        <%= result.searchable.name %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No results found.</p>
+<% end %>

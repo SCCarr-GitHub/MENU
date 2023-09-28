@@ -14,10 +14,11 @@ class RestaurantsController < ApplicationController
   end
 
   def show
+    @this_restaurant = Restaurant.find(params[:id])
     @review = Review.new
     @restaurant = current_user.restaurant
     @users = User.all
-    @reviews = @restaurant.reviews
+    @reviews = @this_restaurant.reviews
     @customer = current_user.customer
   end
 

@@ -9,7 +9,9 @@
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
-
+    <%= f.input :photo, as: :file,
+                  wrapper_html: { class: 'col-sm-8 mx-auto' },
+                  label_html: { class: 'listing-paragraph col-sm-2 control-label' } %>
     <%= f.input :password,
                 hint: "leave it blank if you don't want to change it",
                 required: false,
@@ -27,8 +29,6 @@
     <%= f.button :submit, "Update" %>
   </div>
 <% end %>
-
-<h3>Cancel my account</h3>
 
 <div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
 

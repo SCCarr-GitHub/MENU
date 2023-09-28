@@ -34,5 +34,7 @@
   <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
   <% if !current_user.restaurant_owner? %>
     <%= link_to "Edit your info", edit_customer_path(current_user.id, @customer), class: "nav-link" %>
-    <% end %>
+  <% else %>
+    <%= link_to "Edit your info", edit_restaurant_path(current_user.id, @restaurant), class: "nav-link" %>
+  <% end %>
 <% end %>

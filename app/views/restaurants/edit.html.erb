@@ -6,46 +6,58 @@
           <h1 class="restaurant-heading">Update your Restaurant details</h1>
           <%= simple_form_for [@restaurant] do |f| %>
             <div class="restaurant-form-group">
-                <%= f.input :name,
-                            required: true,
-                            autofocus: true,
-                            input_html: { autocomplete: "name" },
-                            wrapper_html: { class: 'col-sm-12' },
-                            label_html: { class: 'restaurant-paragraph col-sm-2 control-label' } %>
+              <%= f.input :name,
+                          required: true,
+                          autofocus: true,
+                          input_html: { autocomplete: "name" },
+                          wrapper_html: { class: 'col-sm-12' },
+                          label_html: { class: 'restaurant-paragraph col-sm-2 control-label' } %>
             </div>
             <div class="restaurant-form-group">
-                <%= f.input :address,
-                            required: true,
-                            autofocus: true,
-                            input_html: { autocomplete: "address" },
-                            wrapper_html: { class: 'col-sm-12' },
-                            label_html: { class: 'restaurant-paragraph col-sm-2 control-label' } %>
+              <%= f.input :address,
+                          required: true,
+                          autofocus: true,
+                          input_html: { autocomplete: "address" },
+                          wrapper_html: { class: 'col-sm-12' },
+                          label_html: { class: 'restaurant-paragraph col-sm-2 control-label' } %>
             </div>
             <div class="restaurant-form-group">
-                <%= f.input :phone_number,
-                            required: true,
-                            autofocus: true,
-                            input_html: { autocomplete: "phone_number" },
-                            wrapper_html: { class: 'col-sm-12' },
-                            label_html: { class: 'restaurant-paragraph col-sm-2 control-label' } %>
-            </div>
-                      <div class="restaurant-form-group">
-                <%= f.input :category,
-                            required: true,
-                            autofocus: true,
-                            input_html: { autocomplete: "category" },
-                            wrapper_html: { class: 'col-sm-12' },
-                            label_html: { class: 'restaurant-paragraph col-sm-2 control-label' } %>
+              <%= f.input :phone_number,
+                          required: true,
+                          autofocus: true,
+                          input_html: { autocomplete: "phone_number" },
+                          wrapper_html: { class: 'col-sm-12' },
+                          label_html: { class: 'restaurant-paragraph col-sm-2 control-label' } %>
             </div>
             <div class="restaurant-form-group">
-                <%= f.input :operating_hours,
-                            required: true,
-                            autofocus: true,
-                            input_html: { autocomplete: "operating_hours" },
-                            wrapper_html: { class: 'col-sm-12' },
-                            label_html: { class: 'restaurant-paragraph col-sm-2 control-label' } %>
+              <%= f.input :category,
+                          required: true,
+                          autofocus: true,
+                          input_html: { autocomplete: "category" },
+                          wrapper_html: { class: 'col-sm-12' },
+                          label_html: { class: 'restaurant-paragraph col-sm-2 control-label' } %>
             </div>
-              <%= f.submit "Update your Restaurant", class: "btn btn-outline-light shadow-sm mt-3" %>
+            <div class="restaurant-form-group">
+              <%= f.input :opening_time,
+                          required: true,
+                          autofocus: true,
+                          input_html: { autocomplete: "opening_time" },
+                          wrapper_html: { class: 'col-sm-12' },
+                          label_html: { class: 'restaurant-paragraph col-sm-2 control-label' } %>
+            </div>
+            <div class="restaurant-form-group">
+              <%= f.input :closing_time,
+                          required: true,
+                          autofocus: true,
+                          input_html: { autocomplete: "closing_time" },
+                          wrapper_html: { class: 'col-sm-12' },
+                          label_html: { class: 'restaurant-paragraph col-sm-2 control-label' } %>
+            </div>
+              <%= f.submit "Update your Restaurant", class: "btn btn-primary shadow-sm mt-3" %>
+            <% end %>
+            <h2>Edit login details, profile photo or delete your account</h2>
+            <%= link_to edit_user_registration_path, class: "btn btn-primary" do %>
+              Update Details
             <% end %>
         </div>
       </div>

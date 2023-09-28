@@ -1,15 +1,20 @@
-<h1>Add Your Menu</h1>
-<%= simple_form_for [@restaurant, @restaurant_menu] do |f| %>
-            <div class="menu-form-group">
-                <%= f.input :description,
-                            required: true,
-                            autofocus: true,
-                            input_html: { autocomplete: "description" },
-                            wrapper_html: { class: 'col-sm-12' },
-                            label_html: { class: 'menu-paragraph col-sm-2 control-label' } %>
-            </div>
-              <div class="menu-form-group">
-                <%= f.input :photos, as: :file, input_html: { multiple: true }, label: 'Upload Menu Images' %>
-            </div>
-              <%= f.submit "Add Menu", class: "btn btn-primary shadow-sm mt-3" %>
-            <% end %>
+<div class="container">
+  <%= form_with(model: [@restaurant, @restaurant_menu], data: { controller: "ocr" }) do |form| %>
+  <!--  <div>-->
+      <%= form.label :description %>
+      <%= form.text_field :description %>
+    <div>
+      <%= form.label :photos %>
+      <%= form.file_field :photos, data: {  ocr_target: "file", action: "change->ocr#upload" } %>
+    </div>
+    <%# Hidden input for the photo description %>
+    <%#= #form.hidden_field :photo_description, data: { ocr_target: “photo_description” } %>
+    <div>
+      <%= form.label :photo_description %>
+      <%= form.text_area :photo_description, data: { ocr_target: "photo_description" } %>
+    </div>
+    <div>
+      <%= form.submit %>
+    </div>
+  <% end %>
+</div>

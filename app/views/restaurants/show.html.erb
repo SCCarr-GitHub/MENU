@@ -31,6 +31,7 @@
     <% end %>
   </ul>
   <br>
+
 <% if current_user.customer %>
   <div class="m-4">
   <h2>Add a Review</h2>
@@ -43,6 +44,7 @@
 <% end %>
 </div>
 <% if current_user.id == @restaurant.user_id %>
+
 <%= link_to "Add Menu", new_restaurant_restaurant_menu_path(@restaurant), class: "nav-link" %>
 <% end %>
 <%= render "restaurant_menus/show" %>

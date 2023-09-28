@@ -1,0 +1,17 @@
+<h1><%= @this_restaurant.name %> Menu</h1>
+<div class="item-grid">
+  <% @items.each_slice(2) do |item_group| %>
+    <div class="row">
+      <% item_group.each do |item| %>
+        <div class="col-md-6">
+          <div class="item-card">
+            Photo
+            Category
+            Name
+            Price
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

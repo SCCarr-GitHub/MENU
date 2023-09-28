@@ -84,19 +84,19 @@ puts "Finished creating restaurants!"
 
 # GENERATE RESTAURANT MENUS!
 
-puts "Creating restaurant menus..."
+# puts "Creating restaurant menus..."
 
-RestaurantMenu.create!(
-  description: "Restaurant 1 Menu",
-  restaurant_id: Restaurant.find_by(name: "Restaurant 1").id
-)
+# RestaurantMenu.create!(
+#   description: "Restaurant 1 Menu",
+#   restaurant_id: Restaurant.find_by(name: "Restaurant 1").id
+# )
 
-RestaurantMenu.create!(
-  description: "Restaurant 2 Menu",
-  restaurant_id: Restaurant.find_by(name: "Restaurant 2").id
-)
+# RestaurantMenu.create!(
+#   description: "Restaurant 2 Menu",
+#   restaurant_id: Restaurant.find_by(name: "Restaurant 2").id
+# )
 
-puts "Finished creating restaurant menus!"
+# puts "Finished creating restaurant menus!"
 
 # GENERATE ITEMS ON MENU!
 

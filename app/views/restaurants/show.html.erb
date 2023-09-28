@@ -38,7 +38,7 @@
   <%= simple_form_for [@restaurant, @review] do |form| %>
     <%= form.input :comment %>
     <%= form.input :rating, collection: [0, 1, 2, 3, 4, 5], label: "Select Rating" %>
-    <%= form.submit 'Submit', class: 'btn border' %>
+    <%= form.submit 'Submit', class: "btn btn-primary" %>
   <% end %>
 </div>
 <% end %>

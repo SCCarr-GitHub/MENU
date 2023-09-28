@@ -34,8 +34,9 @@
                   wrapper_html: { class: 'col-sm-8 mx-auto' },
                   label_html: { class: 'listing-paragraph col-sm-2 control-label' } %>
       <%= f.button :submit, "Update info", class: 'btn btn-outline-light', data: { disable_with: 'Updating...' } %>
-        <br>
-      </div>
-    </div>
   <% end %>
+  <h2>Edit login details, profile photo or delete your account</h2>
+  <%= link_to edit_user_registration_path, class: "btn btn-primary" do %>
+          Update Details
+        <% end %>
 </div>

@@ -11,6 +11,9 @@
                 label_html: { class: 'listing-paragraph col-sm-2 control-label' } %>
     <p>Are you a restaurant owner?</p>
     <%= f.check_box :restaurant_owner %>
+    <%= f.input :photo, as: :file,
+                  wrapper_html: { class: 'col-sm-8 mx-auto' },
+                  label_html: { class: 'listing-paragraph col-sm-2 control-label' } %>
     <%= f.input :password,
                 required: true,
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),

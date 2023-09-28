@@ -15,7 +15,7 @@ class RestaurantsController < ApplicationController
 
   def show
     @review = Review.new
-    @restaurant = Restaurant.find(params[:id])
+    @restaurant = current_user.restaurant
     @users = User.all
     @reviews = @restaurant.reviews
     @customer = current_user.customer
@@ -36,12 +36,16 @@ class RestaurantsController < ApplicationController
   end
 
   def edit
-    @restaurant = Restaurant.find(params[:id])
+    @restaurant = current_user.restaurant
   end
 
   def update
-    @restaurant.update(restaurant_params)
-    redirect_to user_restaurant_path(@restaurant)
+    @restaurant = current_user.restaurant
+    if @restaurant.update(restaurant_params)
+      redirect_to root_path
+    else
+      render :edit
+    end
   end
 
   def destroy

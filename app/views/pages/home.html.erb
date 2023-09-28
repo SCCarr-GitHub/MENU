@@ -1,4 +1,11 @@
 <h1>Me.N.u</h1>
+<% if user_signed_in? %>
+<% if current_user.photo.present? %>
+  <%= cl_image_tag current_user.photo.key, class: "avatar" %>
+<% else %>
+  <%= image_tag "https://www.nicepng.com/png/full/115-1150821_default-avatar-comments-sign-in-icon-png.png", class: "avatar" %>
+<% end %>
+<% end %>
   <div class="restaurants-row">
     <% @restaurants.each do |restaurant| %>
       <%= link_to restaurant_path(restaurant) do %>
@@ -27,5 +34,7 @@
   <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
   <% if !current_user.restaurant_owner? %>
     <%= link_to "Edit your info", edit_customer_path(current_user.id, @customer), class: "nav-link" %>
-    <% end %>
+  <% else %>
+    <%= link_to "Edit your info", edit_restaurant_path(current_user.id, @restaurant), class: "nav-link" %>
+  <% end %>
 <% end %>

@@ -46,9 +46,22 @@
     </div>
     <% if current_user.id == @restaurant.user_id %>
 
+
     <%= link_to "Add Menu", new_restaurant_restaurant_menu_path(@restaurant), class: "nav-link" %>
     <% end %>
     <%= render "restaurant_menus/show" %>
     <%= link_to "Home", root_path, class: "nav-link" %>
   </div>
+
+<% if current_user.customer %>
+  <div class="m-4">
+  <h2>Add a Review</h2>
+  <%= simple_form_for [@restaurant, @review] do |form| %>
+    <%= form.input :comment %>
+    <%= form.input :rating, collection: [0, 1, 2, 3, 4, 5], label: "Select Rating" %>
+    <%= form.submit 'Submit', class: "btn btn-primary" %>
+  <% end %>
+</div>
+<% end %>
+
 </div>

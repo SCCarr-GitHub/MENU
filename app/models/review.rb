@@ -1,5 +1,5 @@
 class Review < ApplicationRecord
   belongs_to :restaurant
   belongs_to :customer
-  validates :content, presence: true
+  validates :comment, presence: true
 end

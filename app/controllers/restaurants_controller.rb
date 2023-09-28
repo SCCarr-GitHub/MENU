@@ -14,9 +14,11 @@ class RestaurantsController < ApplicationController
   end
 
   def show
+    @review = Review.new
     @restaurant = Restaurant.find(params[:id])
-    # @users = User.all
-    # @reviews = @restaurant.reviews
+    @users = User.all
+    @reviews = @restaurant.reviews
+    @customer = current_user.customer
   end
 
   def new
@@ -25,7 +27,7 @@ class RestaurantsController < ApplicationController
 
   def create
     @restaurant = Restaurant.new(restaurant_params)
-    @restaurant.user = @user
+    @restaurant.user = current_user
     if @restaurant.save
       redirect_to restaurant_path(@restaurant)
     else
@@ -51,10 +53,10 @@ class RestaurantsController < ApplicationController
   private
 
   def restaurant_params
-    params.require(:restaurant).permit(:address, :phone_number, :name, :category, :opening_time, :closing_time, :user_id)
+    params.require(:restaurant).permit(:address, :phone_number, :name, :category, :opening_time, :closing_time)
   end
 
   def set_user
-    @user = User.find(params[:user_id])
+    @user = current_user
   end
 end

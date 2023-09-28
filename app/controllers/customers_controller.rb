@@ -7,7 +7,7 @@ class CustomersController < ApplicationController
 
   def create
     @customer = Customer.new(customer_params)
-    @customer.user = @user
+    @customer.user = current_user
     if @customer.save
       redirect_to root_path
     else
@@ -31,10 +31,10 @@ class CustomersController < ApplicationController
   private
 
   def customer_params
-    params.require(:customer).permit(:name, :phone_number, :surname, :area, :address, :users_id)
+    params.require(:customer).permit(:name, :phone_number, :surname, :area, :address)
   end
 
   def set_user
-    @user = User.find(params[:user_id])
+    @user = current_user
   end
 end

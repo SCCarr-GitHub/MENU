@@ -26,7 +26,7 @@ class ReviewsController < ApplicationController
   end
 
   def set_customer
-    @customer = Customer.find(params[:customer_id])
+    @customer = current_user.customer
   end
 
   def review_params

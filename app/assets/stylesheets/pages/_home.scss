@@ -1,1 +1,60 @@
 // Specific CSS for your home-page
+body{
+  // display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #f5d7bc;
+}
+
+.home-header{
+  margin-top: 20px;
+  text-align: center;
+  justify-content: center;
+  color: #522A27
+}
+
+.restaurant-card {
+  background-color: #E3DEE1;
+  border-radius: 15px;
+  margin: 20px;
+  text-align: center;
+  justify-content: center;
+  padding: 10px;
+  color:#522A27;
+  border: 1px solid #522A27;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+
+  &:hover,
+  &:active {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    transform: scale(1.1);
+  }
+}
+
+.restaurants-row{
+  a {
+    text-decoration: none;
+  }
+}
+
+.restaurant-show-container{
+  text-align: center;
+  justify-content: center;
+}
+
+.links {
+  text-align: center;
+}
+
+.tesseract-form {
+  background-color: #E3DEE1;
+  border-radius: 15px;
+  margin: 20px;
+  text-align: center;
+  justify-content: center;
+  padding: 10px;
+  color:#522A27;
+  border: 1px solid #522A27;
+}

@@ -1,40 +1,40 @@
-<h1>Me.N.u</h1>
-<% if user_signed_in? %>
-<% if current_user.photo.present? %>
-  <%= cl_image_tag current_user.photo.key, class: "avatar" %>
-<% else %>
-  <%= image_tag "https://www.nicepng.com/png/full/115-1150821_default-avatar-comments-sign-in-icon-png.png", class: "avatar" %>
-<% end %>
-<% end %>
-  <div class="restaurants-row">
-    <% @restaurants.each do |restaurant| %>
-      <%= link_to restaurant_path(restaurant) do %>
-        <div class="restaurant">
-          <h4><%= restaurant.name %></h4>
-          <br>
-          <div><strong><%= restaurant.category %></strong></div>
-          <br>
-          <div><strong><%= restaurant.address %></strong></div>
-          <br>
-          <div><strong><%= restaurant.phone_number %></strong></div>
-          <br>
-          <div><strong><%= restaurant.opening_time %></strong></div>
-          <br>
-          <div><strong><%= restaurant.closing_time %></strong></div>
-        </div>
+<div class="home-header"><h1>Me.N.u</h1></div>
+
+<div class="home-page-avatar">
+  <% if user_signed_in? %>
+    <% if current_user.photo.present? %>
+      <%= cl_image_tag current_user.photo.key, class: "avatar" %>
+    <% else %>
+      <%= image_tag "https://www.nicepng.com/png/full/115-1150821_default-avatar-comments-sign-in-icon-png.png", class: "avatar" %>
     <% end %>
   <% end %>
 </div>
 
-<% if !user_signed_in? %>
-  <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-  <%= link_to "Signup", new_user_registration_path, class: "nav-link" %>
-<% end %>
-<% if user_signed_in? %>
-  <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
-  <% if !current_user.restaurant_owner? %>
-    <%= link_to "Edit your info", edit_customer_path(current_user.id, @customer), class: "nav-link" %>
-  <% else %>
-    <%= link_to "Edit your info", edit_restaurant_path(current_user.id, @restaurant), class: "nav-link" %>
+  <div class="restaurants-row">
+    <% @restaurants.each do |restaurant| %>
+      <%= link_to restaurant_path(restaurant) do %>
+        <div class="restaurant-card">
+          <div><strong><%= restaurant.name %></strong></div>
+          <div><strong><%= restaurant.category %></strong></div>
+          <div><strong>Address: </strong><%= restaurant.address %></div>
+          <div><strong>Phone Number: </strong><%= restaurant.phone_number %></div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+</div>
+  <div class="links">
+  <% if !user_signed_in? %>
+    <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+    <%= link_to "Signup", new_user_registration_path, class: "nav-link" %>
   <% end %>
-<% end %>
+  <% if user_signed_in? %>
+    <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
+    <% if !current_user.restaurant_owner? %>
+      <%= link_to "Edit your info", edit_customer_path(current_user.id, @customer), class: "nav-link" %>
+    <% else %>
+      <%= link_to "Edit your info", edit_restaurant_path(current_user.id, @restaurant), class: "nav-link" %>
+    <% end %>
+  <% end %>
+</div>

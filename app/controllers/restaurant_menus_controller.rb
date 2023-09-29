@@ -9,14 +9,14 @@ class RestaurantMenusController < ApplicationController
     @restaurant_menu = RestaurantMenu.new(restaurant_menu_params)
     @restaurant_menu.restaurant = @restaurant
     if @restaurant_menu.save
-      redirect_to restaurant_path(@restaurant)
+      redirect_to restaurant_menu_path(@restaurant_menu)
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
   def show
-    @restaurant_menu = @restaurant.restaurant_menus.find(params[:menu_id])
+    @restaurant_menu = RestaurantMenu.find(params[:id])
   end
 
   def edit
@@ -32,10 +32,11 @@ class RestaurantMenusController < ApplicationController
     end
   end
 
+
   private
 
   def restaurant_menu_params
-    params.require(:restaurant_menu).permit(:description, :restaurant_id, photos: [])
+    params.require(:restaurant_menu).permit(:description, :restaurant_id, :photo_description, photos: [])
   end
 
   def set_restaurant

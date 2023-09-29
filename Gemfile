@@ -5,6 +5,8 @@ ruby "3.1.2"
 # Extra gems that the boys have added:
 gem "devise"
 gem "cloudinary"
+gem "openai"
+gem "ruby-openai"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.8"
 

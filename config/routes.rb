@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations' }
   root to: "pages#home"
-  get '/search', to: 'pages#search', as: 'search_pages'
-
 
     resources :customers, only: [:new, :create, :edit, :update]
     resources :restaurants, only: [:new, :create] do

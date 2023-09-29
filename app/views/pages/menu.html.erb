@@ -1,4 +1,15 @@
-<h1><%= @this_restaurant.name %> Menu</h1>
+<div class="home-header"><h1>Me.N.u</h1></div>
+<div class="home-page-avatar">
+  <% if user_signed_in? %>
+    <% if current_user.photo.present? %>
+      <%= cl_image_tag current_user.photo.key, class: "avatar" %>
+    <% else %>
+      <%= image_tag "https://www.nicepng.com/png/full/115-1150821_default-avatar-comments-sign-in-icon-png.png", class: "avatar" %>
+    <% end %>
+  <% end %>
+</div>
+
+<h1 class="home-header"><%= @this_restaurant.name %> Menu</h1>
 <div class="item-grid">
   <% @items.each_slice(2) do |item_group| %>
     <div class="row">

@@ -84,69 +84,78 @@ puts "Finished creating restaurants!"
 
 # GENERATE RESTAURANT MENUS!
 
-# puts "Creating restaurant menus..."
+puts "Creating restaurant menus..."
 
-# restaurant1 = Restaurant.find_by(name: "Restaurant 1")
-# restaurant2 = Restaurant.find_by(name: "Restaurant 2")
+restaurant1 = Restaurant.find_by(name: "Restaurant 1")
+restaurant2 = Restaurant.find_by(name: "Restaurant 2")
 
-# RestaurantMenu.create!(
-#   description: "Restaurant 1 Menu",
-#   restaurant: restaurant1
-# )
+restaurant_menu_1 = RestaurantMenu.create!(
+  description: "Restaurant 1 Menu",
+  restaurant: restaurant1
+)
 
-# RestaurantMenu.create!(
-#   description: "Restaurant 2 Menu",
-#   restaurant: restaurant2
-# )
-
-# puts "Finished creating restaurant menus!"
+puts "Finished creating restaurant menus!"
 
 # # GENERATE ITEMS ON MENU!
 
-# puts "Creating menu items..."
+puts "Creating menu items..."
 
-# Item.create!(
-#   category: "starter",
-#   item_name: "Focaccia",
-#   item_price: 10,
-#   restaurant_menu_id: RestaurantMenu.find_by(description: "Restaurant 1 Menu").id
-# )
+Item.create!(
+  category: "starter",
+  item_name: "Foccacia",
+  item_price: 10,
+  restaurant_menu: restaurant_menu_1
+)
 
-# Item.create!(
-#   category: "main",
-#   item_name: "Spaghetti Carbonara",
-#   item_price: 20,
-#   restaurant_menu_id: RestaurantMenu.find_by(description: "Restaurant 1 Menu").id
-# )
+Item.create!(
+  category: "main",
+  item_name: "Spaghetti Carbonara",
+  item_price: 20,
+  restaurant_menu: restaurant_menu_1
+)
 
-# Item.create!(
-#   category: "dessert",
-#   item_name: "Gelato",
-#   item_price: 15,
-#   restaurant_menu_id: RestaurantMenu.find_by(description: "Restaurant 1 Menu").id
-# )
+Item.create!(
+  category: "dessert",
+  item_name: "Gelato",
+  item_price: 15,
+  restaurant_menu: restaurant_menu_1
+)
 
-# Item.create!(
-#   category: "starter",
-#   item_name: "Guacamole and Chips",
-#   item_price: 10,
-#   restaurant_menu_id: RestaurantMenu.find_by(description: "Restaurant 1 Menu").id
-# )
+Item.create!(
+  category: "starter",
+  item_name: "Guacamole and Chips",
+  item_price: 10,
+  restaurant_menu: restaurant_menu_1
+)
 
-# Item.create!(
-#   category: "main",
-#   item_name: "Tacos",
-#   item_price: 20,
-#   restaurant_menu_id: RestaurantMenu.find_by(description: "Restaurant 1 Menu").id
-# )
+Item.create!(
+  category: "main",
+  item_name: "Tacos",
+  item_price: 20,
+  restaurant_menu: restaurant_menu_1
+)
 
-# Item.create!(
-#   category: "dessert",
-#   item_name: "Churros",
-#   item_price: 15,
-#   restaurant_menu_id: RestaurantMenu.find_by(description: "Restaurant 1 Menu").id
-# )
+Item.create!(
+  category: "dessert",
+  item_name: "Churros",
+  item_price: 15,
+  restaurant_menu: restaurant_menu_1
+)
 
-# puts "Finished creating menu items!"
+Item.create!(
+  category: "drink",
+  item_name: "Castle Lager",
+  item_price: 20,
+  restaurant_menu: restaurant_menu_1
+)
 
-# puts "ALL DATA HAS BEEN GENERATED! (finally)"
+Item.create!(
+  category: "drink",
+  item_name: "Chocolate Milkshake",
+  item_price: 20,
+  restaurant_menu: restaurant_menu_1
+)
+
+puts "Finished creating menu items!"
+
+puts "ALL DATA HAS BEEN GENERATED! (finally)"

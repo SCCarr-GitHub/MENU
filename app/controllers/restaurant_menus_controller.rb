@@ -17,14 +17,17 @@ class RestaurantMenusController < ApplicationController
 
   def show
     @this_restaurant = Restaurant.find(params[:id])
-    @menu = RestaurantMenu.new(restaurant: @this_restaurant)
-
-    @items = Item.where(restaurant_menu_id: @menu.id)
-
-    @starters = @items.where(category: "starter")
-    @mains = @items.where(category: "main")
-    @desserts = @items.where(category: "dessert")
-    @drinks = @items.where(category: "drink")
+    @menus = @this_restaurant.restaurant_menus
+    @items = []
+    @menus.each do |menu|
+      menu.items.each do |item|
+        @items << item
+      end
+    end
+    @starters = @items.select { |item| item.category == "starter" }
+    @mains = @items.select { |item| item.category == "main" }
+    @desserts = @items.select { |item| item.category == "dessert" }
+    @drinks = @items.select { |item| item.category == "drink" }
   end
 
   def edit
@@ -52,6 +55,6 @@ class RestaurantMenusController < ApplicationController
   end
 
 
-  
+
 
 end

@@ -86,64 +86,67 @@ puts "Finished creating restaurants!"
 
 # puts "Creating restaurant menus..."
 
+# restaurant1 = Restaurant.find_by(name: "Restaurant 1")
+# restaurant2 = Restaurant.find_by(name: "Restaurant 2")
+
 # RestaurantMenu.create!(
 #   description: "Restaurant 1 Menu",
-#   restaurant_id: Restaurant.find_by(name: "Restaurant 1").id
+#   restaurant: restaurant1
 # )
 
 # RestaurantMenu.create!(
 #   description: "Restaurant 2 Menu",
-#   restaurant_id: Restaurant.find_by(name: "Restaurant 2").id
+#   restaurant: restaurant2
 # )
 
 # puts "Finished creating restaurant menus!"
 
-# GENERATE ITEMS ON MENU!
+# # GENERATE ITEMS ON MENU!
 
 # puts "Creating menu items..."
 
 # Item.create!(
-#   category: "Starters",
+#   category: "starter",
 #   item_name: "Focaccia",
 #   item_price: 10,
-#   restaurant_menus_id: RestaurantMenu.find_by(description: "Restaurant 1 Menu").id
+#   restaurant_menu_id: RestaurantMenu.find_by(description: "Restaurant 1 Menu").id
 # )
 
 # Item.create!(
-#   category: "Main Courses",
+#   category: "main",
 #   item_name: "Spaghetti Carbonara",
 #   item_price: 20,
-#   restaurant_menus_id: RestaurantMenu.find_by(description: "Restaurant 1 Menu").id
+#   restaurant_menu_id: RestaurantMenu.find_by(description: "Restaurant 1 Menu").id
 # )
 
 # Item.create!(
-#   category: "Desserts",
+#   category: "dessert",
 #   item_name: "Gelato",
 #   item_price: 15,
-#   restaurant_menus_id: RestaurantMenu.find_by(description: "Restaurant 1 Menu").id
+#   restaurant_menu_id: RestaurantMenu.find_by(description: "Restaurant 1 Menu").id
 # )
 
 # Item.create!(
-#   category: "Starters",
+#   category: "starter",
 #   item_name: "Guacamole and Chips",
 #   item_price: 10,
-#   restaurant_menus_id: RestaurantMenu.find_by(description: "Restaurant 2 Menu").id
+#   restaurant_menu_id: RestaurantMenu.find_by(description: "Restaurant 1 Menu").id
 # )
 
 # Item.create!(
-#   category: "Main Courses",
+#   category: "main",
 #   item_name: "Tacos",
 #   item_price: 20,
-#   restaurant_menus_id: RestaurantMenu.find_by(description: "Restaurant 2 Menu").id
+#   restaurant_menu_id: RestaurantMenu.find_by(description: "Restaurant 1 Menu").id
 # )
 
 # Item.create!(
-#   category: "Desserts",
+#   category: "dessert",
 #   item_name: "Churros",
 #   item_price: 15,
-#   restaurant_menus_id: RestaurantMenu.find_by(description: "Restaurant 2 Menu").id
+#   restaurant_menu_id: RestaurantMenu.find_by(description: "Restaurant 1 Menu").id
 # )
 
 # puts "Finished creating menu items!"
 
-puts "ALL DATA HAS BEEN GENERATED! (finally)"
+# puts "ALL DATA HAS BEEN GENERATED! (finally)"

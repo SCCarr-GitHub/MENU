@@ -6,9 +6,12 @@ class PagesController < ApplicationController
     end
   end
 
-  def menu
-    @this_restaurant = Restaurant.find(params[:restaurant_id])
-    @items = Item.all
+  # def menu
+  #   @this_restaurant = Restaurant.find(params[:restaurant_id])
+  #   @items = Item.all
+  # end
+  def tesseract
+    @restaurant_menu = RestaurantMenu.find(params[:id])
   end
 
   def search

@@ -1,5 +1,4 @@
 import { Application } from "@hotwired/stimulus"
-import { openai } from ".controllers/openai_controller"
 
 const application = Application.start()
 

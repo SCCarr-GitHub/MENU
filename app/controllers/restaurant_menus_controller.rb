@@ -16,7 +16,15 @@ class RestaurantMenusController < ApplicationController
   end
 
   def show
-    @restaurant_menu = RestaurantMenu.find(params[:id])
+    @this_restaurant = Restaurant.find(params[:id])
+    @menu = RestaurantMenu.new(restaurant: @this_restaurant)
+
+    @items = Item.where(restaurant_menu_id: @menu.id)
+
+    @starters = @items.where(category: "starter")
+    @mains = @items.where(category: "main")
+    @desserts = @items.where(category: "dessert")
+    @drinks = @items.where(category: "drink")
   end
 
   def edit

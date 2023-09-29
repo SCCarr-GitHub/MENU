@@ -61,7 +61,7 @@ puts "Finished creating customers!"
 puts "Creating restaurants..."
 
 Restaurant.create!(
-  name: "Restaurant 1",
+  name: "La Italiano",
   category: "Italian",
   address: "123 Main Street",
   phone_number: "1111111111",
@@ -71,7 +71,7 @@ Restaurant.create!(
 )
 
 Restaurant.create!(
-  name: "Restaurant 2",
+  name: "Senòr Mexicana",
   category: "Mexican",
   address: "456 Main Street",
   phone_number: "2222222222",
@@ -86,12 +86,12 @@ puts "Finished creating restaurants!"
 
 puts "Creating restaurant menus..."
 
-restaurant1 = Restaurant.find_by(name: "Restaurant 1")
-restaurant2 = Restaurant.find_by(name: "Restaurant 2")
+la_italiano = Restaurant.find_by(name: "La Italiano")
+senòr_mexicana = Restaurant.find_by(name: "Senòr Mexicana")
 
-restaurant_menu_1 = RestaurantMenu.create!(
-  description: "Restaurant 1 Menu",
-  restaurant: restaurant1
+la_italiano_menu = RestaurantMenu.create!(
+  description: "La Italiano Menu",
+  restaurant: la_italiano
 )
 
 puts "Finished creating restaurant menus!"
@@ -104,56 +104,63 @@ Item.create!(
   category: "starter",
   item_name: "Foccacia",
   item_price: 10,
-  restaurant_menu: restaurant_menu_1
+  restaurant_menu: la_italiano_menu
 )
 
 Item.create!(
   category: "main",
   item_name: "Spaghetti Carbonara",
   item_price: 20,
-  restaurant_menu: restaurant_menu_1
+  restaurant_menu: la_italiano_menu
 )
 
 Item.create!(
   category: "dessert",
   item_name: "Gelato",
   item_price: 15,
-  restaurant_menu: restaurant_menu_1
+  restaurant_menu: la_italiano_menu
 )
 
 Item.create!(
   category: "starter",
-  item_name: "Guacamole and Chips",
+  item_name: "Fior De Latte",
   item_price: 10,
-  restaurant_menu: restaurant_menu_1
+  restaurant_menu: la_italiano_menu
 )
 
 Item.create!(
   category: "main",
-  item_name: "Tacos",
+  item_name: "Ribeye Steak",
   item_price: 20,
-  restaurant_menu: restaurant_menu_1
+  restaurant_menu: la_italiano_menu
 )
 
 Item.create!(
   category: "dessert",
   item_name: "Churros",
   item_price: 15,
-  restaurant_menu: restaurant_menu_1
+  restaurant_menu: la_italiano_menu
 )
 
 Item.create!(
   category: "drink",
   item_name: "Castle Lager",
   item_price: 20,
-  restaurant_menu: restaurant_menu_1
+  restaurant_menu: la_italiano_menu
 )
 
 Item.create!(
   category: "drink",
   item_name: "Chocolate Milkshake",
   item_price: 20,
-  restaurant_menu: restaurant_menu_1
+  restaurant_menu: la_italiano_menu
+)
+
+Item.create!(
+  category: "drink",
+  item_name: "Limoncello Mojito",
+  item_price: 20,
+  restaurant_menu: la_italiano_menu
 )
 
 puts "Finished creating menu items!"

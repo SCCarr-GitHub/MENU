@@ -1,13 +1,13 @@
-import { Controller } from "stimulus";
-import openai from 'openai';
+import { Controller } from "@hotwired/stimulus";
+import OpenAI from 'openai';
 
 export default class extends Controller {
   static values = { apiKey: String };
 
   async connect() {
     try {
-      const apiKey = this.apiKeyValue;
-      const client = new openai({ key: apiKey });
+      const apiKey = process.env.OPENAI_API_KEY;
+      const client = new OpenAI({ key: apiKey });
       const restaurantCard = this.element;
       const originalDescription = restaurantCard.querySelector(".original-description");
       const restructuredDescription = restaurantCard.querySelector(".restructured-description");
@@ -22,23 +22,11 @@ export default class extends Controller {
         top_p: 1.0,
         n: 1
       });
-
       const restructuredText = response.choices[0].text.trim();
-
       restructuredDescription.textContent = restructuredText;
     } catch (error) {
-      console.error('Error:', error);
+      console.error(error);
     }
   }
 }
 
-
-
-    // const prompt = `Build me a very simple structured menu using: ${text}.`;
-    //   const output = await OpenAI.Completion.create({
-    //       engine: "text-davinci-002",
-    //       prompt,
-    //       temperature: 0.7,
-    //       max_tokens: 100,
-    //       top_p: 1.0,
-    //     });

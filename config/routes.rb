@@ -13,4 +13,7 @@ Rails.application.routes.draw do
   resources :restaurants, only: [:index, :show, :edit, :update]
   resources :reviews, only: [:destroy]
   resources :restaurant_menus, only: [:show, :edit]
+
+  get '/tesseract/:id', to: 'pages#tesseract', as: 'tess_pages'
+
 end

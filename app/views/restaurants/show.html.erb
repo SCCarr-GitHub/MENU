@@ -28,7 +28,7 @@
 <div class="restaurant-show-card" >
 
   <h4 class="m-4">Reviews</h4>
-  <ul class="list-group m-4">
+  <ul class="restaurant-show-card">
     <% @this_restaurant.reviews.each do |review| %>
       <li class="list-group-item"><%= review.comment %></li>
       <div class="d-flex justify-content-between align-items-center">

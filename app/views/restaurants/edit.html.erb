@@ -1,9 +1,17 @@
-<div class="restaurant-form">=
-  <div class="restaurant-form-container">
+  <div class="home-header"><h1>Me.N.u</h1></div>
+<div class="home-page-avatar">
+  <% if user_signed_in? %>
+    <% if current_user.photo.present? %>
+      <%= cl_image_tag current_user.photo.key, class: "avatar" %>
+    <% else %>
+      <%= image_tag "https://www.nicepng.com/png/full/115-1150821_default-avatar-comments-sign-in-icon-png.png", class: "avatar" %>
+    <% end %>
+  <% end %>
+</div>
+  <div class="restaurant-show-card">
     <div class="d-flex justify-content-center align-items-center">
-      <div class="text-center w-50">
-        <div class="create-list-container p-4 rounded shadow">
-          <h1 class="restaurant-heading">Update your Restaurant details</h1>
+      <div class="text-center w-100">
+          <h1 class="home-header">Update your Restaurant details</h1>
           <%= simple_form_for [@restaurant] do |f| %>
             <div class="restaurant-form-group">
               <%= f.input :name,
@@ -11,7 +19,7 @@
                           autofocus: true,
                           input_html: { autocomplete: "name" },
                           wrapper_html: { class: 'col-sm-12' },
-                          label_html: { class: 'restaurant-paragraph col-sm-2 control-label' } %>
+                          label_html: { class: 'restaurant-paragraph col-sm-6 control-label' } %>
             </div>
             <div class="restaurant-form-group">
               <%= f.input :address,
@@ -19,7 +27,7 @@
                           autofocus: true,
                           input_html: { autocomplete: "address" },
                           wrapper_html: { class: 'col-sm-12' },
-                          label_html: { class: 'restaurant-paragraph col-sm-2 control-label' } %>
+                          label_html: { class: 'restaurant-paragraph col-sm-6 control-label' } %>
             </div>
             <div class="restaurant-form-group">
               <%= f.input :phone_number,
@@ -27,7 +35,7 @@
                           autofocus: true,
                           input_html: { autocomplete: "phone_number" },
                           wrapper_html: { class: 'col-sm-12' },
-                          label_html: { class: 'restaurant-paragraph col-sm-2 control-label' } %>
+                          label_html: { class: 'restaurant-paragraph col-sm-6 control-label' } %>
             </div>
             <div class="restaurant-form-group">
               <%= f.input :category,
@@ -35,7 +43,7 @@
                           autofocus: true,
                           input_html: { autocomplete: "category" },
                           wrapper_html: { class: 'col-sm-12' },
-                          label_html: { class: 'restaurant-paragraph col-sm-2 control-label' } %>
+                          label_html: { class: 'restaurant-paragraph col-sm-6 control-label' } %>
             </div>
             <div class="restaurant-form-group">
               <%= f.input :opening_time,
@@ -43,7 +51,7 @@
                           autofocus: true,
                           input_html: { autocomplete: "opening_time" },
                           wrapper_html: { class: 'col-sm-12' },
-                          label_html: { class: 'restaurant-paragraph col-sm-2 control-label' } %>
+                          label_html: { class: 'restaurant-paragraph col-sm-6 control-label' } %>
             </div>
             <div class="restaurant-form-group">
               <%= f.input :closing_time,
@@ -53,14 +61,14 @@
                           wrapper_html: { class: 'col-sm-12' },
                           label_html: { class: 'restaurant-paragraph col-sm-2 control-label' } %>
             </div>
-              <%= f.submit "Update your Restaurant", class: "btn btn-primary shadow-sm mt-3" %>
+              <%= f.submit "Update your Restaurant", class: "btn btn-outline-warning" %>
             <% end %>
-            <h2>Edit login details, profile photo or delete your account</h2>
-            <%= link_to edit_user_registration_path, class: "btn btn-primary" do %>
+            <br>
+            <p>Edit login details, profile photo or delete your account</p>
+            <%= link_to edit_user_registration_path, class: "btn btn-outline-warning" do %>
               Update Details
             <% end %>
         </div>
       </div>
     </div>
   </div>
-</div>

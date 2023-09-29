@@ -1,0 +1,31 @@
+<div class="home-header"><h1>Me.N.u</h1></div>
+<div class="home-page-avatar">
+  <% if user_signed_in? %>
+    <% if current_user.photo.present? %>
+      <%= cl_image_tag current_user.photo.key, class: "avatar" %>
+    <% else %>
+      <%= image_tag "https://www.nicepng.com/png/full/115-1150821_default-avatar-comments-sign-in-icon-png.png", class: "avatar" %>
+    <% end %>
+  <% end %>
+</div>
+<br>
+<div class="search-container">
+<%= form_tag(search_pages_path, method: :get) do %>
+  <%= text_field_tag :query, params[:query], placeholder: "Search...", style: "width: 300px;" %>
+  <%= submit_tag "Search", style: "background-color: #f5d7bc;" %>
+<% end %>
+  <div class="search-card">
+    <h3>Search Results</h3>
+    <% if @search_results.any? %>
+      <ul>
+        <% @search_results.each do |result| %>
+          <li>
+            <%= link_to result.searchable.name %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>No results found.</p>
+    <% end %>
+  </div>
+</div>

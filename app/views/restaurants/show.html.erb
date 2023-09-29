@@ -1,13 +1,31 @@
-<div class="restaurant-show-conatiner">
-  <div class="restaurant-card">
-    <h1><%= @this_restaurant.name %></h1>
-    <h2><%= @this_restaurant.category %></h2>
-    <h3><%= @this_restaurant.address %></h3>
-    <h4><%= @this_restaurant.phone_number %></h4>
-    <p><strong>Opening Time:  </strong><%= @this_restaurant.opening_time %></p>
-    <p><strong>Closing Time:  </strong><%= @this_restaurant.closing_time %></p>
-  </div>
-<div class="review-container">
+
+<div class="home-header"><h1>Me.N.u</h1></div>
+<div class="home-page-avatar">
+  <% if user_signed_in? %>
+    <% if current_user.photo.present? %>
+      <%= cl_image_tag current_user.photo.key, class: "avatar" %>
+    <% else %>
+      <%= image_tag "https://www.nicepng.com/png/full/115-1150821_default-avatar-comments-sign-in-icon-png.png", class: "avatar" %>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="restaurant-show-card">
+  <h1><%= @this_restaurant.name %></h1>
+  <h2><%= @this_restaurant.category %></h2>
+  <h3><%= @this_restaurant.address %></h3>
+  <h4><%= @this_restaurant.phone_number %></h4>
+  <p><%= @this_restaurant.opening_time %></p>
+  <p><%= @this_restaurant.closing_time %></p>
+</div>
+
+<div class="links">
+    <%= link_to "View Menu", restaurant_menu_path(@this_restaurant), class: "btn btn-outline-warning" %>
+  </ul>
+</div>
+
+<div class="restaurant-show-card" >
+
   <h4 class="m-4">Reviews</h4>
   <ul class="list-group m-4">
     <% @this_restaurant.reviews.each do |review| %>
@@ -22,32 +40,39 @@
           <div class="star <%= 'filled' if review.rating >= 5 %>"></div>
         </div>
         <div>
+          <% if user_signed_in? %>
             <% if review.customer == current_user.customer %>
               <%= link_to "Delete",
             review_path(review),
             data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
             class: 'btn btn-danger btn-sm' %>
             <% end %>
+          <% end %>
         </div>
       </div>
     <% end %>
-  </ul>
-  <br>
-  <% if current_user.customer %>
-    <div class="m-4">
-    <h2>Add a Review</h2>
-    <%= simple_form_for [@this_restaurant, @review] do |form| %>
-      <%= form.input :comment %>
-      <%= form.input :rating, collection: [0, 1, 2, 3, 4, 5], label: "Select Rating" %>
-      <%= form.submit 'Submit', class: "btn btn-primary" %>
+
+  </div>
+<div class="restaurant-show-card" >
+  <% if user_signed_in? %>
+    <% if current_user.customer %>
+      <div class="m-4">
+      <h2>Add a Review</h2>
+      <%= simple_form_for [@this_restaurant, @review] do |form| %>
+        <%= form.input :comment %>
+        <%= form.input :rating, collection: [0, 1, 2, 3, 4, 5], label: "Select Rating" %>
+        <%= form.submit 'Submit', class: "btn btn-outline-warning" %>
+      <% end %>
+    </div>
     <% end %>
-  </div>
+      <% if current_user.id == @this_restaurant.user_id %>
+        <%= link_to "Add Menu", new_restaurant_restaurant_menu_path(@restaurant), class: "nav-link" %>
+        <%= link_to "Edit your info", edit_restaurant_path(@restaurant), class: "nav-link" %>
+        <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
+      <% end %>
+
   <% end %>
   </div>
 </div>
-<div class="links">
-  <% if current_user.id == @this_restaurant.user_id %>
-  <%= link_to "Add Menu", new_restaurant_restaurant_menu_path(@restaurant), class: "nav-link" %>
-  <% end %>
-  <%= link_to "Home", root_path, class: "nav-link" %>
-</div>
+
+

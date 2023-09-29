@@ -16,10 +16,12 @@ class RestaurantsController < ApplicationController
   def show
     @this_restaurant = Restaurant.find(params[:id])
     @review = Review.new
-    @restaurant = current_user.restaurant
+    if user_signed_in?
+      @restaurant = current_user.restaurant
+      @customer = current_user.customer
+    end
     @users = User.all
     @reviews = @this_restaurant.reviews
-    @customer = current_user.customer
   end
 
   def new

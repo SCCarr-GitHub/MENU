@@ -1,5 +1,6 @@
-<div class="sign-up-form-container">
-  <h2 class="homepage-heading text-center">Sign up</h2>
+<div class="home-header"><h1>Me.N.u</h1></div>
+<div class="restaurant-show-card">
+  <h2 class="homep-header">Sign up</h2>
 
   <%= simple_form_for(resource, as: resource_name, url: user_registration_path, html: { class: 'form-horizontal' }) do |f| %>
     <%= f.error_notification %>
@@ -26,6 +27,6 @@
                 wrapper_html: { class: 'col-sm-8 mx-auto' },
                 label_html: { class: 'listing-paragraph col-sm-2 control-label' } %>
 
-      <%= f.button :submit, "Sign up", class: 'btn btn-primary', data: { disable_with: 'Signing up...' } %>
+      <%= f.button :submit, "Sign up", class: "btn btn-outline-warning", data: { disable_with: 'Signing up...' } %>
   <% end %>
 </div>

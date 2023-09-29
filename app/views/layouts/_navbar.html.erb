@@ -25,16 +25,20 @@
     <li class="list">
       <% if user_signed_in? %>
         <% if !current_user.restaurant_owner? %>
-          <%= link_to edit_customer_path(current_user.id, @customer)  do %>
-            <span class="icon"></span>
-            <ion-icon size="large", name="person"></ion-icon>
-            <span class="text">My Profile</span>
+          <% unless current_user.customer == nil %>
+            <%= link_to edit_customer_path(current_user.id, @customer)  do %>
+              <span class="icon"></span>
+              <ion-icon size="large", name="person"></ion-icon>
+              <span class="text">My Profile</span>
+            <% end %>
           <% end %>
         <% else %>
-          <%= link_to restaurant_path(current_user.restaurant)  do %>
-            <span class="icon"></span>
-            <ion-icon size="large", name="person"></ion-icon>
-            <span class="text">My Restaurant</span>
+          <% unless current_user.restaurant == nil %>
+            <%= link_to restaurant_path(current_user.restaurant)  do %>
+              <span class="icon"></span>
+              <ion-icon size="large", name="person"></ion-icon>
+              <span class="text">My Restaurant</span>
+            <% end %>
           <% end %>
         <% end %>
       <% else %>

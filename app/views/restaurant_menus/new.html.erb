@@ -1,3 +1,14 @@
+<div class="home-header"><h1>Me.N.u</h1></div>
+<div class="home-page-avatar">
+  <% if user_signed_in? %>
+    <% if current_user.photo.present? %>
+      <%= cl_image_tag current_user.photo.key, class: "avatar" %>
+    <% else %>
+      <%= image_tag "https://www.nicepng.com/png/full/115-1150821_default-avatar-comments-sign-in-icon-png.png", class: "avatar" %>
+    <% end %>
+  <% end %>
+</div>
+
 <div class="tesseract-form">
   <%= form_with(model: [@restaurant, @restaurant_menu], data: { controller: "ocr" }) do |form| %>
   <!--  <div>-->

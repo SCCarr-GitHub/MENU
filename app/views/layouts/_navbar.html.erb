@@ -5,21 +5,21 @@
       <%= link_to root_path do %>
         <span class="icon"></span>
         <ion-icon size="large", name="home"></ion-icon>
-        <span class="text">Home</span>
+        <span class="text"></span>
       <% end %>
     </li>
     <li class="list">
       <%= link_to search_pages_path  do %>
         <span class="icon"></span>
         <ion-icon size="large", name="search"></ion-icon>
-        <span class="text">Search</span>
+        <span class="text"></span>
       <% end %>
     </li>
     <li class="list">
       <%= link_to  do %>
         <span size="large", class="icon"></span>
         <ion-icon size="large", name="apps"></ion-icon>
-        <span class="text">Categories</span>
+        <span class="text"></span>
       <% end %>
     </li>
     <li class="list">
@@ -29,7 +29,7 @@
             <%= link_to edit_customer_path(current_user.id, @customer)  do %>
               <span class="icon"></span>
               <ion-icon size="large", name="person"></ion-icon>
-              <span class="text">My Profile</span>
+              <span class="text"></span>
             <% end %>
           <% end %>
         <% else %>
@@ -37,7 +37,7 @@
             <%= link_to restaurant_path(current_user.restaurant)  do %>
               <span class="icon"></span>
               <ion-icon size="large", name="person"></ion-icon>
-              <span class="text">My Restaurant</span>
+              <span class="text"></span>
             <% end %>
           <% end %>
         <% end %>
@@ -45,7 +45,7 @@
         <%= link_to new_user_session_path do %>
             <span class="icon"></span>
             <ion-icon size="large", name="person"></ion-icon>
-            <span class="text">Sign In</span>
+            <span class="text"></span>
           <% end %>
       <% end %>
     </li>

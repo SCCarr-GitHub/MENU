@@ -9,7 +9,7 @@ class RestaurantMenusController < ApplicationController
     @restaurant_menu = RestaurantMenu.new(restaurant_menu_params)
     @restaurant_menu.restaurant = @restaurant
     if @restaurant_menu.save
-      redirect_to restaurant_menu_path(@restaurant_menu)
+      redirect_to tess_pages_path(@restaurant_menu)
     else
       render :new, status: :unprocessable_entity
     end
@@ -42,4 +42,8 @@ class RestaurantMenusController < ApplicationController
   def set_restaurant
     @restaurant = Restaurant.find(params[:restaurant_id])
   end
+
+
+  
+
 end

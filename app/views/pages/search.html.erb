@@ -20,7 +20,11 @@
       <ul>
         <% @search_results.each do |result| %>
           <li>
-            <%= link_to result.searchable.name %>
+            <% if result.searchable_type == "Restaurant" %>
+              <%= link_to result.searchable.name, restaurant_path(result.searchable.id) %>
+            <% else %>
+              <%= link_to result.searchable.name, restaurant_path(result.searchable.restaurant_menu.restaurant_id) %>
+            <% end %>
           </li>
         <% end %>
       </ul>

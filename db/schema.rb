@@ -88,7 +88,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_28_152212) do
     t.bigint "restaurant_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "photo_description"
     t.index ["restaurant_id"], name: "index_restaurant_menus_on_restaurant_id"
   end
 

@@ -1,6 +1,17 @@
-<div class="sign-up-form-container">
-  <h2 class="homepage-heading text-center">Edit your info</h2>
+<div class="home-header"><h1>Me.N.u</h1></div>
 
+<div class="home-page-avatar">
+  <% if user_signed_in? %>
+    <% if current_user.photo.present? %>
+      <%= cl_image_tag current_user.photo.key, class: "avatar" %>
+    <% else %>
+      <%= image_tag "https://www.nicepng.com/png/full/115-1150821_default-avatar-comments-sign-in-icon-png.png", class: "avatar" %>
+    <% end %>
+  <% end %>
+</div>
+<br>
+<div class="restaurant-show-card">
+  <h2 class="homepage-heading text-center">Edit your info</h2>
   <%= simple_form_for [@customer] do |f| %>
     <%= f.error_notification %>
       <%= f.input :name,
@@ -33,11 +44,14 @@
                   input_html: { autocomplete: "phone_number" },
                   wrapper_html: { class: 'col-sm-8 mx-auto' },
                   label_html: { class: 'listing-paragraph col-sm-2 control-label' } %>
-      <%= f.button :submit, "Update info", class: 'btn btn-outline-light', data: { disable_with: 'Updating...' } %>
+      <%= f.button :submit, "Update info", class: 'btn btn-outline-warning', data: { disable_with: 'Updating...' } %>
   <% end %>
-  <h2>Edit login details, profile photo or delete your account</h2>
-  <%= link_to edit_user_registration_path, class: "btn btn-primary" do %>
+</div>
+
+<div class="links">
+  <h2 class="home-header">Edit login details, profile photo or delete your account</h2>
+  <%= link_to edit_user_registration_path, class: "btn btn-outline-warning" do %>
           Update Details
         <% end %>
-  <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
+  <%= link_to "Log out", destroy_user_session_path, class: "btn btn-outline-warning", data: {turbo_method: :delete} %>
 </div>

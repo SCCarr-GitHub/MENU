@@ -1,7 +1,5 @@
 <div class="home-header">
   <h1><%= @this_restaurant.name %> Menu</h1>
-  <p>Page 1 of <%= @this_restaurant.restaurant_menus.count %></p>
-  <%= link_to "View Full Menu", restaurant_restaurant_menus_path(@this_restaurant, @restaurant_menu), class: "btn btn-outline-warning" %>
 </div>
 <div class="home-page-avatar">
   <% if user_signed_in? %>
@@ -12,44 +10,15 @@
     <% end %>
   <% end %>
 </div>
-<br>
-<div class="carousel-container">
-  <div id="carouselExampleIndicators" class="carousel slide">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80" class="d-block w-100" alt="...">
-      </div>
-      <div class="carousel-item">
-        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80" class="d-block w-100" alt="...">
-      </div>
-      <div class="carousel-item">
-        <img src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80" class="d-block w-100" alt="...">
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-</div>
 
-<div class="sub-heading"><h2>Starters</h2></div>
-<div class="item-row">
+<h2>Starters</h2>
+<div class="row">
   <% @starters.each do |starter| %>
     <div class="col-md-6">
-      <div class="item-card">
+      <div class="card">
         <%#= cl_image_tag starter.photo.key, class: "card-img-top" %>
         <div class="card-body">
-          <p class="card-title"><strong><%= starter.item_name %></strong></p>
+          <h5 class="card-title"><%= starter.item_name %></h5>
           <p class="card-text">R<%= starter.item_price %></p>
           <% if user_signed_in? %>
             <% if current_user.customer %>
@@ -66,16 +35,15 @@
   <% end %>
 </div>
 
-<div class="sub-heading"><h2>Mains</h2></div>
-<div class="item-row">
+<h2>Mains</h2>
+<div class="row">
   <% @mains.each do |main| %>
     <div class="col-md-6">
-      <div class="item-card">
+      <div class="card">
         <%#= cl_image_tag main.photo.key, class: "card-img-top" %>
         <div class="card-body">
-          <p class="card-title"><strong><%= main.item_name %></strong></p>
+          <h5 class="card-title"><%= main.item_name %></h5>
           <p class="card-text">R<%= main.item_price %></p>
-
           <% if user_signed_in? %>
             <% if current_user.customer %>
               <% unless current_user.customer.ratings.exists?(item_id: main.id) %>
@@ -92,14 +60,14 @@
 </div>
 
 
-<div class="sub-heading"><h2>Desserts</h2></div>
-<div class="item-row">
+<h2>Deserts</h2>
+<div class="row">
   <% @desserts.each do |dessert| %>
     <div class="col-md-6">
-      <div class="item-card">
+      <div class="card">
         <%#= cl_image_tag dessert.photo.key, class: "card-img-top" %>
         <div class="card-body">
-          <p class="card-title"><strong><%= dessert.item_name %></strong></p>
+          <h5 class="card-title"><%= dessert.item_name %></h5>
           <p class="card-text">R<%= dessert.item_price %></p>
           <% if user_signed_in? %>
             <% if current_user.customer %>
@@ -116,14 +84,14 @@
   <% end %>
 </div>
 
-<div class="sub-heading"><h2>Drinks</h2></div>
-<div class="item-row">
+<h2>Drinks</h2>
+<div class="row">
   <% @drinks.each do |drink| %>
     <div class="col-md-6">
-      <div class="item-card">
+      <div class="card">
         <%#= cl_image_tag drink.photo.key, class: "card-img-top" %>
         <div class="card-body">
-          <p class="card-title"><strong><%= drink.item_name %></strong></p>
+          <h5 class="card-title"><%= drink.item_name %></h5>
           <p class="card-text">R<%= drink.item_price %></p>
           <% if user_signed_in? %>
             <% if current_user.customer %>

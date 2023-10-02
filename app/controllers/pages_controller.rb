@@ -15,6 +15,11 @@ class PagesController < ApplicationController
   end
 
   def search
+    @top_rated = Item.joins(:ratings)
+    .group('items.id')
+    .order('COUNT(ratings.id) DESC')
+    .limit(10)
+    @sample_top_rated = @top_rated.sample(4)
     if params[:query].present?
       @query = params[:query]
       @search_results = PgSearch.multisearch(@query).includes(:searchable)

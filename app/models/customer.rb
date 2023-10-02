@@ -3,3 +3,5 @@ class Customer < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :ratings
 end
+
+# fixing shawns computer problems....

@@ -15,6 +15,7 @@ class RestaurantsController < ApplicationController
 
   def show
     @this_restaurant = Restaurant.find(params[:id])
+    @restaurant_menu = @this_restaurant.restaurant_menus
     @review = Review.new
     if user_signed_in?
       @restaurant = current_user.restaurant

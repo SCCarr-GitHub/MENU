@@ -8,11 +8,14 @@ Rails.application.routes.draw do
       resources :reviews, only: [:index, :new, :create, :show]
     end
     resources :restaurants, only: [:new, :create] do
-      resources :restaurant_menus, only: [:new, :create]
+      resources :restaurant_menus, only: [:new, :create, :index]
     end
   resources :restaurants, only: [:index, :show, :edit, :update]
   resources :reviews, only: [:destroy]
   resources :restaurant_menus, only: [:show, :edit]
+
+  post '/upvote/:id', to: 'ratings#upvote', as: 'upvote'
+  get '/leaderboard', to: 'ratings#leaderboard', as: 'leaderboard'
 
   get '/tesseract/:id', to: 'pages#tesseract', as: 'tess_pages'
 

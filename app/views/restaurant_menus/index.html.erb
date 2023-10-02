@@ -1,7 +1,5 @@
 <div class="home-header">
   <h1><%= @this_restaurant.name %> Menu</h1>
-  <p>Page 1 of <%= @this_restaurant.restaurant_menus.count %></p>
-  <%= link_to "View Full Menu", restaurant_restaurant_menus_path(@this_restaurant, @restaurant_menu), class: "btn btn-outline-warning" %>
 </div>
 <div class="home-page-avatar">
   <% if user_signed_in? %>

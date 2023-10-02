@@ -4,7 +4,7 @@ class RestaurantMenusController < ApplicationController
   def index
     @restaurant_items = []
     @restaurant_menus = @restaurant.restaurant_menus
-    @this_restaurant = @restaurant_menus.first.restaurant
+    @this_restaurant = Restaurant.find(params[:restaurant_id])
     @restaurant_menus.each do |restaurant_menu|
       restaurant_menu.items.each do |item|
         @restaurant_items << item

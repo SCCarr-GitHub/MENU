@@ -4,13 +4,11 @@
   <%= link_to "View Full Menu", restaurant_restaurant_menus_path(@this_restaurant, @restaurant_menu), class: "btn btn-outline-warning" %>
 </div>
 <div class="home-page-avatar">
-  <% if user_signed_in? %>
-    <% if current_user.photo.present? %>
-      <%= cl_image_tag current_user.photo.key, class: "avatar" %>
+    <% if @this_restaurant.user.photo.present? %>
+      <%= cl_image_tag @this_restaurant.user.photo.key, class: "avatar" %>
     <% else %>
       <%= image_tag "https://www.nicepng.com/png/full/115-1150821_default-avatar-comments-sign-in-icon-png.png", class: "avatar" %>
     <% end %>
-  <% end %>
 </div>
 <br>
 <div class="carousel-container">
@@ -21,16 +19,24 @@
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
     <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80" class="d-block w-100" alt="...">
+  <% if @this_restaurant.photos.any? %>
+    <% @this_restaurant.photos.each_with_index do |photo, index| %>
+      <div class="carousel-item <%= 'active' if index == 0 %>">
+        <%= cl_image_tag photo.url, class: 'd-block w-100', alt: 'Restaurant Photo' %>
       </div>
-      <div class="carousel-item">
-        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80" class="d-block w-100" alt="...">
-      </div>
-      <div class="carousel-item">
-        <img src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80" class="d-block w-100" alt="...">
-      </div>
+    <% end %>
+  <% else %>
+    <div class="carousel-item active">
+      <%= image_tag 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80', class: 'd-block w-100', alt: 'Default Photo' %>
     </div>
+    <div class="carousel-item">
+      <%= image_tag 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80', class: 'd-block w-100', alt: 'Default Photo' %>
+    </div>
+    <div class="carousel-item">
+      <%= image_tag 'https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80', class: 'd-block w-100', alt: 'Default Photo' %>
+    </div>
+  <% end %>
+</div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>

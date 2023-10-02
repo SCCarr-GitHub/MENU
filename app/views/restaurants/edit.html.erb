@@ -61,7 +61,8 @@
                           wrapper_html: { class: 'col-sm-12' },
                           label_html: { class: 'restaurant-paragraph col-sm-2 control-label' } %>
             </div>
-              <%= f.submit "Update your Restaurant", class: "btn btn-outline-warning" %>
+            <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+              <%= f.submit "Update your restaurant", class: "btn btn-outline-warning" %>
             <% end %>
             <br>
             <p>Edit login details, profile photo or delete your account</p>

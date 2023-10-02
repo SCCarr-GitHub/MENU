@@ -1,5 +1,5 @@
-<div class="sign-up-form-container">
-  <h2 class="homepage-heading text-center">Complete your registration</h2>
+<div class="restaurant-show-card">
+  <h2 class="home-header">Complete your registration</h2>
 
   <%= simple_form_for [@customer] do |f| %>
     <%= f.error_notification %>
@@ -33,7 +33,7 @@
                   input_html: { autocomplete: "phone_number" },
                   wrapper_html: { class: 'col-sm-8 mx-auto' },
                   label_html: { class: 'listing-paragraph col-sm-2 control-label' } %>
-      <%= f.button :submit, "Complete registration", class: "btn btn-primary", data: { disable_with: 'Signing up...' } %>
+      <%= f.button :submit, "Complete registration", class: "btn btn-warning", data: { disable_with: 'Signing up...' } %>
         <br>
       </div>
     </div>

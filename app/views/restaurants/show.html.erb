@@ -11,14 +11,15 @@
 </div>
 
 <div class="restaurant-show-card">
+<div class="sub-heading">
   <h1><%= @this_restaurant.name %></h1>
   <h2><%= @this_restaurant.category %></h2>
   <h3><%= @this_restaurant.address %></h3>
   <h4><%= @this_restaurant.phone_number %></h4>
-  <p><%= @this_restaurant.opening_time %></p>
-  <p><%= @this_restaurant.closing_time %></p>
+  <p>Opening Time:  <%= @this_restaurant.opening_time %></p>
+  <p>Closing Time:  <%= @this_restaurant.closing_time %></p>
 </div>
-
+</div>
 <div class="links">
     <%= link_to "View Menu", restaurant_restaurant_menus_path(@this_restaurant, @restaurant_menu), class: "btn btn-outline-warning" %>
   </ul>
@@ -27,7 +28,7 @@
 <div class="restaurant-show-card" >
 
   <h4 class="m-4">Reviews</h4>
-  <ul class="list-group m-4">
+  <ul class="restaurant-show-card">
     <% @this_restaurant.reviews.each do |review| %>
       <li class="list-group-item"><%= review.comment %></li>
       <div class="d-flex justify-content-between align-items-center">
@@ -45,7 +46,7 @@
               <%= link_to "Delete",
             review_path(review),
             data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-            class: 'btn btn-danger btn-sm' %>
+            class: 'btn btn-outline-warning btn-sm' %>
             <% end %>
           <% end %>
         </div>

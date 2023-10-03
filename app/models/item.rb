@@ -13,8 +13,8 @@ class Item < ApplicationRecord
       items.each do |item_data|
         item = Item.new(
           category: category,
-          item_name: item_data["item_name"],
-          item_price: item_data["item_price"],
+          item_name: item_data[:item_name],
+          item_price: item_data[:item_price],
           restaurant_menu_id: restaurant_menu.id
         )
         items_instances << item

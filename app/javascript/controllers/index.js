@@ -12,11 +12,8 @@ eagerLoadControllersFrom("controllers", application)
 import OcrController from "./ocr_controller"
 application.register("ocr", OcrController)
 
-import OpenaiController from "./openai_controller"
-application.register("openai", OpenaiController)
-
-// import MapController from "./map_controller"
-// application.register("map", MapController)
+import MapController from "./map_controller"
+application.register("map", MapController)
 
 import AddressAutocompleteController from "./address_autocomplete_controller"
 application.register("address_autocomplete", AddressAutocompleteController)

@@ -11,67 +11,76 @@
 </div>
 
 <div class="restaurant-show-card">
-<div class="sub-heading">
   <h1><%= @this_restaurant.name %></h1>
   <h2><%= @this_restaurant.category %></h2>
   <h3><%= @this_restaurant.address %></h3>
   <h4><%= @this_restaurant.phone_number %></h4>
-  <p>Opening Time:  <%= @this_restaurant.opening_time %></p>
-  <p>Closing Time:  <%= @this_restaurant.closing_time %></p>
+  <p><%= @this_restaurant.opening_time %></p>
+  <p><%= @this_restaurant.closing_time %></p>
 </div>
-</div>
+
 <div class="links">
     <%= link_to "View Menu", restaurant_restaurant_menus_path(@this_restaurant, @restaurant_menu), class: "btn btn-outline-warning" %>
   </ul>
 </div>
 
-<div class="restaurant-show-card" >
-
+<div class="restaurant-show-card">
   <h4 class="m-4">Reviews</h4>
-  <ul class="restaurant-show-card">
+  <ul class="list-group m-4">
     <% @this_restaurant.reviews.each do |review| %>
       <li class="list-group-item"><%= review.comment %></li>
-      <div class="d-flex justify-content-between align-items-center">
-        <div>
-          <p>Rating:</p>
-          <div class="star <%= 'filled' if review.rating >= 1 %>"></div>
-          <div class="star <%= 'filled' if review.rating >= 2 %>"></div>
-          <div class="star <%= 'filled' if review.rating >= 3 %>"></div>
-          <div class="star <%= 'filled' if review.rating >= 4 %>"></div>
-          <div class="star <%= 'filled' if review.rating >= 5 %>"></div>
-        </div>
-        <div>
-          <% if user_signed_in? %>
-            <% if review.customer == current_user.customer %>
+      <% if user_signed_in? %>
+        <% if current_user.customer %>
+          <% position = review.customer == current_user.customer ? "justify-content-between": "justify-content-center" %>
+        <% else %>
+          <% position = "justify-content-center" %>
+        <% end %>
+      <% else %>
+        <% position = "justify-content-center" %>
+      <% end %>
+        <div class="d-flex <%= position %> align-items-center">
+          <div class="align-items-center">
+            <p>Rating:</p>
+            <div class="star <%= 'filled' if review.rating >= 1 %>"></div>
+            <div class="star <%= 'filled' if review.rating >= 2 %>"></div>
+            <div class="star <%= 'filled' if review.rating >= 3 %>"></div>
+            <div class="star <%= 'filled' if review.rating >= 4 %>"></div>
+            <div class="star <%= 'filled' if review.rating >= 5 %>"></div>
+          </div>
+        <% if user_signed_in? %>
+          <% if review.customer == current_user.customer %>
+            <div>
               <%= link_to "Delete",
-            review_path(review),
-            data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-            class: 'btn btn-outline-warning btn-sm' %>
-            <% end %>
+                review_path(review),
+                data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                class: 'btn btn-danger btn-sm' %>
+            </div>
           <% end %>
-        </div>
+        <% end %>
       </div>
     <% end %>
-
-  </div>
-<div class="restaurant-show-card" >
-  <% if user_signed_in? %>
-    <% if current_user.customer %>
-      <div class="m-4">
-      <h2>Add a Review</h2>
-      <%= simple_form_for [@this_restaurant, @review] do |form| %>
-        <%= form.input :comment %>
-        <%= form.input :rating, collection: [0, 1, 2, 3, 4, 5], label: "Select Rating" %>
-        <%= form.submit 'Submit', class: "btn btn-outline-warning" %>
-      <% end %>
-    </div>
-    <% end %>
-      <% if current_user.id == @this_restaurant.user_id %>
-        <%= link_to "Add Menu", new_restaurant_restaurant_menu_path(@restaurant), class: "nav-link" %>
-        <%= link_to "Edit your info", edit_restaurant_path(@restaurant), class: "nav-link" %>
-        <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
-      <% end %>
-
-  <% end %>
-  </div>
+  </ul>
 </div>
+
+<% if user_signed_in? %>
+  <% if current_user.customer %>
+    <div class="restaurant-show-card">
+      <div class="m-4">
+        <h2>Add a Review</h2>
+        <%= simple_form_for [@this_restaurant, @review] do |form| %>
+          <%= form.input :comment %>
+          <%= form.input :rating, collection: [0, 1, 2, 3, 4, 5], label: "Select Rating" %>
+          <%= form.submit 'Submit', class: "btn btn-outline-warning" %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if current_user.id == @this_restaurant.user_id %>
+    <div>
+      <%= link_to "Add Menu", new_restaurant_restaurant_menu_path(@restaurant), class: "nav-link" %>
+      <%= link_to "Edit your info", edit_restaurant_path(@restaurant), class: "nav-link" %>
+      <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item"%>
+    </div>
+  <% end %>
+<% end %>

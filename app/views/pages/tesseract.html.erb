@@ -1,7 +1,7 @@
-<h1 class="home-header">This is your MENU</h1>
-<div class="restaurant-card" data-controller="openai" data-openai-api-key-value=ENV["OPENAI_API_KEY"]>
-  <p>Original Description:</p>
-  <p class="original-description"><%= @restaurant_menu.photo_description %></p>
+<h1 class="home-header":>This is your formatted MENU</h1>
+
+<div class="restaurant-show-card">
+  <div>
+    <p><%= @restaurant_menu.formatted_text %></p>
+  </div>
 </div>
-  <p>Restructured Description:</p>
-  <p class="restructured-description"></p>

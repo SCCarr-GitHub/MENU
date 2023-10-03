@@ -1,3 +1,5 @@
+require 'net/http'
+require 'json'
 class RestaurantMenusController < ApplicationController
   before_action :set_restaurant, only: [:new, :create, :edit, :update, :index]
 
@@ -25,18 +27,14 @@ class RestaurantMenusController < ApplicationController
     @restaurant_menu.restaurant = @restaurant
 
     if @restaurant_menu.save
-      Rails.logger.info("photo_description: #{@restaurant_menu.photo_description}")
-      extracted_text = @restaurant_menu.photo_description
-      formatted_text = format_menu_text(extracted_text)
-      @restaurant_menu.formatted_text = test_hash
-
-      @restaurant_menu.save
-
-      if @restaurant_menu.persisted?
-        redirect_to controller: 'items', action: 'create_items', restaurant_menu_id: @restaurant_menu.id
-      else
-        render :new, status: :unprocessable_entity
-      end
+      # extracted_text = @restaurant_menu.photo_description
+      # formatted_text = format_menu_text(extracted_text)
+      # # @restaurant_menu = format_menu_text(formatted_text)
+      # # @restaurant_menu.formatted_text = test_hash
+      # @restaurant_menu.formatted_text = final_structure(formatted_text)
+      # @restaurant_menu.save
+      # if @restaurant_menu.persisted?
+      redirect_to controller: 'items', action: 'create_items', restaurant_menu_id: @restaurant_menu.id
     else
       render :new, status: :unprocessable_entity
     end
@@ -82,145 +80,210 @@ class RestaurantMenusController < ApplicationController
     @restaurant = Restaurant.find(params[:restaurant_id])
   end
 
+  # def format_menu_text(extracted_text)
+  #   api_key = ENV["OPEN_API_KEY"]
 
-  def format_menu_text(extracted_text)
-    require 'net/http'
-    require 'json'
+  #   url = URI.parse('https://api.openai.com/v1/completions')
+  #   http = Net::HTTP.new(url.host, url.port)
+  #   http.use_ssl = true
 
-    api_key = ENV["OPEN_API_KEY"]
+  #   request = Net::HTTP::Post.new(url.request_uri)
+  #   request['Authorization'] = "Bearer #{api_key}"
+  #   request['Content-Type'] = 'application/json'
 
-    url = URI.parse('https://api.openai.com/v1/engines/davinci/completions')
-    http = Net::HTTP.new(url.host, url.port)
-    http.use_ssl = true
+  #   prompt = "Reformat the following restaurant menu:#{extracted_text}"
+  #   prompt += "Organize the menu items into a Ruby hash with categories as keys and include the name of the item and associated price for that item."
+  #   prompt += "Exclude sections that sort and calculate totals."
+  #   prompt += "Clean up unnecessary empty spaces and any information that is not a menu item or price as well as remove any duplicated items"
+  #   prompt += "Do not repeat yourself when providing a sample output of the program."
 
-    request = Net::HTTP::Post.new(url.request_uri)
-    request['Authorization'] = "Bearer #{api_key}"
-    request['Content-Type'] = 'application/json'
+  #   payload = {
+  #     prompt: prompt,
+  #     max_tokens: 1000,
+  #     temperature: 0.1,
+  #     model: "text-davinci-003"
+  #   }
 
-    prompt = "Reformat the following restaurant menu:#{extracted_text}"
-    prompt += "Organize the menu items into a Ruby hash with categories as keys and include the name of the item and associated price for that item."
-    prompt += "Exclude sections that sort and calculate totals."
-    prompt += "Clean up unnecessary empty spaces and any information that is not a menu item or price as well as remove any duplicated items"
+  #   request.body = payload.to_json
 
-    payload = {
-      prompt: prompt,
-      max_tokens: 1000,
-      temperature: 0.1
-    }
+  #   response = http.request(request)
 
-    request.body = payload.to_json
+  #   if response.code == '200'
+  #     formatted_text = JSON.parse(response.body)['choices'][0]['text']
 
-    response = http.request(request)
+  #     puts "#{formatted_text}"
 
-    if response.code == '200'
-      formatted_text = JSON.parse(response.body)['choices'][0]['text']
+  #     return formatted_text
+  #   else
+  #     Rails.logger.error "ChatGPT API Request Error: #{response.code} - #{response.body}"
+  #     return 'Failed to format text'
+  #   end
+  # end
 
-      Rails.logger.debug "ChatGPT API Response: #{formatted_text}"
-      return formatted_text
-    else
-      Rails.logger.error "ChatGPT API Request Error: #{response.code} - #{response.body}"
-      return 'Failed to format text'
-    end
-  end
+  # def final_structure(formatted_text)
+  #   api_key = ENV["OPEN_API_KEY"]
 
-  def test_hash
-    @items = {
-      "Appetizer" => [
-        {
-          "name" => "Garlic Bread",
-          "price" => 1.99
-        },
-        {
-          "name" => "Potato Wedges",
-          "price" => 1.99
-        },
-        {
-          "name" => "Meat Ball",
-          "price" => 2.99
-        },
-        {
-          "name" => "Onion Rings",
-          "price" => 1.99
-        },
-        {
-          "name" => "French Fries",
-          "price" => 1.99
-        },
-        {
-          "name" => "Ratatouille",
-          "price" => 2.99
-        }
-      ],
-      "Main Course" => [
-        {
-          "name" => "Grilled Fingerlings",
-          "price" => 5.99
-        },
-        {
-          "name" => "Grilled potatoes with a Western flair served with sauce of choice.",
-          "price" => 4.99
-        },
-        {
-          "name" => "Asian Pear Salad",
-          "price" => 4.99
-        },
-        {
-          "name" => "Crisp pears and pecan and maple syrup with cheese frisée.",
-          "price" => 5.99
-        },
-        {
-          "name" => "Roasted Acorn Squash",
-          "price" => 4.99
-        },
-        {
-          "name" => "Spicy-sweet, soft wedges potatoes.",
-          "price" => 4.99
-        },
-        {
-          "name" => "Smothered Chicken",
-          "price" => 6.99
-        },
-        {
-          "name" => "Grilled chicken breast topped with mushrooms, onions, and cheese",
-          "price" => 7.99
-        }
-      ],
-      "Dessert" => [
-        {
-          "name" => "Banana Split",
-          "price" => 4.99
-        },
-        {
-          "name" => "Cheese Cake",
-          "price" => 4.99
-        },
-        {
-          "name" => "Chocolate Ice Cream",
-          "price" => 3.99
-        },
-        {
-          "name" => "Fruit Cake",
-          "price" => 4.99
-        }
-      ],
-      "Drinks" => [
-        {
-          "name" => "Coffee",
-          "price" => 1.99
-        },
-        {
-          "name" => "Ice/Hot Tea",
-          "price" => 1.99
-        },
-        {
-          "name" => "Thai Tea",
-          "price" => 1.99
-        },
-        {
-          "name" => "Soda",
-          "price" => 1.99
-        }
-      ]
-    }
-  end
+  #   url = URI.parse('https://api.openai.com/v1/completions')
+  #   http = Net::HTTP.new(url.host, url.port)
+  #   http.use_ssl = true
+
+  #   request = Net::HTTP::Post.new(url.request_uri)
+  #   request['Authorization'] = "Bearer #{api_key}"
+  #   request['Content-Type'] = 'application/json'
+
+  #   prompt = "Note the following data:#{formatted_text}"
+  #   prompt += "Organize the data so that it looks like the following:#{prompt_hash}"
+  #   prompt += "Keep the item_name and item_price keys with the values being the name and price"
+
+  #   payload = {
+  #     prompt: prompt,
+  #     max_tokens: 1000,
+  #     temperature: 0.1,
+  #     model: "text-davinci-003"
+  #   }
+
+  #   request.body = payload.to_json
+
+  #   response = http.request(request)
+
+  #   if response.code == '200'
+  #     formatted_text = JSON.parse(response.body)['choices'][0]['text']
+
+  #     puts "#{formatted_text}"
+  #     return formatted_text
+  #   else
+  #     Rails.logger.error "ChatGPT API Request Error: #{response.code} - #{response.body}"
+  #     return 'Failed to format text'
+  #   end
+  # end
+
+  # def prompt_hash
+  #   '@items = {
+  #     "starter" => [
+  #       {
+  #         "item_name" => "Garlic Bread",
+  #         "item_price" => 6.99
+  #       }
+  #     ],
+  #     "main" => [
+  #       {
+  #         "item_name" => "Grilled Fingerlings",
+  #         "item_price" => 6.99
+  #       }
+  #     ],
+  #     "dessert" => [
+  #       {
+  #         "item_name" => "Banana Split",
+  #         "item_price" => 6.99
+  #       }
+  #     ],
+  #     "drink" => [
+  #       {
+  #         "item_name" => "Coffee",
+  #         "item_price" => 6.99
+  #       }
+  #     ]
+  #   }'
+  # end
+
+  # def test_hash
+  #   @items = {
+  #     "Appetizer" => [
+  #       {
+  #         "name" => "Garlic Bread",
+  #         "price" => 1.99
+  #       },
+  #       {
+  #         "name" => "Potato Wedges",
+  #         "price" => 1.99
+  #       },
+  #       {
+  #         "name" => "Meat Ball",
+  #         "price" => 2.99
+  #       },
+  #       {
+  #         "name" => "Onion Rings",
+  #         "price" => 1.99
+  #       },
+  #       {
+  #         "name" => "French Fries",
+  #         "price" => 1.99
+  #       },
+  #       {
+  #         "name" => "Ratatouille",
+  #         "price" => 2.99
+  #       }
+  #     ],
+  #     "Main Course" => [
+  #       {
+  #         "name" => "Grilled Fingerlings",
+  #         "price" => 5.99
+  #       },
+  #       {
+  #         "name" => "Grilled potatoes with a Western flair served with sauce of choice.",
+  #         "price" => 4.99
+  #       },
+  #       {
+  #         "name" => "Asian Pear Salad",
+  #         "price" => 4.99
+  #       },
+  #       {
+  #         "name" => "Crisp pears and pecan and maple syrup with cheese frisée.",
+  #         "price" => 5.99
+  #       },
+  #       {
+  #         "name" => "Roasted Acorn Squash",
+  #         "price" => 4.99
+  #       },
+  #       {
+  #         "name" => "Spicy-sweet, soft wedges potatoes.",
+  #         "price" => 4.99
+  #       },
+  #       {
+  #         "name" => "Smothered Chicken",
+  #         "price" => 6.99
+  #       },
+  #       {
+  #         "name" => "Grilled chicken breast topped with mushrooms, onions, and cheese",
+  #         "price" => 7.99
+  #       }
+  #     ],
+  #     "Dessert" => [
+  #       {
+  #         "name" => "Banana Split",
+  #         "price" => 4.99
+  #       },
+  #       {
+  #         "name" => "Cheese Cake",
+  #         "price" => 4.99
+  #       },
+  #       {
+  #         "name" => "Chocolate Ice Cream",
+  #         "price" => 3.99
+  #       },
+  #       {
+  #         "name" => "Fruit Cake",
+  #         "price" => 4.99
+  #       }
+  #     ],
+  #     "Drinks" => [
+  #       {
+  #         "name" => "Coffee",
+  #         "price" => 1.99
+  #       },
+  #       {
+  #         "name" => "Ice/Hot Tea",
+  #         "price" => 1.99
+  #       },
+  #       {
+  #         "name" => "Thai Tea",
+  #         "price" => 1.99
+  #       },
+  #       {
+  #         "name" => "Soda",
+  #         "price" => 1.99
+  #       }
+  #     ]
+  #   }
+  # end
 end

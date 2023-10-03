@@ -17,7 +17,7 @@
 
   <div class="search-card">
     <% if @search_results.any? %>
-    <h3>Search Results</h3>
+    <h3 class="sub-heading">Search Results</h3>
       <ul>
         <% @search_results.each do |result| %>
           <li>
@@ -26,11 +26,6 @@
             <% else %>
               <%= link_to result.searchable.item_name, restaurant_menu_path(result.searchable.restaurant_menu_id), class: "card-link" %>
             <% end %>
-            <div style="width: 300px; height: 300px;"
-                data-controller="map"
-                data-map-markers-value="<%= @markers.to_json %>"
-                data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-            </div>
           </li>
         <% end %>
       </ul>
@@ -59,5 +54,11 @@
 
     <% end %>
   </div>
-</div>
-
+  <div class="mapbox">
+    <div style="width: 418px; height: 300px;"
+        data-controller="map"
+        data-map-markers-value="<%= @markers.to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
+    </div>
+  </div>

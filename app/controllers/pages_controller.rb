@@ -4,6 +4,15 @@ class PagesController < ApplicationController
     if user_signed_in?
       @customer = current_user.customer
     end
+    @users = User.all
+    @markers = @restaurants.geocoded.map do |restaurant|
+      {
+        lat: restaurant.latitude,
+        lng: restaurant.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: { restaurant: restaurant }),
+        marker_html: render_to_string(partial: "marker")
+      }
+    end
   end
 
   # def menu

@@ -7,6 +7,9 @@ gem "devise"
 gem "cloudinary"
 gem "openai"
 gem "ruby-openai"
+gem "geocoder"
+
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.8"
 

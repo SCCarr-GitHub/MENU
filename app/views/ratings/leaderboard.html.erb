@@ -1,0 +1,21 @@
+<h2>Leaderboard</h2>
+<div class="row">
+  <% @top_rated.each do |item| %>
+    <%= link_to restaurant_menu_path(item.restaurant_menu), class: "card-link" do %>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body d-flex justify-content-between">
+            <div>
+              <h5 class="card-title"><%= item.item_name %></h5>
+              <p class="card-text">R<%= item.item_price %></p>
+              <p class="card-text"><em><%= item.restaurant_menu.restaurant.name %></em></p>
+            </div>
+            <div>
+              <p class="card-text"><%= pluralize(item.ratings.count, 'vote') %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

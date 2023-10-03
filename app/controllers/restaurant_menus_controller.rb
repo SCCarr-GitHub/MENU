@@ -1,5 +1,20 @@
 class RestaurantMenusController < ApplicationController
-  before_action :set_restaurant, only: [:new, :create, :edit, :update]
+  before_action :set_restaurant, only: [:new, :create, :edit, :update, :index]
+
+  def index
+    @restaurant_items = []
+    @restaurant_menus = @restaurant.restaurant_menus
+    @this_restaurant = Restaurant.find(params[:restaurant_id])
+    @restaurant_menus.each do |restaurant_menu|
+      restaurant_menu.items.each do |item|
+        @restaurant_items << item
+      end
+    end
+    @starters = @restaurant_items.select { |item| item.category == "starter" }
+    @mains = @restaurant_items.select { |item| item.category == "main" }
+    @desserts = @restaurant_items.select { |item| item.category == "dessert" }
+    @drinks = @restaurant_items.select { |item| item.category == "drink" }
+  end
 
   def new
     @restaurant_menu = RestaurantMenu.new
@@ -28,7 +43,9 @@ class RestaurantMenusController < ApplicationController
   end
 
   def show
-    @this_restaurant = Restaurant.find(params[:id])
+    @rating = Rating.new
+    @restaurant_menu = RestaurantMenu.find(params[:id])
+    @this_restaurant = @restaurant_menu.restaurant
     @menus = @this_restaurant.restaurant_menus
     @items = []
     @menus.each do |menu|
@@ -64,6 +81,7 @@ class RestaurantMenusController < ApplicationController
   def set_restaurant
     @restaurant = Restaurant.find(params[:restaurant_id])
   end
+
 
   def format_menu_text(extracted_text)
     require 'net/http'

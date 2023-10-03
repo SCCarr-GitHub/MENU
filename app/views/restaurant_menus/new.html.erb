@@ -9,23 +9,24 @@
   <% end %>
 </div>
 
-<div class="tesseract-form">
-  <%= form_with(model: [@restaurant, @restaurant_menu], data: { controller: "ocr" }) do |form| %>
-  <!--  <div>-->
-      <%= form.label :description %>
-      <%= form.text_field :description %>
-    <div>
-      <%= form.label :photos %>
-      <%= form.file_field :photos, data: {  ocr_target: "file", action: "change->ocr#upload" } %>
-    </div>
-    <%# Hidden input for the photo description %>
-    <%#= #form.hidden_field :photo_description, data: { ocr_target: “photo_description” } %>
-    <div>
-      <%= form.label :photo_description %>
-      <%= form.text_area :photo_description, data: { ocr_target: "photo_description" } %>
-    </div>
-    <div>
-      <%= form.submit %>
-    </div>
-  <% end %>
+<div class="tesseract-container">
+  <div class="tesseract-form">
+    <%= form_with(model: [@restaurant, @restaurant_menu], data: { controller: "ocr" }) do |form| %>
+      <div>
+        <%= form.label :description %>
+        <%= form.text_field :description %>
+      </div>
+      <div>
+        <%= form.label :photos %>
+        <%= form.file_field :photos, data: { ocr_target: "file", action: "change->ocr#upload" } %>
+      </div>
+      <div>
+        <%= form.label :photo_description %>
+        <%= form.text_area :photo_description, data: { ocr_target: "photo_description", rows: 4 } %>
+      </div>
+      <div>
+        <%= form.submit %>
+      </div>
+    <% end %>
+  </div>
 </div>

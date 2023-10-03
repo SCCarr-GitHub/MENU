@@ -12,5 +12,5 @@ eagerLoadControllersFrom("controllers", application)
 import OcrController from "./ocr_controller"
 application.register("ocr", OcrController)
 
-import OpenaiController from "./openai_controller"
-application.register("openai", OpenaiController)
+// import OpenaiController from "./openai_controller"
+// application.register("openai", OpenaiController)

@@ -28,7 +28,7 @@ class RestaurantMenusController < ApplicationController
       Rails.logger.info("photo_description: #{@restaurant_menu.photo_description}")
       extracted_text = @restaurant_menu.photo_description
       formatted_text = format_menu_text(extracted_text)
-      @restaurant_menu.formatted_text = formatted_text
+      @restaurant_menu.formatted_text = test_hash
 
       @restaurant_menu.save
 
@@ -121,5 +121,106 @@ class RestaurantMenusController < ApplicationController
       Rails.logger.error "ChatGPT API Request Error: #{response.code} - #{response.body}"
       return 'Failed to format text'
     end
+  end
+
+  def test_hash
+    @items = {
+      "Appetizer" => [
+        {
+          "name" => "Garlic Bread",
+          "price" => 1.99
+        },
+        {
+          "name" => "Potato Wedges",
+          "price" => 1.99
+        },
+        {
+          "name" => "Meat Ball",
+          "price" => 2.99
+        },
+        {
+          "name" => "Onion Rings",
+          "price" => 1.99
+        },
+        {
+          "name" => "French Fries",
+          "price" => 1.99
+        },
+        {
+          "name" => "Ratatouille",
+          "price" => 2.99
+        }
+      ],
+      "Main Course" => [
+        {
+          "name" => "Grilled Fingerlings",
+          "price" => 5.99
+        },
+        {
+          "name" => "Grilled potatoes with a Western flair served with sauce of choice.",
+          "price" => 4.99
+        },
+        {
+          "name" => "Asian Pear Salad",
+          "price" => 4.99
+        },
+        {
+          "name" => "Crisp pears and pecan and maple syrup with cheese frisée.",
+          "price" => 5.99
+        },
+        {
+          "name" => "Roasted Acorn Squash",
+          "price" => 4.99
+        },
+        {
+          "name" => "Spicy-sweet, soft wedges potatoes.",
+          "price" => 4.99
+        },
+        {
+          "name" => "Smothered Chicken",
+          "price" => 6.99
+        },
+        {
+          "name" => "Grilled chicken breast topped with mushrooms, onions, and cheese",
+          "price" => 7.99
+        }
+      ],
+      "Dessert" => [
+        {
+          "name" => "Banana Split",
+          "price" => 4.99
+        },
+        {
+          "name" => "Cheese Cake",
+          "price" => 4.99
+        },
+        {
+          "name" => "Chocolate Ice Cream",
+          "price" => 3.99
+        },
+        {
+          "name" => "Fruit Cake",
+          "price" => 4.99
+        }
+      ],
+      "Drinks" => [
+        {
+          "name" => "Coffee",
+          "price" => 1.99
+        },
+        {
+          "name" => "Ice/Hot Tea",
+          "price" => 1.99
+        },
+        {
+          "name" => "Thai Tea",
+          "price" => 1.99
+        },
+        {
+          "name" => "Soda",
+          "price" => 1.99
+        }
+      ]
+    }
   end
 end

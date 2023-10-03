@@ -8,10 +8,11 @@
 
 body{
   // display: flex;
+  font-family: 'Sofia Sans Condensed', sans-serif;
   justify-content: center;
   align-items: center;
   min-height: 250vh;
-  background: #f5d7bc;
+  background: #F4F4F9;
 }
 
 .home-header{
@@ -20,15 +21,15 @@ body{
   margin-top: 20px;
   text-align: center;
   justify-content: center;
-  color: #522A27
+  color: #07362B
 }
 
 .sub-heading{
-  font-family:'Alumni Sans', sans-serif;
+  font-family: 'Sofia Sans Condensed', sans-serif;
   margin-top: 20px;
   text-align: center;
   justify-content: center;
-  color: #522A27
+  color: #07362B
 }
 
 .links {
@@ -38,14 +39,15 @@ body{
 }
 
 .tesseract-form {
+  font-family: 'Sofia Sans Condensed', sans-serif;
   background-color: #E3DEE1;
   border-radius: 15px;
   margin: 20px;
   text-align: center;
   justify-content: center;
   padding: 10px;
-  color:#522A27;
-  border: 1px solid #522A27;
+  color:#07362B;
+  border: 1px solid #07362B;
 }
 
 .review-container {

@@ -44,14 +44,14 @@
                   input_html: { autocomplete: "phone_number" },
                   wrapper_html: { class: 'col-sm-8 mx-auto' },
                   label_html: { class: 'listing-paragraph col-sm-2 control-label' } %>
-      <%= f.button :submit, "Update info", class: 'btn btn-outline-warning', data: { disable_with: 'Updating...' } %>
+      <%= f.button :submit, "Update info", class: "btn btn-outline-success", data: { disable_with: 'Updating...' } %>
   <% end %>
 </div>
 
 <div class="links">
   <h2 class="home-header">Edit login details, profile photo or delete your account</h2>
-  <%= link_to edit_user_registration_path, class: "btn btn-outline-warning" do %>
+  <%= link_to edit_user_registration_path, class: "btn btn-outline-success" do %>
           Update Details
         <% end %>
-  <%= link_to "Log out", destroy_user_session_path, class: "btn btn-outline-warning" %>
+  <%= link_to "Log out", destroy_user_session_path, class: "btn btn-outline-success" %>
 </div>

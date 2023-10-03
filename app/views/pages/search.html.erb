@@ -12,7 +12,7 @@
 <div class="search-container">
 <%= form_tag(search_pages_path, method: :get) do %>
   <%= text_field_tag :query, params[:query], placeholder: "Search...", style: "width: 300px;" %>
-  <%= submit_tag "Search", style: "background-color: #f5d7bc;" %>
+  <%= submit_tag "Search", style: "background-color: #e2f3e8;" %>
 <% end %>
   <div class="search-card">
     <% if @search_results.any? %>

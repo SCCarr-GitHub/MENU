@@ -33,7 +33,7 @@ class RestaurantMenusController < ApplicationController
       @restaurant_menu.save
 
       if @restaurant_menu.persisted?
-        redirect_to tess_pages_path(@restaurant_menu)
+        redirect_to controller: 'items', action: 'create_items', restaurant_menu_id: @restaurant_menu.id
       else
         render :new, status: :unprocessable_entity
       end
@@ -97,15 +97,15 @@ class RestaurantMenusController < ApplicationController
     request['Authorization'] = "Bearer #{api_key}"
     request['Content-Type'] = 'application/json'
 
-    prompt = "Reformat the restaurant menu, instructions to follow: #{extracted_text} "
-    prompt += "Organize the menu items into a Ruby hash with categories as keys and include the name of the item and associated price."
+    prompt = "Reformat the following restaurant menu:#{extracted_text}"
+    prompt += "Organize the menu items into a Ruby hash with categories as keys and include the name of the item and associated price for that item."
     prompt += "Exclude sections that sort and calculate totals."
     prompt += "Clean up unnecessary empty spaces and any information that is not a menu item or price as well as remove any duplicated items"
 
     payload = {
       prompt: prompt,
       max_tokens: 1000,
-      temperature: 0.2
+      temperature: 0.1
     }
 
     request.body = payload.to_json

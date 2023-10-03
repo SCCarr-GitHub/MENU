@@ -1,13 +1,13 @@
 .restaurant-card {
-  background-color: #E3DEE1;
-  border-radius: 10px;
+  background-color: #e2f3e8;
+  border-radius: 5px;
   margin: 20px;
   text-align: center;
   justify-content: center;
   padding: 10px;
-  color:#522A27;
-  border: 1px solid #522A27;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  color:#07362B;
+  border: 1px solid #07362B;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.4);
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 
   &:hover,
@@ -24,13 +24,13 @@
 }
 
 .restaurant-show-card{
-  background-color: #E3DEE1;
-  border-radius: 10px;
+  background-color: #e2f3e8;
+  border-radius: 5px;
   margin: 20px;
   text-align: center;
   justify-content: center;
   padding: 10px;
-  color:#522A27;
-  border: 1px solid #522A27;
+  color:#07362B;
+  border: 1px solid #07362B;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
 }

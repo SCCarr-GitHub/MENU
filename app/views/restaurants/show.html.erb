@@ -11,21 +11,21 @@
 </div>
 
 <div class="restaurant-show-card">
-  <h1><%= @this_restaurant.name %></h1>
-  <h2><%= @this_restaurant.category %></h2>
-  <h3><%= @this_restaurant.address %></h3>
-  <h4><%= @this_restaurant.phone_number %></h4>
-  <p><%= @this_restaurant.opening_time %></p>
-  <p><%= @this_restaurant.closing_time %></p>
+  <h1 class="sub-heading"><%= @this_restaurant.name %></h1>
+  <h2 class="sub-heading"><%= @this_restaurant.category %></h2>
+  <h3 class="sub-heading"><%= @this_restaurant.address %></h3>
+  <h4 class="sub-heading"><%= @this_restaurant.phone_number %></h4>
+  <p>Opening Time: <%= @this_restaurant.opening_time.strftime('%H:%M') %></p>
+  <p>Closing Time: <%= @this_restaurant.closing_time.strftime('%H:%M') %></p>
 </div>
 
 <div class="links">
-    <%= link_to "View Menu", restaurant_restaurant_menus_path(@this_restaurant, @restaurant_menu), class: "btn btn-outline-warning" %>
+    <%= link_to "View Menu", restaurant_restaurant_menus_path(@this_restaurant, @restaurant_menu), class: "btn btn-outline-success" %>
   </ul>
 </div>
 
 <div class="restaurant-show-card">
-  <h4 class="m-4">Reviews</h4>
+  <h4 class="sub-heading">Reviews</h4>
   <ul class="list-group m-4">
     <% @this_restaurant.reviews.each do |review| %>
       <li class="list-group-item"><%= review.comment %></li>
@@ -53,7 +53,7 @@
               <%= link_to "Delete",
                 review_path(review),
                 data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-                class: 'btn btn-danger btn-sm' %>
+                class: 'btn btn-outline-success btn-sm' %>
             </div>
           <% end %>
         <% end %>
@@ -66,11 +66,11 @@
   <% if current_user.customer %>
     <div class="restaurant-show-card">
       <div class="m-4">
-        <h2>Add a Review</h2>
+        <h2 class="sub-heading">Add a Review</h2>
         <%= simple_form_for [@this_restaurant, @review] do |form| %>
           <%= form.input :comment %>
           <%= form.input :rating, collection: [0, 1, 2, 3, 4, 5], label: "Select Rating" %>
-          <%= form.submit 'Submit', class: "btn btn-outline-warning" %>
+          <%= form.submit 'Submit', class: "btn btn-outline-success" %>
         <% end %>
       </div>
     </div>

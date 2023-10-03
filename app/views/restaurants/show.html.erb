@@ -29,16 +29,24 @@
   <ul class="list-group m-4">
     <% @this_restaurant.reviews.each do |review| %>
       <li class="list-group-item"><%= review.comment %></li>
-      <% position = review.customer == current_user.customer ? "justify-content-between": "justify-content-center" %>
-      <div class="d-flex <%= position %> align-items-center">
-        <div class="align-items-center">
-          <p>Rating:</p>
-          <div class="star <%= 'filled' if review.rating >= 1 %>"></div>
-          <div class="star <%= 'filled' if review.rating >= 2 %>"></div>
-          <div class="star <%= 'filled' if review.rating >= 3 %>"></div>
-          <div class="star <%= 'filled' if review.rating >= 4 %>"></div>
-          <div class="star <%= 'filled' if review.rating >= 5 %>"></div>
-        </div>
+      <% if user_signed_in? %>
+        <% if current_user.customer %>
+          <% position = review.customer == current_user.customer ? "justify-content-between": "justify-content-center" %>
+        <% else %>
+          <% position = "justify-content-center" %>
+        <% end %>
+      <% else %>
+        <% position = "justify-content-center" %>
+      <% end %>
+        <div class="d-flex <%= position %> align-items-center">
+          <div class="align-items-center">
+            <p>Rating:</p>
+            <div class="star <%= 'filled' if review.rating >= 1 %>"></div>
+            <div class="star <%= 'filled' if review.rating >= 2 %>"></div>
+            <div class="star <%= 'filled' if review.rating >= 3 %>"></div>
+            <div class="star <%= 'filled' if review.rating >= 4 %>"></div>
+            <div class="star <%= 'filled' if review.rating >= 5 %>"></div>
+          </div>
         <% if user_signed_in? %>
           <% if review.customer == current_user.customer %>
             <div>

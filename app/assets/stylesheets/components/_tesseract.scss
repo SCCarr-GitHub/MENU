@@ -5,9 +5,10 @@
 }
 
 .tesseract-container{
+  display: flex;
   text-align: center;
   justify-content: center;
-  width: 450px;
+  width: 420px;
 }
 
 .tesseract-form div {
@@ -21,5 +22,5 @@ label {
 textarea {
   width: 100%;
   height: 200px;
-  resize: vertical; 
+  resize: vertical;
 }

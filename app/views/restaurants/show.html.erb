@@ -9,7 +9,7 @@
     <% end %>
   </div>
   <div class="logo-container">
-    <img src="https://res.cloudinary.com/dyvrpbbez/image/upload/v1696418288/me._n.u_480_rmd17z.png" class="logo-image">
+    <img src="https://res.cloudinary.com/dyvrpbbez/image/upload/v1696428312/me.n.u_final__720_fcuaht.png" class="logo-image">
   </div>
 </div>
 <div class="carousel-container">
@@ -51,12 +51,9 @@
   </div>
 </div>
 <br>
-
-
 <div class="links">
   <%= link_to "View Menu", restaurant_restaurant_menus_path(@this_restaurant), class: "btn btn-outline-success btn-block" %>
 </div>
-
 <div class="restaurant-show-card">
   <h1 class="sub-heading"><strong><%= @this_restaurant.name %></strong></h1>
   <h2 class="sub-heading"><em><%= @this_restaurant.category %></em></h2>
@@ -65,7 +62,6 @@
   <p>Opening Time: <%= @this_restaurant.opening_time.strftime('%H:%M') %></p>
   <p>Closing Time: <%= @this_restaurant.closing_time.strftime('%H:%M') %></p>
 </div>
-
 <div class="restaurant-show-card">
   <h4 class="sub-heading">Reviews</h4>
   <ul class="list-group m-4">
@@ -113,9 +109,9 @@
 <% end %>
 
 <% if current_user.id == @this_restaurant.user_id %>
-  <div>
-    <%= link_to "Add Menu", new_restaurant_restaurant_menu_path(@restaurant), class: "nav-link" %>
-    <%= link_to "Edit your info", edit_restaurant_path(@restaurant), class: "nav-link" %>
-    <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item"%>
+  <div class="links">
+    <%= link_to "Add Menu", new_restaurant_restaurant_menu_path(@restaurant), class: 'btn btn-outline-success btn-sm' %>
+    <%= link_to "Edit your info", edit_restaurant_path(@restaurant), class: 'btn btn-outline-success btn-sm' %>
+    <%= link_to "Log out", destroy_user_session_path, class: 'btn btn-outline-success btn-sm'%>
   </div>
 <% end %>

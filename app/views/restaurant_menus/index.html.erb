@@ -12,21 +12,25 @@
       <% @starters.each do |starter| %>
         <div class="col-md-6">
           <div class="card">
-            <%#= cl_image_tag starter.photo.key, class: "card-img-top" %>
             <div class="card-body">
               <h5 class="card-title"><%= starter.item_name %></h5>
               <p class="card-text">R<%= starter.item_price %></p>
               <% if user_signed_in? %>
-<div data-controller="toggle" class="mt-5">
-  <!-- Button to toggle the form -->
-  <button data-action="click->toggle#toggle" class="btn btn-outline-primary">Add an image</button>
-
-  <div data-toggle-target="togglableElement" class="d-none">
-    <!-- Form to be toggled -->
-    <%= render "item_photo_form" %>
-  </div>
-</div>
-
+                <% if current_user.restaurant.restaurant_menus.first.id == @restaurant_menus.first.id %>
+                  <div data-controller="toggle" class="mt-5">
+                    <button data-action="click->toggle#toggle" class="btn btn-outline-primary">Add an image</button>
+                    <div data-toggle-target="togglableElement" class="d-none">
+                      <%= render "item_photo_form" %>
+                    </div>
+                  </div>
+                <% else %>
+                  <div data-controller="toggle" class="mt-5">
+                    <button data-action="click->toggle#toggle" class="btn btn-outline-primary">View Image</button>
+                  <div data-toggle-target="togglableElement" class="d-none">
+                    <%= render "item_photo" %>
+                    </div>
+                  </div>
+                <% end %>
                 <% if current_user.customer %>
                   <% unless current_user.customer.ratings.exists?(item_id: starter.id) %>
                     <%= button_to 'Upvote this item', upvote_path(starter), method: :post %>

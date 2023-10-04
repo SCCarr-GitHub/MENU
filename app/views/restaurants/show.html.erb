@@ -37,6 +37,10 @@
     </button>
   </div>
 </div>
+<br>
+  <div class="links">
+    <%= link_to "View Menu", restaurant_restaurant_menus_path(@this_restaurant), class: "btn btn-outline-success btn-block" %>
+  </div>
 
 <div class="restaurant-show-card">
   <h1 class="sub-heading"><strong><%= @this_restaurant.name %></strong></h1>
@@ -45,14 +49,6 @@
   <p class="sub-heading">Contact: <%= @this_restaurant.phone_number %></p>
   <p>Opening Time: <%= @this_restaurant.opening_time.strftime('%H:%M') %></p>
   <p>Closing Time: <%= @this_restaurant.closing_time.strftime('%H:%M') %></p>
-</div>
-
-<div class="container-fluid">
-  <div class="d-grid gap-2">
-    <div class="links">
-      <%= link_to "View Menu", restaurant_restaurant_menus_path(@this_restaurant), class: "btn btn-outline-success btn-block" %>
-    </div>
-  </div>
 </div>
 
 <div class="restaurant-show-card">

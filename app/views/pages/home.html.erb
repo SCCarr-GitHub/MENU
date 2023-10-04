@@ -32,12 +32,10 @@
 </div>
   <div class="links">
   <% if !user_signed_in? %>
-    <%= link_to "Leaderboard", leaderboard_path, class: "nav-link" %>
     <%= link_to "Login", new_user_session_path, class: "nav-link" %>
     <%= link_to "Signup", new_user_registration_path, class: "nav-link" %>
   <% end %>
   <% if user_signed_in? %>
-    <%= link_to "Leaderboard", leaderboard_path, class: "nav-link" %>
     <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item"  %>
     <% if !current_user.restaurant_owner? %>
       <%= link_to "Edit your info", edit_customer_path(current_user.id, @customer), class: "nav-link" %>

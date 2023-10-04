@@ -12,6 +12,7 @@
     <img src="https://res.cloudinary.com/dyvrpbbez/image/upload/v1696428312/me.n.u_final__720_fcuaht.png" class="logo-image">
   </div>
 </div>
+
 <div class="carousel-container">
   <div id="carouselExampleIndicators" class="carousel slide">
     <div class="carousel-indicators">
@@ -20,26 +21,26 @@
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
     <div class="carousel-inner">
-  <% if @this_restaurant.photos.any? %>
-    <% @this_restaurant.photos.each_with_index do |photo, index| %>
-      <div class="carousel-item <%= 'active' if index == 0 %>">
-        <div class="text-center">
-          <%= cl_image_tag photo.key, class: 'd-block mx-auto', alt: 'Restaurant Photo', style: 'max-height: 300px; width: auto;' %>
+      <% if @this_restaurant.photos.any? %>
+        <% @this_restaurant.photos.each_with_index do |photo, index| %>
+          <div class="carousel-item <%= 'active' if index == 0 %>">
+            <div class="text-center">
+              <%= cl_image_tag photo.key, class: 'd-block mx-auto', alt: 'Restaurant Photo', style: 'max-height: 300px; width: auto;' %>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <div class="carousel-item active">
+          <%= image_tag 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80', class: 'd-block w-100', alt: 'Default Photo' %>
         </div>
-      </div>
-    <% end %>
-  <% else %>
-    <div class="carousel-item active">
-      <%= image_tag 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80', class: 'd-block w-100', alt: 'Default Photo' %>
+        <div class="carousel-item">
+          <%= image_tag 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80', class: 'd-block w-100', alt: 'Default Photo' %>
+        </div>
+        <div class="carousel-item">
+          <%= image_tag 'https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80', class: 'd-block w-100', alt: 'Default Photo' %>
+        </div>
+      <% end %>
     </div>
-    <div class="carousel-item">
-      <%= image_tag 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80', class: 'd-block w-100', alt: 'Default Photo' %>
-    </div>
-    <div class="carousel-item">
-      <%= image_tag 'https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80', class: 'd-block w-100', alt: 'Default Photo' %>
-    </div>
-  <% end %>
-</div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
@@ -51,9 +52,11 @@
   </div>
 </div>
 <br>
+
 <div class="links">
   <%= link_to "View Menu", restaurant_restaurant_menus_path(@this_restaurant), class: "btn btn-outline-success btn-block" %>
 </div>
+
 <div class="restaurant-show-card">
   <h1 class="sub-heading"><strong><%= @this_restaurant.name %></strong></h1>
   <h2 class="sub-heading"><em><%= @this_restaurant.category %></em></h2>
@@ -87,6 +90,14 @@
                   review_path(review),
                   data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
                   class: 'btn btn-outline-success btn-sm' %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
 
 <% if @this_restaurant.reviews.present? %>
   <div class="restaurant-show-card">
@@ -123,20 +134,20 @@
   </div>
 <% end %>
 
-
 <% if current_user.id == @this_restaurant.user_id %>
   <div class="links">
-    <%= link_to "Add Menu", new_restaurant_restaurant_menu_path(@restaurant), class: 'btn btn-outline-success btn-sm' %>
-    <%= link_to "Edit your info", edit_restaurant_path(@restaurant), class: 'btn btn-outline-success btn-sm' %>
+    <%= link_to "Add Menu", new_restaurant_restaurant_menu_path(@this_restaurant), class: 'btn btn-outline-success btn-sm' %>
+    <%= link_to "Edit your info", edit_restaurant_path(@this_restaurant), class: 'btn btn-outline-success btn-sm' %>
     <%= link_to "Log out", destroy_user_session_path, class: 'btn btn-outline-success btn-sm'%>
   </div>
+<% end %>
 
 <% if user_signed_in? %>
-  <% if user_signed_in? && current_user.customer %>
+  <% if current_user.customer %>
     <div class="restaurant-show-card">
       <div class="m-4">
         <h2 class="sub-heading">Add a Review</h2>
-        <%= simple_form_for [@this_restaurant, @review] do |form| %>
+        <%= simple_form_for [@this_restaurant, Review.new] do |form| %>
           <%= form.input :comment %>
           <%= form.input :rating, collection: [0, 1, 2, 3, 4, 5], label: "Select Rating" %>
           <%= form.submit 'Submit', class: "btn btn-outline-success" %>
@@ -144,12 +155,12 @@
       </div>
     </div>
   <% end %>
+<% end %>
 
-  <% if current_user.id == @this_restaurant.user_id %>
-    <div>
-      <%= link_to "Add Menu", new_restaurant_restaurant_menu_path(@restaurant), class: "nav-link" %>
-      <%= link_to "Edit your info", edit_restaurant_path(@restaurant), class: "nav-link" %>
-      <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item"%>
-    </div>
-  <% end %>
+<% if current_user.id == @this_restaurant.user_id %>
+  <div class="links">
+    <%= link_to "Add Menu", new_restaurant_restaurant_menu_path(@this_restaurant), class: "nav-link" %>
+    <%= link_to "Edit your info", edit_restaurant_path(@this_restaurant), class: "nav-link" %>
+    <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item"%>
+  </div>
 <% end %>

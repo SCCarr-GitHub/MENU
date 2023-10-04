@@ -7,11 +7,9 @@
 }
 
 body{
-  // display: flex;
+  display: flex;
   font-family: 'Sofia Sans Condensed', sans-serif;
-  justify-content: center;
-  align-items: center;
-  min-height: 250vh;
+  flex-direction: column;
   background: #F4F4F9;
 }
 

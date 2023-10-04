@@ -12,9 +12,10 @@
     <img src="https://res.cloudinary.com/dyvrpbbez/image/upload/v1696428312/me.n.u_final__720_fcuaht.png" class="logo-image">
   </div>
 <div class="search-container">
+<br>
 <%= form_tag(search_pages_path, method: :get) do %>
-  <%= text_field_tag :query, params[:query], placeholder: "Search...", style: "width: 300px;" %>
-  <%= submit_tag "Search", style: "background-color: #e2f3e8;" %>
+  <%= text_field_tag :query, params[:query], placeholder: "Search...", class: "search-input" %>
+  <%= submit_tag "Search", class: "rounded-button" %>
 <% end %>
 
 <div>

@@ -10,48 +10,88 @@ puts "Clearing the database..."
 # GENERATE USERS!
 puts "Creating users..."
 
+# CUSTOMER ACCOUNTS
+
 User.create!(
-  email: "user1@example.com",
+  email: "jt@thedestroyer.com",
   password: "password",
   restaurant_owner: false
 )
 
 User.create!(
-  email: "user2@example.com",
+  email: "stricko@yeamate.com",
   password: "password",
   restaurant_owner: false
 )
+# RESTAURANT OWNERS ACCOUNTS
 
 User.create!(
-  email: "user3@example.com",
+  email: "laitaliano@restaurant.com",
   password: "password",
   restaurant_owner: true
 )
 
 User.create!(
-  email: "user4@example.com",
+  email: "senormexicana@restaurant.com",
   password: "password",
   restaurant_owner: true
 )
+
+User.create!(
+  email: "plushi@restaurant.com",
+  password: "password",
+  restaurant_owner: true
+)
+
+User.create!(
+  email: "hugosmussels@restaurant.com",
+  password: "password",
+  restaurant_owner: true
+)
+
+User.create!(
+  email: "southsideshawns@restaurant.com",
+  password: "password",
+  restaurant_owner: true
+)
+
+User.create!(
+  email: "sebghetticarrbonara@restaurant.com",
+  password: "password",
+  restaurant_owner: true
+)
+
+User.create!(
+  email: "onlyfools@restaurant.com",
+  password: "password",
+  restaurant_owner: true
+)
+
+User.create!(
+  email: "hesheng@restaurant.com",
+  password: "password",
+  restaurant_owner: true
+)
+
 puts "Finished creating users!"
 
 # GENERATE CUSTOMERS!
 puts "Creating customers..."
 
 Customer.create!(
-  name: "Customer 1",
-  surname: "One",
+  name: "JT",
+  surname: "The Destroyer",
   phone_number: "1234567890",
   address: "123 Main Road",
-  user_id: User.find_by(email: "user1@example.com").id
+  user_id: User.find_by(email: "jt@thedestroyer.com").id
 )
 
 Customer.create!(
-  name: "Customer 2",
-  surname: "Two",
-  phone_number: "2345678901",
+  name: "Liam",
+  surname: "Stricko",
+  phone_number: "098 765 4321",
   address: "456 Main Road",
-  user_id: User.find_by(email: "user2@example.com").id
+  user_id: User.find_by(email: "stricko@yeamate.com").id
 )
 
 puts "Finished creating customers!"
@@ -63,21 +103,81 @@ puts "Creating restaurants..."
 Restaurant.create!(
   name: "La Italiano",
   category: "Italian",
-  address: "123 Main Street",
-  phone_number: "1111111111",
+  address: "6 Rhine Road, Seapoint, Cape Town",
+  phone_number: "123 456 7890",
   opening_time: Time.parse("12:00 PM"),
   closing_time: Time.parse("6:00 PM"),
-  user_id: User.find_by(email: "user3@example.com").id
+  user_id: User.find_by(email: "laitaliano@restaurant.com").id
 )
 
 Restaurant.create!(
   name: "Senòr Mexicana",
   category: "Mexican",
-  address: "456 Main Street",
-  phone_number: "2222222222",
+  address: "2 Forth Road, Newlands, Cape Town",
+  phone_number: "123 456 7890",
   opening_time: Time.parse("12:00 PM"),
   closing_time: Time.parse("6:00 PM"),
-  user_id: User.find_by(email: "user4@example.com").id
+  user_id: User.find_by(email: "senormexicana@restaurant.com").id
+)
+
+Restaurant.create!(
+  name: "Plushi",
+  category: "Sushi",
+  address: "12 Ravenscraig Road, Woodstock, Cape Town",
+  phone_number: "123 456 7890",
+  opening_time: Time.parse("12:00 PM"),
+  closing_time: Time.parse("6:00 PM"),
+  user_id: User.find_by(email: "plushi@restaurant.com").id
+)
+
+Restaurant.create!(
+  name: "Hugo's Mussels",
+  category: "Seafood",
+  address: "2 Cannery Road, Bishopscourt, Cape Town",
+  phone_number: "123 456 7890",
+  opening_time: Time.parse("12:00 PM"),
+  closing_time: Time.parse("6:00 PM"),
+  user_id: User.find_by(email: "hugosmussels@restaurant.com").id
+)
+
+Restaurant.create!(
+  name: "Southside Shawn's",
+  category: "Bar & Pub",
+  address: "4 Lytton Street, Observatory, Cape Town",
+  phone_number: "123 456 7890",
+  opening_time: Time.parse("12:00 PM"),
+  closing_time: Time.parse("6:00 PM"),
+  user_id: User.find_by(email: "southsideshawns@restaurant.com").id
+)
+
+Restaurant.create!(
+  name: "Sebghetti Carrbonara",
+  category: "Sicillian",
+  address: "14 Rhine Road, Seapoint, Cape Town",
+  phone_number: "123 456 7890",
+  opening_time: Time.parse("12:00 PM"),
+  closing_time: Time.parse("6:00 PM"),
+  user_id: User.find_by(email: "sebghetticarrbonara@restaurant.com").id
+)
+
+Restaurant.create!(
+  name: "Only Fools",
+  category: "Burgers",
+  address: "82 Regent Road, Seapoint, Cape Town",
+  phone_number: "123 456 7890",
+  opening_time: Time.parse("12:00 PM"),
+  closing_time: Time.parse("6:00 PM"),
+  user_id: User.find_by(email: "onlyfools@restaurant.com").id
+)
+
+Restaurant.create!(
+  name: "HeSheng",
+  category: "Chinese",
+  address: "269 Main Road, Seapoint, Cape Town",
+  phone_number: "123 456 7890",
+  opening_time: Time.parse("12:00 PM"),
+  closing_time: Time.parse("6:00 PM"),
+  user_id: User.find_by(email: "hesheng@restaurant.com").id
 )
 
 puts "Finished creating restaurants!"
@@ -87,82 +187,124 @@ puts "Finished creating restaurants!"
 puts "Creating restaurant menus..."
 
 la_italiano = Restaurant.find_by(name: "La Italiano")
-senòr_mexicana = Restaurant.find_by(name: "Senòr Mexicana")
+senor_mexicana = Restaurant.find_by(name: "Senòr Mexicana")
+plushi = Restaurant.find_by(name: "Plushi")
+hugos_mussels = Restaurant.find_by(name: "Hugo's Mussels")
+southside_shawns = Restaurant.find_by(name: "Southside Shawn's")
+sebghetti_carrbonara = Restaurant.find_by(name: "Sebghetti Carrbonara")
+only_fools = Restaurant.find_by(name: "Only Fools")
+hesheng = Restaurant.find_by(name: "HeSheng")
 
 la_italiano_menu = RestaurantMenu.create!(
   description: "La Italiano Menu",
   restaurant: la_italiano
 )
 
+senor_mexicana_menu = RestaurantMenu.create!(
+  description: "Senòr Mexicana Menu",
+  restaurant: senor_mexicana
+)
+
+plushi_menu = RestaurantMenu.create!(
+  description: "Plushi Menu",
+  restaurant: plushi
+)
+
+hugos_mussels_menu = RestaurantMenu.create!(
+  description: "Hugo's Mussels Menu",
+  restaurant: hugos_mussels
+)
+
+southside_shawns_menu = RestaurantMenu.create!(
+  description: "Southside Shawn's",
+  restaurant: southside_shawns
+)
+
+sebghetti_carrbonara_menu = RestaurantMenu.create!(
+  description: "Sebghetti Carrbonara",
+  restaurant: sebghetti_carrbonara
+)
+
+only_fools_menu = RestaurantMenu.create!(
+  description: "Only Fools",
+  restaurant: only_fools
+)
+
+hesheng_menu = RestaurantMenu.create!(
+  description: "HeSheng",
+  restaurant: hesheng
+)
+
 puts "Finished creating restaurant menus!"
 
 # # GENERATE ITEMS ON MENU!
 
-puts "Creating menu items..."
+# puts "Creating menu items..."
 
 Item.create!(
   category: "starter",
-  item_name: "Foccacia",
-  item_price: 10,
-  restaurant_menu: la_italiano_menu
+  item_name: "Shrimp",
+  item_price: 75,
+  restaurant_menu: hugos_mussels_menu
 )
 
 Item.create!(
   category: "main",
-  item_name: "Spaghetti Carbonara",
-  item_price: 20,
-  restaurant_menu: la_italiano_menu
+  item_name: "Steak & Onyons",
+  item_price: 150,
+  restaurant_menu: hugos_mussels_menu
 )
 
 Item.create!(
-  category: "dessert",
-  item_name: "Gelato",
-  item_price: 15,
-  restaurant_menu: la_italiano_menu
+  category: "drink",
+  item_name: "Mixed Meat Smoothie",
+  item_price: 95,
+  restaurant_menu: hugos_mussels_menu
 )
 
 Item.create!(
   category: "starter",
-  item_name: "Fior De Latte",
-  item_price: 10,
-  restaurant_menu: la_italiano_menu
+  item_name: "Sardines",
+  item_price: 70,
+  restaurant_menu: hugos_mussels_menu
 )
 
 Item.create!(
   category: "main",
-  item_name: "Ribeye Steak",
-  item_price: 20,
-  restaurant_menu: la_italiano_menu
+  item_name: "Lamb Chops",
+  item_price: 120,
+  restaurant_menu: hugos_mussels_menu
+)
+
+Item.create!(
+  category: "main",
+  item_name: "Massive Prawns",
+  item_price: 145,
+  restaurant_menu: hugos_mussels_menu
 )
 
 Item.create!(
   category: "dessert",
-  item_name: "Churros",
-  item_price: 15,
-  restaurant_menu: la_italiano_menu
+  item_name: "Protein Ice Cream & Creatine Sprinkles",
+  item_price: 75,
+  restaurant_menu: hugos_mussels_menu
 )
 
 Item.create!(
   category: "drink",
-  item_name: "Castle Lager",
-  item_price: 20,
-  restaurant_menu: la_italiano_menu
+  item_name: "Chef's Special: Pre-Workout",
+  item_price: 250,
+  restaurant_menu: hugos_mussels_menu
 )
 
 Item.create!(
-  category: "drink",
-  item_name: "Chocolate Milkshake",
-  item_price: 20,
-  restaurant_menu: la_italiano_menu
-)
-
-Item.create!(
-  category: "drink",
-  item_name: "Limoncello Mojito",
-  item_price: 20,
-  restaurant_menu: la_italiano_menu
+  category: "dessert",
+  item_name: "Chocolate Protein Cake",
+  item_price: 75,
+  restaurant_menu: hugos_mussels_menu
 )
 
 puts "Finished creating menu items!"
 
-puts "ALL DATA HAS BEEN GENERATED! (finally)"
+puts "..."
+puts "ALL DATA HAS BEEN GENERATED - (LFG!!!))"

@@ -12,19 +12,10 @@
     <img src="https://res.cloudinary.com/dyvrpbbez/image/upload/v1696418288/me._n.u_480_rmd17z.png" class="logo-image">
   </div>
 </div>
-<div class="home-page-avatar">
-  <% if user_signed_in? %>
-    <% if current_user.photo.present? %>
-      <%= cl_image_tag current_user.photo.key, class: "avatar" %>
-    <% else %>
-      <%= image_tag "https://www.nicepng.com/png/full/115-1150821_default-avatar-comments-sign-in-icon-png.png", class: "avatar" %>
-    <% end %>
-  <% end %>
-</div>
-<br>
+
 <div class="tesseract-container">
   <div class="tesseract-form">
-    <%= form_with(model: [@restaurant, @restaurant_menu], data: { controller: "ocr" }) do |form| %>
+    <%= form_with(model: [@restaurant, @restaurant_menu], data: { controller: "ocr" }, style: "background-color: #07362B;") do |form| %>
       <div>
         <%= form.label :description %>
         <%= form.text_field :description %>

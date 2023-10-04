@@ -13,7 +13,7 @@
   </div>
 </div>
 <div class="restaurant-show-card">
-  <h2 class="homepage-heading text-center">Edit your info</h2>
+  <p class>Edit your info</p>
   <%= simple_form_for [@customer] do |f| %>
     <%= f.error_notification %>
       <%= f.input :name,
@@ -51,7 +51,7 @@
 </div>
 
 <div class="links">
-  <h2 class="home-header">Edit login details, profile photo or delete your account</h2>
+  <p>Edit login details, profile photo or delete your account</p>
   <%= link_to edit_user_registration_path, class: "btn btn-outline-success" do %>
           Update Details
         <% end %>

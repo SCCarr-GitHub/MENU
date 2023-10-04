@@ -1,18 +1,58 @@
 
 <div class="home-header"><h1>Me.N.u</h1></div>
+<br>
+<div class="carousel-container">
+  <div id="carouselExampleIndicators" class="carousel slide">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+  <% if @this_restaurant.photos.any? %>
+    <% @this_restaurant.photos.each_with_index do |photo, index| %>
+      <div class="carousel-item <%= 'active' if index == 0 %>">
+        <%= cl_image_tag photo.url, class: 'd-block w-100', alt: 'Restaurant Photo' %>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="carousel-item active">
+      <%= image_tag 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80', class: 'd-block w-100', alt: 'Default Photo' %>
+    </div>
+    <div class="carousel-item">
+      <%= image_tag 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80', class: 'd-block w-100', alt: 'Default Photo' %>
+    </div>
+    <div class="carousel-item">
+      <%= image_tag 'https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80', class: 'd-block w-100', alt: 'Default Photo' %>
+    </div>
+  <% end %>
+</div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
 
 <div class="restaurant-show-card">
-  <h1 class="sub-heading"><%= @this_restaurant.name %></h1>
-  <h2 class="sub-heading"><%= @this_restaurant.category %></h2>
+  <h1 class="sub-heading"><strong><%= @this_restaurant.name %></strong></h1>
+  <h2 class="sub-heading"><em><%= @this_restaurant.category %></em></h2>
   <h3 class="sub-heading"><%= @this_restaurant.address %></h3>
-  <h4 class="sub-heading"><%= @this_restaurant.phone_number %></h4>
+  <p class="sub-heading">Contact: <%= @this_restaurant.phone_number %></p>
   <p>Opening Time: <%= @this_restaurant.opening_time.strftime('%H:%M') %></p>
   <p>Closing Time: <%= @this_restaurant.closing_time.strftime('%H:%M') %></p>
 </div>
 
-<div class="links">
-    <%= link_to "View Menu", restaurant_restaurant_menus_path(@this_restaurant, @restaurant_menu), class: "btn btn-outline-success" %>
-  </ul>
+<div class="container-fluid">
+  <div class="d-grid gap-2">
+    <div class="links">
+      <%= link_to "View Menu", restaurant_restaurant_menus_path(@this_restaurant), class: "btn btn-outline-success btn-block" %>
+    </div>
+  </div>
 </div>
 
 <div class="restaurant-show-card">
@@ -29,6 +69,7 @@
       <% else %>
         <% position = "justify-content-center" %>
       <% end %>
+      <br>
         <div class="d-flex <%= position %> align-items-center">
           <div class="align-items-center">
             <p>Rating:</p>

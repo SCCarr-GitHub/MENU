@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def home
-    
+
     @restaurants = Restaurant.all
     if user_signed_in?
       @customer = current_user.customer
@@ -10,8 +10,8 @@ class PagesController < ApplicationController
       {
         lat: restaurant.latitude,
         lng: restaurant.longitude,
-        info_window_html: render_to_string(partial: "info_window", locals: { restaurant: restaurant }),
-        marker_html: render_to_string(partial: "marker")
+        info_window_html: render_to_string(partial: "restaurants/info_window", locals: { restaurant: }),
+        marker_html: render_to_string(partial: "restaurants/marker", locals: { restaurant: })
       }
     end
   end

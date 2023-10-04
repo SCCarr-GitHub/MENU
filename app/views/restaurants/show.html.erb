@@ -39,6 +39,10 @@
     </button>
   </div>
 </div>
+<br>
+  <div class="links">
+    <%= link_to "View Menu", restaurant_restaurant_menus_path(@this_restaurant), class: "btn btn-outline-success btn-block" %>
+  </div>
 
 <div class="restaurant-show-card">
   <h1 class="sub-heading"><strong><%= @this_restaurant.name %></strong></h1>
@@ -49,14 +53,16 @@
   <p>Closing Time: <%= @this_restaurant.closing_time.strftime('%H:%M') %></p>
 </div>
 
-<div class="container-fluid">
-  <div class="d-grid gap-2">
-    <div class="links">
-      <%= link_to "View Menu", restaurant_restaurant_menus_path(@this_restaurant), class: "btn btn-outline-success btn-block" %>
-    </div>
-  </div>
-</div>
 
+<div class="restaurant-show-card">
+  <h4 class="sub-heading">Reviews</h4>
+  <ul class="list-group m-4">
+    <% @this_restaurant.reviews.each do |review| %>
+      <li class="list-group-item"><%= review.comment %></li>
+      <% if user_signed_in? %>
+        <% if current_user.customer %>
+          <% position = review.customer == current_user.customer ? "justify-content-between": "justify-content-center" %>
+    
 <% unless @this_restaurant.reviews.empty? %>
   <div class="restaurant-show-card">
     <h4 class="sub-heading">Reviews</h4>
@@ -69,6 +75,7 @@
           <% else %>
             <% position = "justify-content-center" %>
           <% end %>
+
         <% else %>
           <% position = "justify-content-center" %>
         <% end %>

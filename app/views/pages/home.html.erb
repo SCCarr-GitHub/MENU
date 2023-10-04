@@ -10,24 +10,33 @@
   <% end %>
 </div>
 <br>
-  <div class="restaurants-row">
-    <% @restaurants.each do |restaurant| %>
-      <%= link_to restaurant_path(restaurant) do %>
-        <div class="restaurant-card">
-          <div>
-          <% if restaurant.photos.any? %>
-            <% photo = restaurant.photos.first %>
-            <%= cl_image_tag photo.key, class: 'd-block mx-auto', style: 'max-height: 150px;' , alt: 'Restaurant Photo' %>
-          <% else %>
-            <%= image_tag 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80', class: 'd-block mx-auto', style: 'max-height: 150px;', alt: 'Default Photo' %>
-          <% end %>
+<div class="restaurants-row">
+  <% @restaurants.each do |restaurant| %>
+    <%= link_to restaurant_path(restaurant) do %>
+      <div class="restaurant-card">
+        <div class="row align-items-center">
+          <div class="col-12">
+            <% if restaurant.photos.any? %>
+              <% photo = restaurant.photos.first %>
+              <div style="border-radius: 0.25rem 0.25rem 0 0; overflow: hidden;">
+                <%= cl_image_tag photo.key, style: 'width: 100%;', alt: 'Restaurant Photo' %>
+              </div>
+            <% else %>
+              <div style="border-radius: 0.25rem 0.25rem 0.25rem 0.25rem; overflow: hidden;">
+                <%= image_tag 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80', style: 'width: 100%;', alt: 'Default Photo' %>
+              </div>
+            <% end %>
+            <div class="text-center">
+              <div><strong><%= restaurant.name %></strong></div>
+              <div><em><%= restaurant.category %></em></div>
+            </div>
           </div>
-          <div><strong><%= restaurant.name %></strong></div>
-          <div><em><%= restaurant.category %></em></div>
         </div>
-      <% end %>
+      </div>
     <% end %>
+   <% end %>
   </div>
+</div>
 
 </div>
   <div class="links">

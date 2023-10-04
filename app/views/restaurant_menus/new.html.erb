@@ -1,4 +1,17 @@
-<div class="home-header"><h1>Me.N.u</h1></div>
+<div class="homepage-container">
+  <div class="home-page-avatar">
+    <% if user_signed_in? %>
+      <% if current_user.photo.present? %>
+        <%= cl_image_tag current_user.photo.key, class: "avatar" %>
+      <% else %>
+        <%= image_tag "https://www.nicepng.com/png/full/115-1150821_default-avatar-comments-sign-in-icon-png.png", class: "avatar" %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="logo-container">
+    <img src="https://res.cloudinary.com/dyvrpbbez/image/upload/v1696418288/me._n.u_480_rmd17z.png" class="logo-image">
+  </div>
+</div>
 <div class="home-page-avatar">
   <% if user_signed_in? %>
     <% if current_user.photo.present? %>

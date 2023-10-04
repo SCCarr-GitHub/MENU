@@ -8,9 +8,9 @@ class RatingsController < ApplicationController
     @rating.item = @item
     @rating.customer = @customer
     if @rating.save
-      redirect_to restaurant_menu_path(@restaurant_menu)
+      redirect_to restaurant_restaurant_menus_path(@restaurant_menu)
     else
-      redirect_to restaurant_menu_path(@restaurant_menu), status: :unprocessable_entity
+      redirect_to restaurant_restaurant_menus_path(@restaurant_menu), status: :unprocessable_entity
     end
   end
 

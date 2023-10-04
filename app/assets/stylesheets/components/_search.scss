@@ -14,3 +14,36 @@
   justify-content: center;
   text-align: center;
 }
+
+.sub-heading {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.search-results {
+  list-style: none;
+  padding: 0;
+}
+
+.search-result {
+  background-color: #f7f7f7;
+  border-radius: 0.25rem;
+  margin-bottom: 0.5rem;
+  padding: 1rem;
+}
+
+.search-result-link {
+  text-decoration: none;
+  color: #333;
+}
+
+.card-link {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .search-result {
+    width: 100%;
+  }
+}

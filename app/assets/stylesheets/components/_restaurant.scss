@@ -1,11 +1,11 @@
 .restaurant-card {
-  background-color: #e2f3e8;
-  border-radius: 5px;
-  margin: 20px;
-  text-align: center;
-  justify-content: center;
-  padding: 10px;
-  color:#07362B;
+  background-color: #efefef;
+  border-radius: 15px;
+  margin: 10px;
+  text-align:left;
+  padding: 12px;
+  color:#161717;
+  width: 23 rem;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.4);
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 
@@ -17,19 +17,55 @@
 }
 
 .restaurants-row{
+  display:block;
+  justify-content: center;
+  text-align: center;
   a {
     text-decoration: none;
   }
 }
 
 .restaurant-show-card{
-  background-color: #e2f3e8;
+  background-color: #efefef;
   border-radius: 5px;
+  border-bottom: 1px solid #ccc;
   margin: 20px;
   text-align: center;
   justify-content: center;
   padding: 10px;
-  color:#07362B;
-  border: 1px solid #07362B;
+  color:#161717;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+}
+
+.card-info-header {
+  font-family:'Segoe UI', sans-serif;
+  font-weight: bolder;
+  margin-top: 0.5rem;
+  margin-left: 0.3rem;
+}
+.card-info {
+  color: rgb(80, 80, 80)
+}
+
+.restaurant-heading{
+  text-align: center;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  font-weight: bolder;
+  margin-top: 0.5rem;
+  margin-left: 0.3rem;
+}
+
+.restaurant-card-info {
+  font-family:'Segoe UI', sans-serif;
+  color: rgb(80, 80, 80);
+}
+
+.restaurant-info {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.info-heading{
+  font-family:'Segoe UI', sans-serif;
 }

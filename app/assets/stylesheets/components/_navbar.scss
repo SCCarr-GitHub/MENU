@@ -5,12 +5,11 @@
   right: 0;
   width: 100%;
   height: 80px;
-  background: #07362B;
+  background: linear-gradient(to bottom, #282828, #161717);
   display: flex;
   justify-content: center;
-  margin-top: 6 rem;
+  margin-top: 10 rem;
   align-items: center;
-
   ul {
     display: flex;
     width: 100%;
@@ -33,12 +32,12 @@
         width: 100%;
         text-decoration: none;
         padding-top: 10px;
-        color: #F4F4F9;
+        color: #efefef;
 
         .icon {
           position: relative;
           display: block;
-          line-height: 60px;
+          line-height: 80px;
           font-size: 1.5em;
           text-align: center;
         }

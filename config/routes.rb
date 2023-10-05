@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get '/search', to: 'pages#search', as: 'search_pages'
 
   resources :customers, only: [:new, :create, :edit, :update]
+  resources :items, only: [:update, :destroy]
   resources :restaurants, only: [:new, :create] do
     resources :reviews, only: [:index, :new, :create, :show]
   end
@@ -14,7 +15,9 @@ Rails.application.routes.draw do
   resources :restaurants, only: [:index, :show, :edit, :update]
   resources :reviews, only: [:destroy]
 
-  resources :restaurant_menus, only: [:show, :edit]
+  resources :restaurant_menus, only: [:show, :edit] do
+    resources :items, only: [:create]
+  end
 
   get 'restaurant_menus/:restaurant_menu_id/items', to: 'items#create_items', as: 'create_items'
   post '/upvote/:id', to: 'ratings#upvote', as: 'upvote'

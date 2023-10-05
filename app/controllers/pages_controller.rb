@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
   def home
     @restaurants = Restaurant.all
+    @featured = @restaurants.sample(5)
     if user_signed_in?
       @customer = current_user.customer
     end

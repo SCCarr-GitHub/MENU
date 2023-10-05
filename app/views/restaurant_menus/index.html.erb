@@ -1,126 +1,269 @@
-<div class="menu-logo-container">
-  <div class="menu-logo">
-    <img src="https://res.cloudinary.com/dyvrpbbez/image/upload/v1696428312/me.n.u_final__720_fcuaht.png" class="menu-logo-image">
-  </div>
-</div>
 <br>
 <div class="menu-container">
-  <% unless @restaurant_items.empty? %>
-    <h2>Starters</h2>
-    <br>
-    <div class="row">
-      <% @starters.each do |starter| %>
-        <div class="col-md-6">
-          <div class="card">
-            <%#= cl_image_tag starter.photo.key, class: "card-img-top" %>
-            <div class="card-body">
-              <h5 class="card-title"><%= starter.item_name %></h5>
-              <p class="card-text">R<%= starter.item_price %></p>
-              <% if user_signed_in? %>
-<div data-controller="toggle" class="mt-5">
-  <!-- Button to toggle the form -->
-  <button data-action="click->toggle#toggle" class="btn btn-outline-primary">Add an image</button>
-
-  <div data-toggle-target="togglableElement" class="d-none">
-    <!-- Form to be toggled -->
-    <%= render "item_photo_form" %>
+    <% unless @restaurant_items.empty? %>
+      <div class="menu-section starter">
+        <h2 class="restaurant-heading">Starters</h2>
+        <br>
+        <div class="row">
+          <% @starters.each do |item| %>
+            <div class="col-md-6">
+              <div class="card d-flex">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                  <% if item.photo.present? %>
+                    <div class="circular-image">
+                      <%= cl_image_tag item.photo.key, class: 'd-block mx-auto', alt: 'Dish Photo' %>
+                    </div>
+                  <% end %>
+                  <div class="item-info">
+                    <h5 class="item-heading"><%= item.item_name %></h5>
+                    <p class="item-card-info">R<%= item.item_price %></p>
+                  </div>
+                  <div class="actions">
+                    <% if user_signed_in? %>
+                      <% if current_user.restaurant %>
+                        <% if current_user.restaurant.restaurant_menus.first.id == @restaurant_menus.first.id %>
+                          <div data-controller="toggle">
+                            <button data-action="click->toggle#fire" class="btn">
+                              <i class="fa-regular fa-pen-to-square fa-lg" style="color: #000000;"></i>
+                            </button>
+                            <div data-toggle-target="togglableElement" class="d-none">
+                              <%= simple_form_for item do |f| %>
+                                <%= f.input :item_name %>
+                                <%= f.input :item_price %>
+                                <%= f.input :category, collection: ["starter", "main", "dessert", "drink"], include_blank: "Select a category" %>
+                                <%= f.input :photo, as: :file  %>
+                                <%= f.submit "+", class: "btn" %>
+                              </div>
+                            </div>
+                            <div class="icon-container">
+                              <%= link_to item_path(item), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: 'btn' do %>
+                                <i class="fa-solid fa-trash fa-lg" style="color: #000000; outline: none;"></i>
+                              <% end %>
+                            </div>
+                          </div>
+                        <% end %>
+                      <% end %>
+                      <% if current_user.customer %>
+                        <% unless current_user.customer.ratings.exists?(item_id: item.id) %>
+                          <%= button_to 'Upvote this item', upvote_path(item), method: :post %>
+                        <% else %>
+                          <%= button_to 'Item Upvoted', disabled: true %>
+                        <% end %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <% end %>
+        </div>
+      </div>
+      <br>
+     <div class="menu-container">
+      <div class="menu-section mains">
+        <h2 class="restaurant-heading">Mains</h2>
+        <br>
+        <div class="row">
+          <% @mains.each do |item| %>
+            <div class="col-md-6">
+              <div class="card d-flex">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                  <% if item.photo.present? %>
+                    <div class="circular-image">
+                      <%= cl_image_tag item.photo.key, class: 'd-block mx-auto', alt: 'Dish Photo' %>
+                    </div>
+                  <% end %>
+                  <div class="item-info">
+                    <h5 class="info-heading"><%= item.item_name %></h5>
+                    <p class="restaurant-card-info">R<%= item.item_price %></p>
+                  </div>
+                  <div class="actions">
+                    <% if user_signed_in? %>
+                      <% if current_user.restaurant %>
+                        <% if current_user.restaurant.restaurant_menus.first.id == @restaurant_menus.first.id %>
+                          <div data-controller="toggle">
+                            <button data-action="click->toggle#fire" class="btn">
+                              <i class="fa-regular fa-pen-to-square fa-lg" style="color: #000000;"></i>
+                            </button>
+                            <div data-toggle-target="togglableElement" class="d-none">
+                              <%= simple_form_for item do |f| %>
+                                <%= f.input :item_name %>
+                                <%= f.input :item_price %>
+                                <%= f.input :category, collection: ["starter", "main", "dessert", "drink"], include_blank: "Select a category" %>
+                                <%= f.input :photo, as: :file  %>
+                                <%= f.submit "+", class: "btn" %>
+                              </div>
+                            </div>
+                            <div class="icon-container">
+                              <%= link_to item_path(item), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: 'btn' do %>
+                                <i class="fa-solid fa-trash fa-lg" style="color: #000000; outline: none;"></i>
+                              <% end %>
+                            </div>
+                          </div>
+                        <% end %>
+                      <% end %>
+                      <% if current_user.customer %>
+                        <% unless current_user.customer.ratings.exists?(item_id: item.id) %>
+                          <%= button_to 'Upvote this item', upvote_path(item), method: :post %>
+                        <% else %>
+                          <%= button_to 'Item Upvoted', disabled: true %>
+                        <% end %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+      <br>
+    <div class="menu-container">
+      <div class="menu-section desserts">
+        <h2 class="restaurant-heading">Desserts</h2>
+        <br>
+        <div class="row">
+          <% @drinks.each do |item| %>
+            <div class="col-md-6">
+              <div class="card d-flex">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                  <% if item.photo.present? %>
+                    <div class="circular-image">
+                      <%= cl_image_tag item.photo.key, class: 'd-block mx-auto', alt: 'Dish Photo' %>
+                    </div>
+                  <% end %>
+                  <div class="item-info">
+                    <h5 class="info-heading"><%= item.item_name %></h5>
+                    <p class="restaurant-card-info">R<%= item.item_price %></p>
+                  </div>
+                  <div class="actions">
+                    <% if user_signed_in? %>
+                      <% if current_user.restaurant %>
+                        <% if current_user.restaurant.restaurant_menus.first.id == @restaurant_menus.first.id %>
+                          <div data-controller="toggle">
+                            <button data-action="click->toggle#fire" class="btn">
+                              <i class="fa-regular fa-pen-to-square fa-lg" style="color: #000000;"></i>
+                            </button>
+                            <div data-toggle-target="togglableElement" class="d-none">
+                              <%= simple_form_for item do |f| %>
+                                <%= f.input :item_name %>
+                                <%= f.input :item_price %>
+                                <%= f.input :category, collection: ["starter", "main", "dessert", "drink"], include_blank: "Select a category" %>
+                                <%= f.input :photo, as: :file  %>
+                                <%= f.submit "+", class: "btn" %>
+                              </div>
+                            </div>
+                            <div class="icon-container">
+                              <%= link_to item_path(item), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: 'btn' do %>
+                                <i class="fa-solid fa-trash fa-lg" style="color: #000000; outline: none;"></i>
+                              <% end %>
+                            </div>
+                          </div>
+                        <% end %>
+                      <% end %>
+                      <% if current_user.customer %>
+                        <% unless current_user.customer.ratings.exists?(item_id: item.id) %>
+                          <%= button_to 'Upvote this item', upvote_path(item), method: :post %>
+                        <% else %>
+                          <%= button_to 'Item Upvoted', disabled: true %>
+                        <% end %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <% end %>
+        </div>
+      </div>
+      <br>
+    <div class="menu-container">
+      <div class="menu-section drinks">
+        <h2 class="restaurant-heading">Drinks</h2>
+        <br>
+        <div class="row">
+          <% @drinks.each do |item| %>
+            <div class="col-md-6">
+              <div class="card d-flex">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                  <% if item.photo.present? %>
+                    <div class="circular-image">
+                      <%= cl_image_tag item.photo.key, class: 'd-block mx-auto', alt: 'Dish Photo' %>
+                    </div>
+                  <% end %>
+                  <div class="item-info">
+                    <h5 class="info-heading"><%= item.item_name %></h5>
+                    <p class="restaurant-card-info">R<%= item.item_price %></p>
+                  </div>
+                  <div class="actions">
+                    <% if user_signed_in? %>
+                      <% if current_user.restaurant %>
+                        <% if current_user.restaurant.restaurant_menus.first.id == @restaurant_menus.first.id %>
+                          <div data-controller="toggle">
+                            <button data-action="click->toggle#fire" class="btn">
+                              <i class="fa-regular fa-pen-to-square fa-lg" style="color: #000000;"></i>
+                            </button>
+                            <div data-toggle-target="togglableElement" class="d-none">
+                              <%= simple_form_for item do |f| %>
+                                <%= f.input :item_name %>
+                                <%= f.input :item_price %>
+                                <%= f.input :category, collection: ["starter", "main", "dessert", "drink"], include_blank: "Select a category" %>
+                                <%= f.input :photo, as: :file  %>
+                                <%= f.submit "+", class: "btn" %>
+                              </div>
+                            </div>
+                            <div class="icon-container">
+                              <%= link_to item_path(item), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: 'btn' do %>
+                                <i class="fa-solid fa-trash fa-lg" style="color: #000000; outline: none;"></i>
+                              <% end %>
+                            </div>
+                          </div>
+                        <% end %>
+                      <% end %>
+                      <% if current_user.customer %>
+                        <% unless current_user.customer.ratings.exists?(item_id: item.id) %>
+                          <%= button_to 'Upvote this item', upvote_path(item), method: :post %>
+                        <% else %>
+                          <%= button_to 'Item Upvoted', disabled: true %>
+                        <% end %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class="justify-content-center d-flex">
+        <% if user_signed_in? %>
+          <% if current_user.restaurant %>
+            <% if current_user.restaurant.restaurant_menus.first.id == @restaurant_menus.first.id %>
+              <div data-controller="toggle" class="mt-5">
+                <button data-action="click->toggle#fire" class="btn btn-outline-success">Add a new item</button>
+                <div data-toggle-target="togglableElement" class="d-none">
+                  <%= simple_form_for @item, url: restaurant_menu_items_path(@restaurant_menus.first) do |f| %>
+                    <%= f.input :item_name %>
+                    <%= f.input :item_price %>
+                    <%= f.input :category, collection: ["starter", "main", "dessert", "drink"], include_blank: "Select a category" %>
+                    <%= f.input :photo, as: :file  %>
+                    <%= f.submit "+", class: "btn btn-outline-success" %>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="justify-content-center d-flex">
+        <p>No menu uploaded yet...</p>
+      </div>
+    <% end %>
   </div>
-</div>
-
-                <% if current_user.customer %>
-                  <% unless current_user.customer.ratings.exists?(item_id: starter.id) %>
-                    <%= button_to 'Upvote this item', upvote_path(starter), method: :post %>
-                  <% else %>
-                    <%= button_to 'Item Upvoted', disabled: true %>
-                  <% end %>
-                <% end %>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    </div>
-
-    <br>
-    <h2>Mains</h2>
-    <br>
-    <div class="row">
-      <% @mains.each do |main| %>
-        <div class="col-md-6">
-          <div class="card">
-            <%#= cl_image_tag main.photo.key, class: "card-img-top" %>
-            <div class="card-body">
-              <h5 class="card-title"><%= main.item_name %></h5>
-              <p class="card-text">R<%= main.item_price %></p>
-              <% if user_signed_in? %>
-                <% if current_user.customer %>
-                  <% unless current_user.customer.ratings.exists?(item_id: main.id) %>
-                    <%= button_to 'Upvote this item', upvote_path(main), method: :post %>
-                  <% else %>
-                    <%= button_to 'Item Upvoted', disabled: true %>
-                  <% end %>
-                <% end %>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    </div>
-
-    <br>
-    <h2>Desserts</h2>
-    <br>
-    <div class="row">
-      <% @desserts.each do |dessert| %>
-        <div class="col-md-6">
-          <div class="card">
-            <%#= cl_image_tag dessert.photo.key, class: "card-img-top" %>
-            <div class="card-body">
-              <h5 class="card-title"><%= dessert.item_name %></h5>
-              <p class="card-text">R<%= dessert.item_price %></p>
-              <% if user_signed_in? %>
-                <% if current_user.customer %>
-                  <% unless current_user.customer.ratings.exists?(item_id: dessert.id) %>
-                    <%= button_to 'Upvote this item', upvote_path(dessert), method: :post %>
-                  <% else %>
-                    <%= button_to 'Item Upvoted', disabled: true %>
-                  <% end %>
-                <% end %>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    </div>
-
-    <br>
-    <h2>Drinks</h2>
-    <br>
-    <div class="row">
-      <% @drinks.each do |drink| %>
-        <div class="col-md-6">
-          <div class="card">
-            <%#= cl_image_tag drink.photo.key, class: "card-img-top" %>
-            <div class="card-body">
-              <h5 class="card-title"><%= drink.item_name %></h5>
-              <p class="card-text">R<%= drink.item_price %></p>
-              <% if user_signed_in? %>
-                <% if current_user.customer %>
-                  <% unless current_user.customer.ratings.exists?(item_id: drink.id) %>
-                    <%= button_to 'Upvote this item', upvote_path(drink), method: :post %>
-                  <% else %>
-                    <%= button_to 'Item Upvoted', disabled: true %>
-                  <% end %>
-                <% end %>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  <% else %>
-  <div class="justify-content-center d-flex">
-    <p>No menu uploaded yet...</p>
-  </div>
-  <% end %>
 </div>

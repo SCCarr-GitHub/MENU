@@ -1,19 +1,26 @@
-<div class="homepage-container">
-  <div class="home-page-avatar">
-    <% if user_signed_in? %>
-      <% if current_user.photo.present? %>
-        <%= cl_image_tag current_user.photo.key, class: "avatar" %>
-      <% else %>
-        <%= image_tag "https://www.nicepng.com/png/full/115-1150821_default-avatar-comments-sign-in-icon-png.png", class: "avatar" %>
-      <% end %>
-    <% end %>
-  </div>
-  <div class="logo-container">
-    <img src="https://res.cloudinary.com/dyvrpbbez/image/upload/v1696428312/me.n.u_final__720_fcuaht.png" class="logo-image">
-  </div>
-</div>
+<% if user_signed_in? %>
+  <% if current_user.id == @this_restaurant.user_id %>
+    <div class="profile-bar">
+      <div class="profile-flex-container">
+        <h1 class="profile-restaurant-heading restaurant-heading"><strong><%= @this_restaurant.name %></strong></h1>
+        <div class="home-page-avatar flex-item">
+          <% if user_signed_in? %>
+            <% if current_user.photo.present? %>
+              <%= cl_image_tag current_user.photo.key, class: "avatar" %>
+            <% else %>
+              <%= image_tag "https://www.nicepng.com/png/full/115-1150821_default-avatar-comments-sign-in-icon-png.png", class: "avatar" %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% else %>
 
+    <h1 class="restaurant-heading mt-4"><strong><%= @this_restaurant.name %></strong></h1>
+  <% end %>
+<% end %>
 <div class="carousel-container">
+
   <div id="carouselExampleIndicators" class="carousel slide">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -25,19 +32,19 @@
         <% @this_restaurant.photos.each_with_index do |photo, index| %>
           <div class="carousel-item <%= 'active' if index == 0 %>">
             <div class="text-center">
-              <%= cl_image_tag photo.key, class: 'd-block mx-auto', alt: 'Restaurant Photo', style: 'max-height: 300px; width: auto;' %>
+              <%= cl_image_tag photo.key, class: 'd-block mx-auto', alt: 'Restaurant Photo', style: 'max-height: 200px; width: auto;' %>
             </div>
           </div>
         <% end %>
       <% else %>
         <div class="carousel-item active">
-          <%= image_tag 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80', class: 'd-block w-100', alt: 'Default Photo' %>
+          <%= image_tag 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80', class: 'd-block w-100', alt: 'Default Photo', style: 'max-height: 240px;' %>
         </div>
         <div class="carousel-item">
-          <%= image_tag 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80', class: 'd-block w-100', alt: 'Default Photo' %>
+          <%= image_tag 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80', class: 'd-block w-100', alt: 'Default Photo', style: 'max-height: 240px;' %>
         </div>
         <div class="carousel-item">
-          <%= image_tag 'https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80', class: 'd-block w-100', alt: 'Default Photo' %>
+          <%= image_tag 'https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80', class: 'd-block w-100', alt: 'Default Photo', style: 'max-height: 240px;'%>
         </div>
       <% end %>
     </div>
@@ -51,52 +58,30 @@
     </button>
   </div>
 </div>
-<br>
-
-<div class="links">
-  <%= link_to "View Menu", restaurant_restaurant_menus_path(@this_restaurant), class: "btn btn-outline-success btn-block" %>
-</div>
-
 <div class="restaurant-show-card">
-  <h1 class="sub-heading"><strong><%= @this_restaurant.name %></strong></h1>
-  <h2 class="sub-heading"><em><%= @this_restaurant.category %></em></h2>
-  <h3 class="sub-heading"><%= @this_restaurant.address %></h3>
-  <p class="sub-heading">Contact: <%= @this_restaurant.phone_number %></p>
-  <p>Opening Time: <%= @this_restaurant.opening_time.strftime('%H:%M') %></p>
-  <p>Closing Time: <%= @this_restaurant.closing_time.strftime('%H:%M') %></p>
-</div>
+  <div class="restaurant-info">
+    <p class="info-heading">Category:</p>
+    <p class="restaurant-card-info"><em><%= @this_restaurant.category %></em></p>
+  </div>
 
-<div class="restaurant-show-card">
-  <h4 class="sub-heading">Reviews</h4>
-  <ul class="list-group m-4">
-    <% @this_restaurant.reviews.each do |review| %>
-      <li class="list-group-item"><%= review.comment %></li>
-      <% if user_signed_in? %>
-        <% if current_user.customer %>
-          <% position = review.customer == current_user.customer ? "justify-content-between" : "justify-content-center" %>
-          <br>
-          <div class="d-flex <%= position %> align-items-center">
-            <div class="align-items-center">
-              <p>Rating:</p>
-              <div class="star <%= 'filled' if review.rating >= 1 %>"></div>
-              <div class="star <%= 'filled' if review.rating >= 2 %>"></div>
-              <div class="star <%= 'filled' if review.rating >= 3 %>"></div>
-              <div class="star <%= 'filled' if review.rating >= 4 %>"></div>
-              <div class="star <%= 'filled' if review.rating >= 5 %>"></div>
-            </div>
-            <% if user_signed_in? && review.customer == current_user.customer %>
-              <div>
-                <%= link_to "Delete",
-                  review_path(review),
-                  data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-                  class: 'btn btn-outline-success btn-sm' %>
-              </div>
-            <% end %>
-          </div>
-        <% end %>
-      <% end %>
-    <% end %>
-  </ul>
+  <div class="restaurant-info">
+    <p class="info-heading">Address:</p>
+    <p class="restaurant-card-info"><%= @this_restaurant.address %></p>
+  </div>
+
+  <div class="restaurant-info">
+    <p class="info-heading">Contact:</p>
+    <p class="restaurant-card-info"><%= @this_restaurant.phone_number %></p>
+  </div>
+
+  <div class="restaurant-info">
+    <p class="info-heading">Operating Hours:</p>
+    <p class="restaurant-card-info"><%= @this_restaurant.opening_time.strftime('%H:%M') %> - <%= @this_restaurant.closing_time.strftime('%H:%M') %></p>
+  </div>
+
+  <div class="links">
+    <%= link_to "View Menu", restaurant_restaurant_menus_path(@this_restaurant), class: "btn btn-outline-success btn-block" %>
+  </div>
 </div>
 
 <% if @this_restaurant.reviews.present? %>
@@ -134,12 +119,49 @@
   </div>
 <% end %>
 
-<% if current_user.id == @this_restaurant.user_id %>
-  <div class="links">
-    <%= link_to "Add Menu", new_restaurant_restaurant_menu_path(@this_restaurant), class: 'btn btn-outline-success btn-sm' %>
-    <%= link_to "Edit your info", edit_restaurant_path(@this_restaurant), class: 'btn btn-outline-success btn-sm' %>
-    <%= link_to "Log out", destroy_user_session_path, class: 'btn btn-outline-success btn-sm'%>
+<% if @this_restaurant.reviews.present? %>
+  <div class="restaurant-show-card">
+    <h4 class="sub-heading">Reviews</h4>
+    <ul class="list-group m-4">
+      <% @this_restaurant.reviews.each do |review| %>
+        <li class="list-group-item"><%= review.comment %></li>
+        <% if user_signed_in? %>
+          <% if current_user.customer %>
+            <% position = review.customer == current_user.customer ? "justify-content-between" : "justify-content-center" %>
+            <br>
+            <div class="d-flex <%= position %> align-items-center">
+              <div class="align-items-center">
+                <p>Rating:</p>
+                <div class="star <%= 'filled' if review.rating >= 1 %>"></div>
+                <div class="star <%= 'filled' if review.rating >= 2 %>"></div>
+                <div class="star <%= 'filled' if review.rating >= 3 %>"></div>
+                <div class="star <%= 'filled' if review.rating >= 4 %>"></div>
+                <div class="star <%= 'filled' if review.rating >= 5 %>"></div>
+              </div>
+              <% if user_signed_in? && review.customer == current_user.customer %>
+                <div>
+                  <%= link_to "Delete",
+                    review_path(review),
+                    data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                    class: 'btn btn-outline-success btn-sm' %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </ul>
   </div>
+<% end %>
+
+<% if user_signed_in? %>
+  <% if current_user.id == @this_restaurant.user_id %>
+    <div class="links">
+      <%= link_to "Add Menu", new_restaurant_restaurant_menu_path(@this_restaurant), class: 'btn btn-outline-success btn-sm' %>
+      <%= link_to "Edit your info", edit_restaurant_path(@this_restaurant), class: 'btn btn-outline-success btn-sm' %>
+      <%= link_to "Log out", destroy_user_session_path, class: 'btn btn-outline-success btn-sm'%>
+    </div>
+  <% end %>
 <% end %>
 
 <% if user_signed_in? %>
@@ -156,4 +178,3 @@
     </div>
   <% end %>
 <% end %>
-

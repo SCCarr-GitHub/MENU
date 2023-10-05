@@ -4,6 +4,7 @@ class RestaurantMenusController < ApplicationController
   before_action :set_restaurant, only: [:new, :create, :edit, :update, :index]
 
   def index
+    @item = Item.new
     @restaurant_items = []
     @restaurant_menus = @restaurant.restaurant_menus
     @this_restaurant = Restaurant.find(params[:restaurant_id])

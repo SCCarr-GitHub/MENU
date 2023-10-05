@@ -28,7 +28,6 @@
   height: 100%;
 }
 
-
 body{
   display: flex;
   font-family: 'Sofia Sans Condensed', sans-serif;
@@ -79,10 +78,6 @@ body{
   padding: 10px;
 }
 
-.card-info {
-  text-align: left;
-  margin: 5px;
-}
 
 .rounded-button {
   border-radius: 20px;
@@ -123,4 +118,15 @@ body{
   max-width: 50%;
   font-variant: small-caps;
   font-size: 25px;
+}
+
+.button-center{
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  text-align: center;
+}
+
+.custom-width {
+  width: 350px;
 }

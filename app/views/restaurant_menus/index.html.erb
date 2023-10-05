@@ -28,10 +28,10 @@
                             </button>
                             <div data-toggle-target="togglableElement" class="d-none">
                               <%= simple_form_for item do |f| %>
-                                <%= f.input :item_name %>
-                                <%= f.input :item_price %>
-                                <%= f.input :category, collection: ["starter", "main", "dessert", "drink"], include_blank: "Select a category" %>
-                                <%= f.input :photo, as: :file  %>
+                                <%= f.input :item_name, label_html: { class: 'black-label' } %>
+                                <%= f.input :item_price, label_html: { class: 'black-label' } %>
+                                <%= f.input :category, collection: ["starter", "main", "dessert", "drink"], include_blank: "Select a category", label_html: { class: 'black-label' } %>
+                                <%= f.input :photo, as: :file, label_html: { class: 'black-label' } %>
                                 <%= f.submit "+", class: "btn" %>
                               </div>
                             </div>
@@ -88,10 +88,10 @@
                             </button>
                             <div data-toggle-target="togglableElement" class="d-none">
                               <%= simple_form_for item do |f| %>
-                                <%= f.input :item_name %>
-                                <%= f.input :item_price %>
-                                <%= f.input :category, collection: ["starter", "main", "dessert", "drink"], include_blank: "Select a category" %>
-                                <%= f.input :photo, as: :file  %>
+                                <%= f.input :item_name, label_html: { class: 'black-label' } %>
+                                <%= f.input :item_price, label_html: { class: 'black-label' } %>
+                                <%= f.input :category, collection: ["starter", "main", "dessert", "drink"], include_blank: "Select a category", label_html: { class: 'black-label' } %>
+                                <%= f.input :photo, as: :file, label_html: { class: 'black-label' } %>
                                 <%= f.submit "+", class: "btn" %>
                               </div>
                             </div>
@@ -149,10 +149,10 @@
                             </button>
                             <div data-toggle-target="togglableElement" class="d-none">
                               <%= simple_form_for item do |f| %>
-                                <%= f.input :item_name %>
-                                <%= f.input :item_price %>
-                                <%= f.input :category, collection: ["starter", "main", "dessert", "drink"], include_blank: "Select a category" %>
-                                <%= f.input :photo, as: :file  %>
+                                <%= f.input :item_name, label_html: { class: 'black-label' } %>
+                                <%= f.input :item_price, label_html: { class: 'black-label' } %>
+                                <%= f.input :category, collection: ["starter", "main", "dessert", "drink"], include_blank: "Select a category", label_html: { class: 'black-label' } %>
+                                <%= f.input :photo, as: :file, label_html: { class: 'black-label' } %>
                                 <%= f.submit "+", class: "btn" %>
                               </div>
                             </div>
@@ -209,10 +209,10 @@
                             </button>
                             <div data-toggle-target="togglableElement" class="d-none">
                               <%= simple_form_for item do |f| %>
-                                <%= f.input :item_name %>
-                                <%= f.input :item_price %>
-                                <%= f.input :category, collection: ["starter", "main", "dessert", "drink"], include_blank: "Select a category" %>
-                                <%= f.input :photo, as: :file  %>
+                                <%= f.input :item_name, label_html: { class: 'black-label' } %>
+                                <%= f.input :item_price, label_html: { class: 'black-label' } %>
+                                <%= f.input :category, collection: ["starter", "main", "dessert", "drink"], include_blank: "Select a category", label_html: { class: 'black-label' } %>
+                                <%= f.input :photo, as: :file, label_html: { class: 'black-label' } %>
                                 <%= f.submit "+", class: "btn" %>
                               </div>
                             </div>
@@ -245,14 +245,14 @@
           <% if current_user.restaurant %>
             <% if current_user.restaurant.restaurant_menus.first.id == @restaurant_menus.first.id %>
               <div data-controller="toggle" class="mt-5">
-                <button data-action="click->toggle#fire" class="btn btn-outline-success">Add a new item</button>
+                <button data-action="click->toggle#fire" class="btn btn-outline-dark">Add a new item</button>
                 <div data-toggle-target="togglableElement" class="d-none">
                   <%= simple_form_for @item, url: restaurant_menu_items_path(@restaurant_menus.first) do |f| %>
-                    <%= f.input :item_name %>
-                    <%= f.input :item_price %>
-                    <%= f.input :category, collection: ["starter", "main", "dessert", "drink"], include_blank: "Select a category" %>
-                    <%= f.input :photo, as: :file  %>
-                    <%= f.submit "+", class: "btn btn-outline-success" %>
+                        <%= f.input :item_name, label_html: { class: 'black-label' } %>
+                        <%= f.input :item_price, label_html: { class: 'black-label' } %>
+                        <%= f.input :category, collection: ["starter", "main", "dessert", "drink"], include_blank: "Select a category", label_html: { class: 'black-label' } %>
+                        <%= f.input :photo, as: :file, label_html: { class: 'black-label' } %>
+                        <%= f.submit "+", class: "btn" %>
                   <% end %>
                 </div>
               </div>

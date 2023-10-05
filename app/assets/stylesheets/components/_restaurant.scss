@@ -96,3 +96,73 @@
 .info-heading{
   font-family:'Segoe UI', sans-serif;
 }
+
+.featured-restaurants {
+  height: 12rem;
+  overflow-x:scroll;
+  white-space: nowrap;
+}
+
+.feature-card {
+  background-blend-mode:darken;
+  background-color: rgba(0, 0, 0, 0.421);
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+  display:inline-block;
+  object-fit: cover;
+  border-radius: 10px;
+  color: #161717;
+  height: 11.5rem;
+  width: 8rem;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.4);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  margin-bottom: 2rem;
+  &:hover,
+  &:active {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    transform: scale(1.1);
+  }
+}
+
+a{
+  text-decoration: none;
+}
+
+.feature-card-image {
+  position: relative;
+}
+
+.feature-card-image img {
+  height:14.5rem;
+  width:100%;
+  object-fit:cover;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.feature-card-info {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  font-size: 12px;
+  padding: 10px;
+  margin: 0 auto;
+  h5{
+    font-family:'Segoe UI', sans-serif;
+    font-size: 13px;
+    font-weight:bolder;
+    color: white;
+    margin-bottom: 5px;
+    text-wrap: wrap ;
+    letter-spacing: 3px;
+    font-variant: small-caps;
+    text-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+  }
+  p{
+    color: white;
+    font-size: 10px;
+    font-weight:400;
+    font-style: italic;
+  }
+}

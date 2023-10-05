@@ -123,10 +123,14 @@ body{
 .button-center{
   display: flex;
   align-items: center;
-  justify-content: center; 
+  justify-content: center;
   text-align: center;
 }
 
 .custom-width {
   width: 350px;
+}
+
+.black-label {
+  color: #000; 
 }

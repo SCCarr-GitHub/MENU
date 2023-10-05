@@ -22,10 +22,38 @@
   font-family:'Segoe UI', sans-serif;
   color: rgb(80, 80, 80);
   text-align: left;
-  margin-right: 2rem;
 }
 
 .item-info {
   justify-content: space-between;
   text-align: left;
+}
+
+.item-search-heading {
+  font-family:'Segoe UI', sans-serif;
+  text-align: left;
+  margin-right: 3rem;
+  color:#161717;
+}
+
+.search-card-body {
+  width: 100%;
+  padding: 14px;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+  margin-bottom: 4px;
+}
+
+.search-card-body-infos {
+  display: flex;
+  justify-content: space-between;
+
+  p {
+    margin-bottom: 0px;
+  }
+}
+
+.menu-section {
+  display: flex;
+  flex-direction: column;
 }

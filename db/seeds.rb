@@ -103,7 +103,7 @@ puts "Creating restaurants..."
 Restaurant.create!(
   name: "La Italiano",
   category: "Italian",
-  address: "6 Rhine Road, Seapoint, Cape Town",
+  address: "6 Rhine Road, Cape Town",
   phone_number: "123 456 7890",
   opening_time: Time.parse("12:00 PM"),
   closing_time: Time.parse("6:00 PM"),
@@ -113,7 +113,7 @@ Restaurant.create!(
 Restaurant.create!(
   name: "Senòr Mexicana",
   category: "Mexican",
-  address: "2 Forth Road, Newlands, Cape Town",
+  address: "2 Forth Road, Cape Town",
   phone_number: "123 456 7890",
   opening_time: Time.parse("12:00 PM"),
   closing_time: Time.parse("6:00 PM"),
@@ -133,7 +133,7 @@ Restaurant.create!(
 Restaurant.create!(
   name: "Hugo's Mussels",
   category: "Seafood",
-  address: "2 Cannery Road, Bishopscourt, Cape Town",
+  address: "2 Cannery Road, Cape Town",
   phone_number: "123 456 7890",
   opening_time: Time.parse("12:00 PM"),
   closing_time: Time.parse("6:00 PM"),
@@ -153,7 +153,7 @@ Restaurant.create!(
 Restaurant.create!(
   name: "Sebghetti Carrbonara",
   category: "Sicillian",
-  address: "14 Rhine Road, Seapoint, Cape Town",
+  address: "14 Rhine Road, Cape Town",
   phone_number: "123 456 7890",
   opening_time: Time.parse("12:00 PM"),
   closing_time: Time.parse("6:00 PM"),
@@ -163,7 +163,7 @@ Restaurant.create!(
 Restaurant.create!(
   name: "Only Fools",
   category: "Burgers",
-  address: "82 Regent Road, Seapoint, Cape Town",
+  address: "82 Regent Road, Cape Town",
   phone_number: "123 456 7890",
   opening_time: Time.parse("12:00 PM"),
   closing_time: Time.parse("6:00 PM"),
@@ -173,7 +173,7 @@ Restaurant.create!(
 Restaurant.create!(
   name: "HeSheng",
   category: "Chinese",
-  address: "269 Main Road, Seapoint, Cape Town",
+  address: "269 Main Road, Cape Town",
   phone_number: "123 456 7890",
   opening_time: Time.parse("12:00 PM"),
   closing_time: Time.parse("6:00 PM"),

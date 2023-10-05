@@ -19,7 +19,6 @@
   <% end %>
 <% end %>
 <div class="carousel-container">
-
   <div id="carouselExampleIndicators" class="carousel slide">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -60,19 +59,19 @@
 
 <div class="restaurant-show-card">
   <div class="restaurant-info">
-    <p class="info-heading">Category:</p>
+    <p class="info-icon"><i class="fa-solid fa-utensils"></i></p>
     <p class="restaurant-card-info"><em><%= @this_restaurant.category %></em></p>
   </div>
   <div class="restaurant-info">
-    <p class="info-heading">Address:</p>
+    <p class="info-icon"><i class="fa-solid fa-location-dot"></i></p>
     <p class="restaurant-card-info"><%= @this_restaurant.address %></p>
   </div>
   <div class="restaurant-info">
-    <p class="info-heading">Contact:</p>
+    <p class="info-icon"><i class="fa-solid fa-address-book"></i></p>
     <p class="restaurant-card-info"><%= @this_restaurant.phone_number %></p>
   </div>
   <div class="restaurant-info">
-    <p class="info-heading">Operating Hours:</p>
+    <p class="info-icon"><i class="fa-solid fa-clock"></i></p>
     <p class="restaurant-card-info"><%= @this_restaurant.opening_time.strftime('%H:%M') %> - <%= @this_restaurant.closing_time.strftime('%H:%M') %></p>
   </div>
     <%= link_to "Edit info", edit_restaurant_path(@this_restaurant), class: 'btn btn-outline-dark btn-sm' %>
@@ -113,43 +112,6 @@
   </div>
 <% end %>
 
-<% if @this_restaurant.reviews.present? %>
-  <div class="restaurant-show-card">
-    <h4 class="sub-heading">Reviews</h4>
-    <ul class="list-group m-4">
-      <% @this_restaurant.reviews.each do |review| %>
-        <li class="list-group-item"><%= review.comment %></li>
-        <% if user_signed_in? %>
-          <% if current_user.customer %>
-            <% position = review.customer == current_user.customer ? "justify-content-between" : "justify-content-center" %>
-            <br>
-            <div class="d-flex <%= position %> align-items-center">
-              <div class="align-items-center">
-                <p>Rating:</p>
-                <div class="star <%= 'filled' if review.rating >= 1 %>"></div>
-                <div class="star <%= 'filled' if review.rating >= 2 %>"></div>
-                <div class="star <%= 'filled' if review.rating >= 3 %>"></div>
-                <div class="star <%= 'filled' if review.rating >= 4 %>"></div>
-                <div class="star <%= 'filled' if review.rating >= 5 %>"></div>
-              </div>
-              <% if user_signed_in? && review.customer == current_user.customer %>
-                <div>
-                  <%= link_to "Delete",
-                    review_path(review),
-                    data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-                    class: 'btn btn-outline-dark btn-sm' %>
-                </div>
-              <% end %>
-            </div>
-          <% end %>
-        <% end %>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-  <div class="links">
-  </div>
-
 <% if user_signed_in? %>
   <% if current_user.id == @this_restaurant.user_id %>
     <div class="links">
@@ -169,10 +131,10 @@
   <% if current_user.customer %>
     <div class="restaurant-show-card">
       <div class="m-4">
-        <h2 class="sub-heading">Add a Review</h2>
+        <h2 class="sub-heading" style="color: black;">Add a Review</h2>
         <%= simple_form_for [@this_restaurant, Review.new] do |form| %>
-          <%= form.input :comment %>
-          <%= form.input :rating, collection: [0, 1, 2, 3, 4, 5], label: "Select Rating" %>
+          <%= form.input :comment, label_html: { style: 'color: black;' } %>
+          <%= form.input :rating, collection: [0, 1, 2, 3, 4, 5], label: "Select Rating", label_html: { style: 'color: black;' } %>
           <%= form.submit 'Submit', class: "btn btn-outline-dark" %>
         <% end %>
       </div>

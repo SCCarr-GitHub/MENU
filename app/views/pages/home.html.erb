@@ -3,7 +3,22 @@
     <img src="https://res.cloudinary.com/dyvrpbbez/image/upload/v1696428312/me.n.u_final__720_fcuaht.png" class="logo-image">
   </div>
 </div>
-<div>
+
+<div class="search-page">
+  <div class="search-center">
+    <div class="search-container">
+      <%= form_tag(search_pages_path, method: :get) do %>
+        <%= text_field_tag :query, params[:query], placeholder: "Search...", class: "search-input" %>
+        <%= button_tag type: "submit", class: "rounded-button" do %>
+          <i class="fa-solid fa-magnifying-glass fa-lg" ></i>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+ <div>
+</div>
+<br>
+
 <div class="restaurants-row">
   <% @restaurants.each do |restaurant| %>
     <%= link_to restaurant_path(restaurant) do %>

@@ -21,10 +21,43 @@ class ItemsController < ApplicationController
     Item.import_items_from_hash(@items, @restaurant_menu)
   end
 
+  def create
+    @item = Item.new(item_params)
+    @restaurant_menu = RestaurantMenu.find(params[:restaurant_menu_id])
+    @item.restaurant_menu = @restaurant_menu
+    respond_to do |format|
+      if @item.save
+        redirect_to restaurant_restaurant_menus_path(@restaurant_menu)
+      else
+        render :new, status: :unprocessable_entity
+      end
+    end
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    @restaurant_menu = @item.restaurant_menu
+    respond_to do |format|
+      @item.update(item_params)
+      if @item.update(item_params)
+        redirect_to restaurant_restaurant_menus_path(@restaurant_menu)
+      else
+        render :edit, status: :unprocessable_entity
+      end
+    end
+  end
+
+  def destroy
+    @item = Item.find(params[:id])
+    @restaurant_menu = @item.restaurant_menu
+    @item.destroy
+    redirect_to restaurant_restaurant_menus_path(@restaurant_menu), status: :see_other
+  end
+
   private
 
-  def items_params
-    params.require(:items).permit(:category, :item_name, :item_price, :restaurant_menu_id, :photo)
+  def item_params
+    params.require(:item).permit(:category, :item_name, :item_price, :photo)
   end
 
   def format_menu_text(extracted_text)

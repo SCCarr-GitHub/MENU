@@ -1,53 +1,94 @@
 
 <div class="navbar">
+
   <ul>
-    <li class="list">
-      <%= link_to root_path do %>
-        <span class="icon"></span>
-        <ion-icon size="large", name="home"></ion-icon>
-        <span class="text"></span>
-      <% end %>
-    </li>
-    <li class="list">
-      <%= link_to search_pages_path  do %>
-        <span class="icon"></span>
-        <ion-icon size="large", name="search"></ion-icon>
-        <span class="text"></span>
-      <% end %>
-    </li>
-    <li class="list">
+    <% if current_page?(root_path) %>
+      <li class="list">
+        <%= link_to root_path do %>
+        <i class="fa-solid fa-house fa-xl" style="color: #ffcc00;"></i>
+        <% end %>
+      </li>
+    <% else %>
+      <li class="list">
+        <%= link_to root_path do %>
+        <i class="fa-solid fa-house fa-xl" style="color: #ffffff;"></i>
+        <% end %>
+      </li>
+    <% end %>
+
+
+    <% if current_page?(search_pages_path) %>
+      <li class="list">
+        <%= link_to search_pages_path  do %>
+        <i class="fa-solid fa-magnifying-glass fa-xl" style="color: #ffcc00;"></i>
+        <% end %>
+      </li>
+    <% else %>
+      <li class="list">
+        <%= link_to search_pages_path  do %>
+        <i class="fa-solid fa-magnifying-glass fa-xl" style="color: #ffffff;"></i>
+        <% end %>
+      </li>
+    <% end %>
+
+    <% if current_page?(leaderboard_path) %>
+      <li class="list">
           <%= link_to leaderboard_path do %>
-        <span class="icon"></span>
-        <ion-icon size="large", name="trophy"></ion-icon>
-        <span class="text"></span>
-      <% end %>
-    </li>
-    <li class="list">
-      <% if user_signed_in? %>
-        <% if !current_user.restaurant_owner? %>
-          <% unless current_user.customer == nil %>
-            <%= link_to edit_customer_path(current_user.id, @customer)  do %>
-              <span class="icon"></span>
-              <ion-icon size="large", name="person"></ion-icon>
-              <span class="text"></span>
+          <i class="fa-solid fa-trophy fa-xl" style="color: #ffcc00;"></i>
+        <% end %>
+      </li>
+    <% else %>
+      <li class="list">
+          <%= link_to leaderboard_path do %>
+          <i class="fa-solid fa-trophy fa-xl" style="color: #ffffff;"></i>
+        <% end %>
+      </li>
+    <% end %>
+
+    <% if current_page?(edit_customer_path(current_user.id, @customer)) || current_page?(restaurant_path(current_user.restaurant)) || current_page?(new_user_session_path) %>
+      <li class="list">
+        <% if user_signed_in? %>
+          <% if !current_user.restaurant_owner? %>
+            <% unless current_user.customer == nil %>
+              <%= link_to edit_customer_path(current_user.id, @customer)  do %>
+                <i class="fa-solid fa-user fa-xl" style="color: #ffcc00;"></i>
+              <% end %>
+            <% end %>
+          <% else %>
+            <% unless current_user.restaurant == nil %>
+              <%= link_to restaurant_path(current_user.restaurant)  do %>
+                <i class="fa-solid fa-user fa-xl" style="color: #ffcc00;"></i>
+              <% end %>
             <% end %>
           <% end %>
         <% else %>
-          <% unless current_user.restaurant == nil %>
-            <%= link_to restaurant_path(current_user.restaurant)  do %>
-              <span class="icon"></span>
-              <ion-icon size="large", name="person"></ion-icon>
-              <span class="text"></span>
+          <%= link_to new_user_session_path do %>
+              <i class="fa-solid fa-user fa-xl" style="color: #ffcc00;"></i>
+            <% end %>
+        <% end %>
+      </li>
+    <% else %>
+      <li class="list">
+        <% if user_signed_in? %>
+          <% if !current_user.restaurant_owner? %>
+            <% unless current_user.customer == nil %>
+              <%= link_to edit_customer_path(current_user.id, @customer)  do %>
+                <i class="fa-solid fa-user fa-xl" style="color: #ffffff;"></i>
+              <% end %>
+            <% end %>
+          <% else %>
+            <% unless current_user.restaurant == nil %>
+              <%= link_to restaurant_path(current_user.restaurant)  do %>
+                <i class="fa-solid fa-user fa-xl" style="color: #ffffff;"></i>
+              <% end %>
             <% end %>
           <% end %>
+        <% else %>
+          <%= link_to new_user_session_path do %>
+              <i class="fa-solid fa-user fa-xl" style="color: #ffffff;"></i>
+            <% end %>
         <% end %>
-      <% else %>
-        <%= link_to new_user_session_path do %>
-            <span class="icon"></span>
-            <ion-icon size="large", name="person"></ion-icon>
-            <span class="text"></span>
-          <% end %>
-      <% end %>
-    </li>
+      </li>
+    <% end %>
   </ul>
 </div>

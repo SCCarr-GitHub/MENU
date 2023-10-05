@@ -2,10 +2,10 @@
   background-color: #efefef;
   border-radius: 15px;
   margin: 10px;
-  text-align:left;
+  text-align: left;
   padding: 12px;
-  color:#161717;
-  width: 23 rem;
+  color: #161717;
+  width: 22rem;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.4);
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 
@@ -16,14 +16,17 @@
   }
 }
 
-.restaurants-row{
-  display:block;
-  justify-content: center;
+.restaurants-row {
+  display: flex;
+  flex-direction: column; /* Display cards vertically */
+  align-items: center; /* Center cards horizontally */
   text-align: center;
+
   a {
     text-decoration: none;
   }
 }
+
 
 .restaurant-show-card{
   background-color: #efefef;

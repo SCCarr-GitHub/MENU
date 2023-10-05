@@ -14,12 +14,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
+  margin-left: 22px;
+  margin-top: 15px;
 }
 
 .logo-image {
-  object-fit: contain;
+  object-fit: cover;
   width: 100%;
   height: 100%;
 }
@@ -39,7 +41,7 @@ body{
   margin-top: 20px;
   text-align: center;
   justify-content: center;
-  color: #07362B
+  color: #161717
 }
 
 .sub-heading{
@@ -47,7 +49,7 @@ body{
   margin-top: 20px;
   text-align: center;
   justify-content: center;
-  color: #07362B
+  color: #161717
 }
 
 .links {
@@ -58,14 +60,14 @@ body{
 
 .tesseract-form {
   font-family: 'Sofia Sans Condensed', sans-serif;
-  background-color: #E3DEE1;
+  background-color: #efefef;
   border-radius: 15px;
   margin: 20px;
   text-align: center;
   justify-content: center;
   padding: 10px;
-  color:#07362B;
-  border: 1px solid #07362B;
+  color:#161717;
+  border: 1px solid #161717;
 }
 
 .review-container {
@@ -77,4 +79,14 @@ body{
 .card-info {
   text-align: left;
   margin: 5px;
+}
+
+.rounded-button {
+  border-radius: 20px;
+  background-color: #efefef;
+}
+
+.search-input {
+  background-color: #efefef;
+  width: 280px;
 }

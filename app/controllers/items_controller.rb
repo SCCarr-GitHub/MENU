@@ -2,25 +2,20 @@ class ItemsController < ApplicationController
 
   def create_items
     @restaurant_menu = RestaurantMenu.find(params[:restaurant_menu_id])
-
     extracted_text = @restaurant_menu.photo_description
     formatted_text = format_menu_text(extracted_text)
-    # @restaurant_menu = format_menu_text(formatted_text)
-    # @restaurant_menu.formatted_text = test_hash
     @restaurant_menu.formatted_text = final_structure(formatted_text)
-
     @items = eval final_structure(formatted_text)
-
     updated_items = {}
-
     @items.each do |key, value|
       updated_key = key_replacements[key] || key
       updated_items[updated_key] = value
     end
     @items = updated_items
     Item.import_items_from_hash(@items, @restaurant_menu)
+    redirect_to restaurant_restaurant_menus_path(@restaurant_menu.restaurant)
   end
-
+  
   def create
     @item = Item.new(item_params)
     @restaurant_menu = RestaurantMenu.find(params[:restaurant_menu_id])

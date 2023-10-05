@@ -8,21 +8,23 @@
   background: linear-gradient(to bottom, #282828, #161717);
   display: flex;
   justify-content: center;
-  margin-top: 10rem;
+  margin-top: 6rem;
   align-items: center;
   ul {
     display: flex;
     width: 100%;
     list-style: none;
     margin-right: 30px;
-
     li {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      vertical-align: middle;
       position: relative;
       list-style: none;
       width: 25%;
       height: 70px;
       z-index: 1;
-
       a {
         position: relative;
         display: flex;
@@ -31,20 +33,20 @@
         flex-direction: column;
         width: 100%;
         text-decoration: none;
-        padding-top: 10px;
         color: #efefef;
-
-        .icon {
-          position: relative;
-          display: block;
-          line-height: 80px;
-          font-size: 1.5em;
-          text-align: center;
+        padding-bottom: 0.5rem;
+        i {
+          font-size: 24px;
+        }
+          &:active i {
+            color: #ffcc00;
+            transform: scale(1.2); //
         }
         }
       }
     }
   }
+
 
   @media screen and (max-width: 768px) {
     .navbar {

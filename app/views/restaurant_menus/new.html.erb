@@ -1,21 +1,26 @@
 <h1 class="home-header">Add Your Menu!</h1>
 <div class="tesseract-container">
-  <div class="tesseract-form">
+  <div class="tesseract-form d-flex justify-content-center align-items-center">
     <%= form_with(model: [@restaurant, @restaurant_menu], data: { controller: "ocr" }) do |form| %>
-      <div>
-        <%= form.label :description %>
+
+      <div class="form-group text-center">
+        <%= form.label 'Describe Your Menu' %>
         <%= form.text_field :description %>
       </div>
-      <div>
-        <%= form.label :photos %>
-        <%= form.file_field :photos, data: { ocr_target: "file", action: "change->ocr#upload" } %>
+
+      <div class="form-group-photo-upload">
+        <div class="text-center">
+          <%= form.file_field :photos, data: { ocr_target: "file", action: "change->ocr#upload"} %>
+        </div>
       </div>
-      <div>
-        <%= form.label :photo_description %>
+
+      <div class="form-group text-center">
+        <%= form.label 'Review Your Menu' %>
         <%= form.text_area :photo_description, data: { ocr_target: "photo_description", rows: 4 } %>
       </div>
-      <div>
-        <%= form.submit %>
+
+      <div class="form-group text-center">
+        <%= form.submit "Generate Menu" %>
       </div>
     <% end %>
   </div>

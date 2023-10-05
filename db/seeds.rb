@@ -73,6 +73,54 @@ User.create!(
   restaurant_owner: true
 )
 
+User.create!(
+  email: "sals@restaurant.com",
+  password: "password",
+  restaurant_owner: true
+)
+
+User.create!(
+  email: "greenthai@restaurant.com",
+  password: "password",
+  restaurant_owner: true
+)
+
+User.create!(
+  email: "thebigfish@restaurant.com",
+  password: "password",
+  restaurant_owner: true
+)
+
+User.create!(
+  email: "oldgreeks@restaurant.com",
+  password: "password",
+  restaurant_owner: true
+)
+
+User.create!(
+  email: "ginospizza@restaurant.com",
+  password: "password",
+  restaurant_owner: true
+)
+
+User.create!(
+  email: "chelseacafe@restaurant.com",
+  password: "password",
+  restaurant_owner: true
+)
+
+User.create!(
+  email: "gustavs@restaurant.com",
+  password: "password",
+  restaurant_owner: true
+)
+
+User.create!(
+  email: "Jonos@restaurant.com",
+  password: "password",
+  restaurant_owner: true
+)
+
 puts "Finished creating users!"
 
 # GENERATE CUSTOMERS!
@@ -103,7 +151,7 @@ puts "Creating restaurants..."
 Restaurant.create!(
   name: "La Italiano",
   category: "Italian",
-  address: "6 Rhine Road, Seapoint, Cape Town",
+  address: "341 Main Road, Cape Town",
   phone_number: "123 456 7890",
   opening_time: Time.parse("12:00 PM"),
   closing_time: Time.parse("6:00 PM"),
@@ -113,7 +161,7 @@ Restaurant.create!(
 Restaurant.create!(
   name: "Senòr Mexicana",
   category: "Mexican",
-  address: "2 Forth Road, Newlands, Cape Town",
+  address: "2 Forth Road, Cape Town",
   phone_number: "123 456 7890",
   opening_time: Time.parse("12:00 PM"),
   closing_time: Time.parse("6:00 PM"),
@@ -133,7 +181,7 @@ Restaurant.create!(
 Restaurant.create!(
   name: "Hugo's Mussels",
   category: "Seafood",
-  address: "2 Cannery Road, Bishopscourt, Cape Town",
+  address: "281 Beach Road, Cape Town",
   phone_number: "123 456 7890",
   opening_time: Time.parse("12:00 PM"),
   closing_time: Time.parse("6:00 PM"),
@@ -153,7 +201,7 @@ Restaurant.create!(
 Restaurant.create!(
   name: "Sebghetti Carrbonara",
   category: "Sicillian",
-  address: "14 Rhine Road, Seapoint, Cape Town",
+  address: "14 Rhine Road, Cape Town",
   phone_number: "123 456 7890",
   opening_time: Time.parse("12:00 PM"),
   closing_time: Time.parse("6:00 PM"),
@@ -163,7 +211,7 @@ Restaurant.create!(
 Restaurant.create!(
   name: "Only Fools",
   category: "Burgers",
-  address: "82 Regent Road, Seapoint, Cape Town",
+  address: "82 Regent Road, Cape Town",
   phone_number: "123 456 7890",
   opening_time: Time.parse("12:00 PM"),
   closing_time: Time.parse("6:00 PM"),
@@ -173,11 +221,91 @@ Restaurant.create!(
 Restaurant.create!(
   name: "HeSheng",
   category: "Chinese",
-  address: "269 Main Road, Seapoint, Cape Town",
+  address: "269 Main Road, Cape Town",
   phone_number: "123 456 7890",
   opening_time: Time.parse("12:00 PM"),
   closing_time: Time.parse("6:00 PM"),
   user_id: User.find_by(email: "hesheng@restaurant.com").id
+)
+
+Restaurant.create!(
+  name: "Sal's",
+  category: "Italian",
+  address: "60 Long Street, Cape Town",
+  phone_number: "123 456 7890",
+  opening_time: Time.parse("12:00 PM"),
+  closing_time: Time.parse("6:00 PM"),
+  user_id: User.find_by(email: "sals@restaurant.com").id
+)
+
+Restaurant.create!(
+  name: "Green Thai",
+  category: "Thai",
+  address: "30 Durham Avenue, Cape Town",
+  phone_number: "123 456 7890",
+  opening_time: Time.parse("12:00 PM"),
+  closing_time: Time.parse("6:00 PM"),
+  user_id: User.find_by(email: "greenthai@restaurant.com").id
+)
+
+Restaurant.create!(
+  name: "The Big Fish",
+  category: "Seafood",
+  address: "10 Beach Road, Cape Town",
+  phone_number: "123 456 7890",
+  opening_time: Time.parse("12:00 PM"),
+  closing_time: Time.parse("6:00 PM"),
+  user_id: User.find_by(email: "thebigfish@restaurant.com").id
+)
+
+Restaurant.create!(
+  name: "Old Greeks",
+  category: "Greek",
+  address: "97 Durham Avenue, Cape Town",
+  phone_number: "123 456 7890",
+  opening_time: Time.parse("12:00 PM"),
+  closing_time: Time.parse("6:00 PM"),
+  user_id: User.find_by(email: "oldgreeks@restaurant.com").id
+)
+
+Restaurant.create!(
+  name: "Gino's Pizza",
+  category: "Italian",
+  address: "10 Regent Road, Cape Town",
+  phone_number: "123 456 7890",
+  opening_time: Time.parse("12:00 PM"),
+  closing_time: Time.parse("6:00 PM"),
+  user_id: User.find_by(email: "ginospizza@restaurant.com").id
+)
+
+Restaurant.create!(
+  name: "Chelsea Cafe",
+  category: "Cafe",
+  address: "160 Bree Street, Cape Town",
+  phone_number: "123 456 7890",
+  opening_time: Time.parse("12:00 PM"),
+  closing_time: Time.parse("6:00 PM"),
+  user_id: User.find_by(email: "chelseacafe@restaurant.com").id
+)
+
+Restaurant.create!(
+  name: "Gustavs",
+  category: "Steak",
+  address: "38 Burg Street, Cape Town",
+  phone_number: "123 456 7890",
+  opening_time: Time.parse("12:00 PM"),
+  closing_time: Time.parse("6:00 PM"),
+  user_id: User.find_by(email: "gustavs@restaurant.com").id
+)
+
+Restaurant.create!(
+  name: "Jono's",
+  category: "Burgers",
+  address: "56 Main Road, Cape Town",
+  phone_number: "123 456 7890",
+  opening_time: Time.parse("12:00 PM"),
+  closing_time: Time.parse("6:00 PM"),
+  user_id: User.find_by(email: "jonos@restaurant.com").id
 )
 
 puts "Finished creating restaurants!"
@@ -194,6 +322,14 @@ southside_shawns = Restaurant.find_by(name: "Southside Shawn's")
 sebghetti_carrbonara = Restaurant.find_by(name: "Sebghetti Carrbonara")
 only_fools = Restaurant.find_by(name: "Only Fools")
 hesheng = Restaurant.find_by(name: "HeSheng")
+sals = Restaurant.find_by(name: "Sal's")
+green_thai = Restaurant.find_by(name: "Green Thai")
+the_big_fish = Restaurant.find_by(name: "The Big Fish")
+old_greeks = Restaurant.find_by(name: "Old Greeks")
+ginos_pizza = Restaurant.find_by(name: "Gino's Pizza")
+chelsea_cafe = Restaurant.find_by(name: "Chelsea Cafe")
+gustavs = Restaurant.find_by(name: "Gustavs")
+jonos = Restaurant.find_by(name: "Jono's")
 
 la_italiano_menu = RestaurantMenu.create!(
   description: "La Italiano Menu",
@@ -235,11 +371,53 @@ hesheng_menu = RestaurantMenu.create!(
   restaurant: hesheng
 )
 
+sals_menu = RestaurantMenu.create!(
+  description: "Sal's",
+  restaurant: sals
+)
+
+green_thai_menu = RestaurantMenu.create!(
+  description: "Green Thai",
+  restaurant: green_thai
+)
+
+the_big_fish_menu = RestaurantMenu.create!(
+  description: "The Big Fish",
+  restaurant: the_big_fish
+)
+
+old_greeks_menu = RestaurantMenu.create!(
+  description: "Old Greeks",
+  restaurant: old_greeks
+)
+
+ginos_pizza_menu = RestaurantMenu.create!(
+  description: "Gino's Pizza",
+  restaurant: ginos_pizza
+)
+
+chelsea_cafe_menu = RestaurantMenu.create!(
+  description: "Chelsea Cafe",
+  restaurant: chelsea_cafe
+)
+
+gustavs_menu = RestaurantMenu.create!(
+  description: "Gustavs",
+  restaurant: gustavs
+)
+
+jonos_menu = RestaurantMenu.create!(
+  description: "Jonos",
+  restaurant: jonos
+)
+
 puts "Finished creating restaurant menus!"
 
 # # GENERATE ITEMS ON MENU!
 
 # puts "Creating menu items..."
+
+# Items for Hugo's Menu
 
 Item.create!(
   category: "starter",
@@ -302,6 +480,113 @@ Item.create!(
   item_name: "Chocolate Protein Cake",
   item_price: 75,
   restaurant_menu: hugos_mussels_menu
+)
+
+# General Menu Items
+
+Item.create!(
+  category: "starter",
+  item_name: "Salad",
+  item_price: 80,
+  restaurant_menu: hugos_mussels_menu
+)
+
+Item.create!(
+  category: "starter",
+  item_name: "Tomato Soup",
+  item_price: 90,
+  restaurant_menu: sals_menu
+)
+
+Item.create!(
+  category: "starter",
+  item_name: "Wholeseed Pita Breads",
+  item_price: 75,
+  restaurant_menu: sals_menu
+)
+
+Item.create!(
+  category: "starter",
+  item_name: "Butter Toast",
+  item_price: 50,
+  restaurant_menu: sals_menu
+)
+
+Item.create!(
+  category: "main",
+  item_name: "Regina Pizza",
+  item_price: 120,
+  restaurant_menu: sals_menu
+)
+
+Item.create!(
+  category: "main",
+  item_name: "3 Cheese Pizza",
+  item_price: 170,
+  restaurant_menu: sals_menu
+)
+
+Item.create!(
+  category: "main",
+  item_name: "3 Cheese Pizza",
+  item_price: 150,
+  restaurant_menu: ginos_pizza_menu
+)
+
+Item.create!(
+  category: "main",
+  item_name: "Napolitana Pasta",
+  item_price: 100,
+  restaurant_menu: sals_menu
+)
+
+Item.create!(
+  category: "main",
+  item_name: "Prawn Pasta",
+  item_price: 175,
+  restaurant_menu: sals_menu
+)
+
+Item.create!(
+  category: "dessert",
+  item_name: "Ice Cream & Choc Sauce",
+  item_price: 95,
+  restaurant_menu: sals_menu
+)
+
+Item.create!(
+  category: "dessert",
+  item_name: "Mean Apple Crumble",
+  item_price: 115,
+  restaurant_menu: sals_menu
+)
+
+Item.create!(
+  category: "drink",
+  item_name: "Hot Water & Lemon",
+  item_price: 15,
+  restaurant_menu: sals_menu
+)
+
+Item.create!(
+  category: "drink",
+  item_name: "Sodas",
+  item_price: 25,
+  restaurant_menu: sals_menu
+)
+
+Item.create!(
+  category: "drink",
+  item_name: "Castle Lite",
+  item_price: 40,
+  restaurant_menu: sals_menu
+)
+
+Item.create!(
+  category: "drink",
+  item_name: "Sal's Signature Wine",
+  item_price: 130,
+  restaurant_menu: sals_menu
 )
 
 puts "Finished creating menu items!"

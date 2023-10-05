@@ -123,7 +123,15 @@
       <%= link_to "Add Menu", new_restaurant_restaurant_menu_path(@this_restaurant), class: 'btn btn-outline-dark btn-block' %>
       <%= link_to "Log out", destroy_user_session_path, class: 'btn btn-outline-dark btn-block'%>
     </div>
+  <% else %>
+      <div class="button-center">
+        <%= link_to "View Menu", restaurant_restaurant_menus_path(@this_restaurant), class: "btn btn-outline-dark custom-width" %></div>
+      </div>
   <% end %>
+<% else %>
+  <div class="button-center">
+    <%= link_to "View Menu", restaurant_restaurant_menus_path(@this_restaurant), class: "btn btn-outline-dark custom-width" %></div>
+  </div>
 <% end %>
 
 

@@ -58,30 +58,25 @@
     </button>
   </div>
 </div>
+
 <div class="restaurant-show-card">
   <div class="restaurant-info">
     <p class="info-heading">Category:</p>
     <p class="restaurant-card-info"><em><%= @this_restaurant.category %></em></p>
   </div>
-
   <div class="restaurant-info">
     <p class="info-heading">Address:</p>
     <p class="restaurant-card-info"><%= @this_restaurant.address %></p>
   </div>
-
   <div class="restaurant-info">
     <p class="info-heading">Contact:</p>
     <p class="restaurant-card-info"><%= @this_restaurant.phone_number %></p>
   </div>
-
   <div class="restaurant-info">
     <p class="info-heading">Operating Hours:</p>
     <p class="restaurant-card-info"><%= @this_restaurant.opening_time.strftime('%H:%M') %> - <%= @this_restaurant.closing_time.strftime('%H:%M') %></p>
   </div>
-
-  <div class="links">
-    <%= link_to "View Menu", restaurant_restaurant_menus_path(@this_restaurant), class: "btn btn-outline-success btn-block" %>
-  </div>
+    <%= link_to "Edit info", edit_restaurant_path(@this_restaurant), class: 'btn btn-outline-dark btn-sm' %>
 </div>
 
 <% if @this_restaurant.reviews.present? %>
@@ -108,7 +103,7 @@
                   <%= link_to "Delete",
                     review_path(review),
                     data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-                    class: 'btn btn-outline-success btn-sm' %>
+                    class: 'btn btn-outline-dark btn-sm' %>
                 </div>
               <% end %>
             </div>
@@ -143,7 +138,7 @@
                   <%= link_to "Delete",
                     review_path(review),
                     data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-                    class: 'btn btn-outline-success btn-sm' %>
+                    class: 'btn btn-outline-dark btn-sm' %>
                 </div>
               <% end %>
             </div>
@@ -153,16 +148,23 @@
     </ul>
   </div>
 <% end %>
+  <div class="links">
+  </div>
 
 <% if user_signed_in? %>
   <% if current_user.id == @this_restaurant.user_id %>
     <div class="links">
-      <%= link_to "Add Menu", new_restaurant_restaurant_menu_path(@this_restaurant), class: 'btn btn-outline-success btn-sm' %>
-      <%= link_to "Edit your info", edit_restaurant_path(@this_restaurant), class: 'btn btn-outline-success btn-sm' %>
-      <%= link_to "Log out", destroy_user_session_path, class: 'btn btn-outline-success btn-sm'%>
+      <div class="button-center">
+        <div class="d-grid gap-2">
+        <%= link_to "View Menu", restaurant_restaurant_menus_path(@this_restaurant), class: "btn btn-outline-dark custom-width" %></div>
+      </div>
+      <br>
+      <%= link_to "Add Menu", new_restaurant_restaurant_menu_path(@this_restaurant), class: 'btn btn-outline-dark btn-block' %>
+      <%= link_to "Log out", destroy_user_session_path, class: 'btn btn-outline-dark btn-block'%>
     </div>
   <% end %>
 <% end %>
+
 
 <% if user_signed_in? %>
   <% if current_user.customer %>
@@ -172,7 +174,7 @@
         <%= simple_form_for [@this_restaurant, Review.new] do |form| %>
           <%= form.input :comment %>
           <%= form.input :rating, collection: [0, 1, 2, 3, 4, 5], label: "Select Rating" %>
-          <%= form.submit 'Submit', class: "btn btn-outline-success" %>
+          <%= form.submit 'Submit', class: "btn btn-outline-dark" %>
         <% end %>
       </div>
     </div>

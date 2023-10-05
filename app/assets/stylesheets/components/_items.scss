@@ -2,7 +2,7 @@
 .item-card {
   font-family: 'Sofia Sans Condensed', sans-serif;
   background-color: #efefef;
-  border-radius: 10px;
+  border-radius: 15px;
   margin: 20px;
   text-align: center;
   justify-content: center;
@@ -10,4 +10,22 @@
   color:#161717;
   border: 1px solid #161717;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+}
+
+.item-heading {
+  font-family:'Segoe UI', sans-serif;
+  text-align: left;
+  margin-right: 3rem;
+}
+
+.item-card-info{
+  font-family:'Segoe UI', sans-serif;
+  color: rgb(80, 80, 80);
+  text-align: left;
+  margin-right: 2rem;
+}
+
+.item-info {
+  justify-content: space-between;
+  text-align: left;
 }

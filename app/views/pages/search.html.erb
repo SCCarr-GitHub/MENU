@@ -1,7 +1,8 @@
 <br>
 <div class="search-page">
+
 <div class="search-center">
-  <div class="search-container">
+  <div class="search-container mt-2">
     <%= form_tag(search_pages_path, method: :get) do %>
       <%= text_field_tag :query, params[:query], placeholder: "Search...", class: "search-input" %>
       <%= button_tag type: "submit", class: "rounded-button" do %>

@@ -1,17 +1,9 @@
 <div class="homepage-container">
-  <div class="home-page-avatar">
-    <% if user_signed_in? %>
-      <% if current_user.photo.present? %>
-        <%= cl_image_tag current_user.photo.key, class: "avatar" %>
-      <% else %>
-        <%= image_tag "https://www.nicepng.com/png/full/115-1150821_default-avatar-comments-sign-in-icon-png.png", class: "avatar" %>
-      <% end %>
-    <% end %>
-  </div>
   <div class="logo-container">
     <img src="https://res.cloudinary.com/dyvrpbbez/image/upload/v1696428312/me.n.u_final__720_fcuaht.png" class="logo-image">
   </div>
 </div>
+
 <div class="search-page">
   <div class="search-center">
     <div class="search-container">
@@ -26,6 +18,7 @@
  <div>
 </div>
 <br>
+
 <div class="restaurants-row">
   <% @restaurants.each do |restaurant| %>
     <%= link_to restaurant_path(restaurant) do %>
@@ -50,6 +43,6 @@
         </div>
       </div>
     <% end %>
-   <% end %>
+  <% end %>
   </div>
 </div>

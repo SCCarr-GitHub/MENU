@@ -22,6 +22,7 @@
               <%= link_to result.searchable.name, restaurant_path(result.searchable.id), class: "search-result-link card-link" %>
             <% else %>
               <%= link_to result.searchable.item_name, restaurant_menu_path(result.searchable.restaurant_menu_id), class: "search-result-link card-link" %>
+              <%= result.searchable.item_price %>
             <% end %>
           </li>
         <% end %>

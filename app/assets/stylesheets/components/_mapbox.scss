@@ -9,3 +9,7 @@
   border: 1px solid #161717;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
 }
+
+.mapboxgl-ctrl-bottom-left, .mapboxgl-ctrl-bottom-right, .mapboxgl-ctrl-top-left, .mapboxgl-ctrl-top-right{
+  z-index: auto !important;
+}

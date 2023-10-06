@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   get '/search', to: 'pages#search', as: 'search_pages'
 
   resources :customers, only: [:new, :create, :edit, :update]
-  resources :items, only: [:update, :destroy]
+  resources :items, only: :update
+  resources :items, only: :destroy, as: 'delete'
   resources :restaurants, only: [:new, :create] do
     resources :reviews, only: [:index, :new, :create, :show]
   end

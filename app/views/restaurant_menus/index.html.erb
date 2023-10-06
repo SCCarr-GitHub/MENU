@@ -37,7 +37,7 @@
                             <% end %>
                           </div>
                           <div class="icon-container">
-                            <%= link_to item_path(item), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: 'btn' do %>
+                            <%= link_to delete_path(item), data: {turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'btn' do %>
                               <i class="fa-solid fa-trash fa-lg" style="color: #000000; outline: none;"></i>
                             <% end %>
                           </div>
@@ -47,9 +47,17 @@
                   <div class="upvotes">
                       <% if current_user.customer %>
                         <% unless current_user.customer.ratings.exists?(item_id: item.id) %>
-                          <%= button_to 'Upvote this item', upvote_path(item), method: :post %>
+                          <%= link_to upvote_path(item), method: :post do %>
+                            <div class="upvotes">
+                              <i class="far fa-thumbs-up"></i>
+                            </div>
+                          <% end %>
                         <% else %>
-                          <%= button_to 'Item Upvoted', disabled: true %>
+                          <%= link_to upvote_path(item), method: :post do %>
+                            <div class="upvotes">
+                              <i class="fas fa-thumbs-up"></i>
+                            </div>
+                          <% end %>
                         <% end %>
                       <% end %>
                     <% end %>
@@ -97,7 +105,7 @@
                               <% end %>
                             </div>
                             <div class="icon-container">
-                              <%= link_to item_path(item), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: 'btn' do %>
+                              <%= link_to delete_path(item), data: {turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'btn' do %>
                                 <i class="fa-solid fa-trash fa-lg" style="color: #000000; outline: none;"></i>
                               <% end %>
                             </div>
@@ -106,9 +114,17 @@
                       <% end %>
                       <% if current_user.customer %>
                         <% unless current_user.customer.ratings.exists?(item_id: item.id) %>
-                          <%= button_to 'Upvote this item', upvote_path(item), method: :post %>
+                          <%= link_to upvote_path(item), method: :post do %>
+                            <div class="upvotes">
+                              <i class="far fa-thumbs-up"></i>
+                            </div>
+                          <% end %>
                         <% else %>
-                          <%= button_to 'Item Upvoted', disabled: true %>
+                          <%= link_to upvote_path(item), method: :post do %>
+                            <div class="upvotes">
+                              <i class="fas fa-thumbs-up"></i>
+                            </div>
+                          <% end %>
                         <% end %>
                       <% end %>
                     <% end %>
@@ -159,7 +175,7 @@
                               <% end %>
                             </div>
                             <div class="icon-container">
-                              <%= link_to item_path(item), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: 'btn' do %>
+                              <%= link_to delete_path(item), data: {turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'btn' do %>
                                 <i class="fa-solid fa-trash fa-lg" style="color: #000000; outline: none;"></i>
                               <% end %>
                             </div>
@@ -168,9 +184,17 @@
                       <% end %>
                       <% if current_user.customer %>
                         <% unless current_user.customer.ratings.exists?(item_id: item.id) %>
-                          <%= button_to 'Upvote this item', upvote_path(item), method: :post %>
+                          <%= link_to upvote_path(item), method: :post do %>
+                            <div class="upvotes">
+                              <i class="far fa-thumbs-up"></i>
+                            </div>
+                          <% end %>
                         <% else %>
-                          <%= button_to 'Item Upvoted', disabled: true %>
+                          <%= link_to upvote_path(item), method: :post do %>
+                            <div class="upvotes">
+                              <i class="fas fa-thumbs-up"></i>
+                            </div>
+                          <% end %>
                         <% end %>
                       <% end %>
                     <% end %>
@@ -219,10 +243,9 @@
                                 <%= f.input :photo, as: :file, label_html: { class: 'black-label' } %>
                                 <%= f.submit "+", class: "btn" %>
                               <% end %>
-
                             </div>
                             <div class="icon-container">
-                              <%= link_to item_path(item), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: 'btn' do %>
+                              <%= link_to delete_path(item), data: {turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'btn' do %>
                                 <i class="fa-solid fa-trash fa-lg" style="color: #000000; outline: none;"></i>
                               <% end %>
                             </div>
@@ -231,9 +254,17 @@
                       <% end %>
                       <% if current_user.customer %>
                         <% unless current_user.customer.ratings.exists?(item_id: item.id) %>
-                          <%= button_to 'Upvote this item', upvote_path(item), method: :post %>
+                          <%= link_to upvote_path(item), method: :post do %>
+                            <div class="upvotes">
+                              <i class="far fa-thumbs-up"></i>
+                            </div>
+                          <% end %>
                         <% else %>
-                          <%= button_to 'Item Upvoted', disabled: true %>
+                          <%= link_to upvote_path(item), method: :post do %>
+                            <div class="upvotes">
+                              <i class="fas fa-thumbs-up"></i>
+                            </div>
+                          <% end %>
                         <% end %>
                       <% end %>
                     <% end %>

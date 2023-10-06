@@ -38,7 +38,7 @@
     <% end %>
 
     <% unless @search_results.any? %>
-      <h2 class="restaurant-heading">Top Rated Meals</h2>
+      <h2 class="search-heading">Top Rated Meals</h2>
       <div class="row">
         <% @sample_top_rated.each do |item| %>
           <div class="col-md-6">
@@ -50,7 +50,7 @@
                   <p class="item-card-info"><em><%=item.restaurant_menu.restaurant.name %></em></p>
                 </div>
                 <div>
-                  <p class="item-card-info"><%=pluralize(item.ratings.count,'vote')%></p>
+                  <p class="item-card-info"><%=pluralize(item.ratings.count,'vote')%> <i class="fa-regular fa-thumbs-up"></i></p>
                 </div>
               </div>
             </div>
@@ -61,7 +61,7 @@
   </div>
 
   <div class="mapbox mt-4">
-    <div style="width: 100%; height: 260px;"
+    <div style="width: 100%; height: 300px;"
       data-controller="map"
       data-map-markers-value="<%= @markers.to_json %>"
       data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">

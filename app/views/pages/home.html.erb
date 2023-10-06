@@ -6,7 +6,7 @@
 
 <div class="search-page">
   <%# featured restaurants %>
-<h3>Featured Restaurants</h3>
+<h3 class="home-header">Featured Restaurants</h3>
 <div class="featured-restaurants">
   <% @featured.each do |restaurant| %>
     <%= link_to restaurant_path(restaurant) do %>
@@ -23,7 +23,7 @@
   <% end %>
   </div>
   <%# All restaurants %>
-    <h3>All Restaurants</h3>
+    <h3 class="home-header">All Restaurants</h3>
     <div class="restaurants-row">
       <% @restaurants.each do |restaurant| %>
         <%= link_to restaurant_path(restaurant) do %>

@@ -38,13 +38,18 @@ body{
 
 
 .home-header{
-  font-family:'Alumni Sans', sans-serif;
-  font-size: 40px;
-  margin-top: 20px;
-  text-align: center;
-  justify-content: center;
-  color: #161717
-}
+    text-align: left;
+    font-family:'Segoe UI', sans-serif;
+    font-size: 20px;
+    font-weight:bolder;
+    color: black;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    text-wrap: wrap ;
+    letter-spacing: 1.5px;
+    font-variant: small-caps;
+    text-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+  }
 
 .sub-heading{
   font-family: 'Sofia Sans Condensed', sans-serif;
@@ -132,5 +137,15 @@ body{
 }
 
 .black-label {
-  color: #000; 
+  color: #000;
+}
+
+.upvotes {
+  i{
+  font-size: 25px;
+  color: black;
+  }
+    a{
+      text-decoration: none;
+    }
 }

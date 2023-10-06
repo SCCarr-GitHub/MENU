@@ -1,8 +1,7 @@
-<h1 class="home-header">Add Your Menu!</h1>
+<h1 class="leaderboard-heading">Add Your Menu</h1>
 <div class="tesseract-container">
   <div class="tesseract-form d-flex justify-content-center align-items-center">
     <%= form_with(model: [@restaurant, @restaurant_menu], data: { controller: "ocr" }) do |form| %>
-
       <div class="form-group text-center">
         <%= form.label 'Describe Your Menu' %>
         <%= form.text_field :description %>

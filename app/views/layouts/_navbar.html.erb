@@ -45,7 +45,7 @@
     <% end %>
 
     <% if user_signed_in? %>
-      <% if current_page?(edit_customer_path(current_user.id, @customer)) || current_page?(new_user_session_path) %>
+      <% if current_page?(edit_customer_path(current_user.id, @customer)) || current_page?(new_user_session_path) || current_page?(restaurant_path(current_user.restaurant)) %>
         <li class="list">
           <% if user_signed_in? %>
             <% if !current_user.restaurant_owner? %>
@@ -68,11 +68,12 @@
           <% end %>
         </li>
       <% else %>
+
         <li class="list">
           <% if user_signed_in? %>
             <% if !current_user.restaurant_owner? %>
               <% unless current_user.customer == nil %>
-                <%= link_to edit_customer_path(current_user.id, @customer)  do %>
+                <%= link_to edit_customer_path(current_user.id, @customer) do %>
                   <i class="fa-solid fa-user fa-xl" style="color: #ffffff;"></i>
                 <% end %>
               <% end %>
@@ -91,7 +92,7 @@
         <%= link_to new_user_session_path do %>
             <i class="fa-solid fa-user fa-xl" style="color: #ffffff;"></i>
         <% end %>
-     </li>
+      </li>
     <% end %>
   </ul>
 </div>

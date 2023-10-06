@@ -1,120 +1,180 @@
-<div class="home-header">
-  <h1><%= @this_restaurant.name %> Menu</h1>
-  <p>Page 1 of <%= @this_restaurant.restaurant_menus.count %></p>
-  <%= link_to "View Full Menu", restaurant_restaurant_menus_path(@this_restaurant, @restaurant_menu), class: "btn btn-outline-warning" %>
-</div>
-<div>
 <br>
-<div class="sub-heading">
-  <h2 class="sub-heading">Starters</h2>
+<div class="showpage-container">
+  <div class="leaderboard-header">
+    <h1><%= @this_restaurant.name %> Menu</h1>
+    <p>Page 1 of <%= @this_restaurant.restaurant_menus.count %></p>
+    <%= link_to "View Full Menu", restaurant_restaurant_menus_path(@this_restaurant, @restaurant_menu), class: "btn btn-outline-warning" %>
+  </div>
 </div>
+<div class="menu-container">
+  <div class="menu-section starter">
+    <%= link_to restaurant_path(@this_restaurant), class: "back-button" do %>
+      <i class="fa-solid fa-circle-arrow-left"></i>
+    <% end %>
+    <h2 class="restaurant-heading">Starters</h2>
+    <div class="row">
+      <% @starters.each do |starter| %>
+        <div class="col-md-6">
+          <div class="card d-flex">
+            <div class="card-body d-flex justify-content-between align-items-center">
+              <% if starter.photo.present? %>
+                <div class="circular-image">
+                  <%= cl_image_tag starter.photo.key, class: 'd-block mx-auto', alt: 'Dish Photo' %>
+                </div>
+              <% end %>
+              <div class="item-info">
+                <h5 class="item-heading"><%= starter.item_name %></h5>
+                <p class="item-card-info">R<%= starter.item_price %></p>
+              </div>
+              <div class="actions">
+                <% if user_signed_in? %>
+                  <% if current_user.customer %>
+                    <% unless current_user.customer.ratings.exists?(item_id: starter.id) %>
+                      <%= link_to upvote_path(starter), method: :post do %>
+                        <div class="upvotes">
+                          <i class="far fa-thumbs-up"></i>
+                        </div>
+                      <% end %>
+                    <% else %>
+                      <%= link_to upvote_path(starter), method: :post do %>
+                        <div class="upvotes">
+                          <i class="fas fa-thumbs-up"></i>
+                        </div>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 
-<div class="item-row">
-  <% @starters.each do |starter| %>
-    <div class="col-md-6">
-      <div class="item-card">
-        <div class="card-body">
-          <p class="card-title"><strong><%= starter.item_name %></strong></p>
-          <p class="card-text">R<%= starter.item_price %></p>
-          <% if user_signed_in? %>
-            <% if current_user.customer %>
-              <% unless current_user.customer.ratings.exists?(item_id: starter.id) %>
-                <%= button_to upvote_path(starter), method: :post, class: "btn btn-link" do %>
-                  <i class="far fa-thumbs-up"></i> Upvote this item
-                <% end %>
-              <% else %>
-                <%= button_to "Item Upvoted", disabled: true, class: "btn btn-link" do %>
-                  <i class="fas fa-thumbs-up"></i> Item Upvoted
-                <% end %>
+  <div class="menu-section mains">
+    <h2 class="restaurant-heading">Mains</h2>
+    <div class="row">
+      <% @mains.each do |main| %>
+        <div class="col-md-6">
+          <div class="card d-flex">
+            <div class="card-body d-flex justify-content-between align-items-center">
+              <% if main.photo.present? %>
+                <div class="circular-image">
+                  <%= cl_image_tag main.photo.key, class: 'd-block mx-auto', alt: 'Dish Photo' %>
+                </div>
               <% end %>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  <% end %>
-</div>
-<div>
-  <h2 class="sub-heading">Mains</h2>
-</div>
-<div class="item-row">
-  <% @mains.each do |main| %>
-    <div class="col-md-6">
-      <div class="item-card">
-        <div class="card-body">
-          <p class="card-title"><strong><%= main.item_name %></strong></p>
-          <p class="card-text">R<%= main.item_price %></p>
-          <% if user_signed_in? %>
-            <% if current_user.customer %>
-              <% unless current_user.customer.ratings.exists?(item_id: main.id) %>
-                <%= button_to upvote_path(main), method: :post, class: "btn btn-link" do %>
-                  <i class="far fa-thumbs-up"></i> Upvote this item
+              <div class="item-info">
+                <h5 class="item-heading"><%= main.item_name %></h5>
+                <p class="item-card-info">R<%= main.item_price %></p>
+              </div>
+              <div class="actions">
+                <% if user_signed_in? %>
+                  <% if current_user.customer %>
+                    <% unless current_user.customer.ratings.exists?(item_id: main.id) %>
+                      <%= link_to upvote_path(main), method: :post do %>
+                        <div class="upvotes">
+                          <i class="far fa-thumbs-up"></i>
+                        </div>
+                      <% end %>
+                    <% else %>
+                      <%= link_to upvote_path(main), method: :post do %>
+                        <div class="upvotes">
+                          <i class="fas fa-thumbs-up"></i>
+                        </div>
+                      <% end %>
+                    <% end %>
+                  <% end %>
                 <% end %>
-              <% else %>
-                <%= button_to "Item Upvoted", disabled: true, class: "btn btn-link" do %>
-                  <i class="fas fa-thumbs-up"></i> Item Upvoted
-                <% end %>
-              <% end %>
-            <% end %>
-          <% end %>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
-  <% end %>
-</div>
+  </div>
 
-  <h2 class="sub-heading">desserts</h2>
-</div>
-<div class="item-row">
-  <% @desserts.each do |dessert| %>
-    <div class="col-md-6">
-      <div class="item-card">
-        <div class="card-body">
-          <p class="card-title"><strong><%= dessert.item_name %></strong></p>
-          <p class="card-text">R<%= dessert.item_price %></p>
-          <% if user_signed_in? %>
-            <% if current_user.customer %>
-              <% unless current_user.customer.ratings.exists?(item_id: dessert.id) %>
-                <%= button_to upvote_path(dessert), method: :post, class: "btn btn-link" do %>
-                  <i class="far fa-thumbs-up"></i> Upvote this item
-                <% end %>
-              <% else %>
-                <%= button_to "Item Upvoted", disabled: true, class: "btn btn-link" do %>
-                  <i class="fas fa-thumbs-up"></i> Item Upvoted
-                <% end %>
+  <div class="menu-section desserts">
+    <h2 class="restaurant-heading">Desserts</h2>
+    <div class="row">
+      <% @desserts.each do |dessert| %>
+        <div class="col-md-6">
+          <div class="card d-flex">
+            <div class="card-body d-flex justify-content-between align-items-center">
+              <% if dessert.photo.present? %>
+                <div class="circular-image">
+                  <%= cl_image_tag dessert.photo.key, class: 'd-block mx-auto', alt: 'Dish Photo' %>
+                </div>
               <% end %>
-            <% end %>
-          <% end %>
+              <div class="item-info">
+                <h5 class="item-heading"><%= dessert.item_name %></h5>
+                <p class="item-card-info">R<%= dessert.item_price %></p>
+              </div>
+              <div class "actions">
+                <% if user_signed_in? %>
+                  <% if current_user.customer %>
+                    <% unless current_user.customer.ratings.exists?(item_id: dessert.id) %>
+                      <%= link_to upvote_path(dessert), method: :post do %>
+                        <div class="upvotes">
+                          <i class="far fa-thumbs-up"></i>
+                        </div>
+                      <% end %>
+                    <% else %>
+                      <%= link_to upvote_path(dessert), method: :post do %>
+                        <div class="upvotes">
+                          <i class="fas fa-thumbs-up"></i>
+                        </div>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
-  <% end %>
-</div>
+  </div>
 
-  <h2 class="sub-heading">Drinks</h2>
-</div>
-<div class="item-row">
-  <% @drinks.each do |drink| %>
-    <div class="col-md-6">
-      <div class="item-card">
-        <div class="card-body">
-          <p class="card-title"><strong><%= drink.item_name %></strong></p>
-          <p class="card-text">R<%= drink.item_price %></p>
-          <% if user_signed_in? %>
-            <% if current_user.customer %>
-              <% unless current_user.customer.ratings.exists?(item_id: drink.id) %>
-                <%= button_to upvote_path(drink), method: :post, class: "btn btn-link" do %>
-                  <i class="far fa-thumbs-up"></i> Upvote this item
-                <% end %>
-              <% else %>
-                <%= button_to "Item Upvoted", disabled: true, class: "btn btn-link" do %>
-                  <i class="fas fa-thumbs-up"></i> Item Upvoted
-                <% end %>
+  <div class="menu-section drinks">
+    <h2 class="restaurant-heading">Drinks</h2>
+    <div class="row">
+      <% @drinks.each do |drink| %>
+        <div class="col-md-6">
+          <div class="card d-flex">
+            <div class="card-body d-flex justify-content-between align-items-center">
+              <% if drink.photo.present? %>
+                <div class="circular-image">
+                  <%= cl_image_tag drink.photo.key, class: 'd-block mx-auto', alt: 'Dish Photo' %>
+                </div>
               <% end %>
-            <% end %>
-          <% end %>
+              <div class="item-info">
+                <h5 class="item-heading"><%= drink.item_name %></h5>
+                <p class="item-card-info">R<%= drink.item_price %></p>
+              </div>
+              <div class="actions">
+                <% if user_signed_in? %>
+                  <% if current_user.customer %>
+                    <% unless current_user.customer.ratings.exists?(item_id: drink.id) %>
+                      <%= link_to upvote_path(drink), method: :post do %>
+                        <div class="upvotes">
+                          <i class="far fa-thumbs-up"></i>
+                        </div>
+                      <% end %>
+                    <% else %>
+                      <%= link_to upvote_path(drink), method: :post do %>
+                        <div class="upvotes">
+                          <i class="fas fa-thumbs-up"></i>
+                        </div>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
-  <% end %>
+  </div>
 </div>

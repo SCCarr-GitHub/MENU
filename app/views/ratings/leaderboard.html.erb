@@ -1,6 +1,6 @@
 <br>
   <div class="search-page">
-  <h2 class="home-header">Leaderboard</h2>
+  <h1 class="leaderboard-heading">Leaderboard</h1>
   <div class="row">
     <% @top_rated.each do |item| %>
       <%= link_to restaurant_menu_path(item.restaurant_menu), class: "card-link" do %>
@@ -13,7 +13,7 @@
                 <p class="card-text"><em><%= item.restaurant_menu.restaurant.name %></em></p>
               </div>
               <div>
-                <p class="card-text"><%= pluralize(item.ratings.count, 'vote') %></p>
+                <p class="card-text"><%= pluralize(item.ratings.count, 'vote')%>  <i class="fa-regular fa-thumbs-up"></i> </p>
               </div>
             </div>
           </div>

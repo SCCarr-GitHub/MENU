@@ -81,3 +81,31 @@
   width: 90%;
   margin: 0 auto;
 }
+
+.search-heading {
+  text-align: center;
+  font-family:'Segoe UI', sans-serif;
+  font-size: 18px;
+  font-weight:bolder;
+  color: black;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  text-wrap: wrap ;
+  letter-spacing: 3px;
+  font-variant: small-caps;
+  text-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+}
+
+.leaderboard-heading{
+  text-align: center;
+  font-family:'Segoe UI', sans-serif;
+  font-size: 24px;
+  font-weight:bolder;
+  color: black;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  text-wrap: wrap ;
+  letter-spacing: 3px;
+  font-variant: small-caps;
+  text-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+}

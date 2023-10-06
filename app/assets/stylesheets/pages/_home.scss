@@ -38,13 +38,18 @@ body{
 
 
 .home-header{
-  font-family: 'Alumni Sans', sans-serif;
-  font-size: 40px;
-  margin-top: 20px;
-  text-align: center;
-  justify-content: center;
-  color: #161717
-}
+    text-align: left;
+    font-family:'Segoe UI', sans-serif;
+    font-size: 20px;
+    font-weight:bolder;
+    color: black;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    text-wrap: wrap ;
+    letter-spacing: 1.5px;
+    font-variant: small-caps;
+    text-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+  }
 
 .sub-heading{
   font-family: 'Sofia Sans Condensed', sans-serif;
@@ -58,18 +63,6 @@ body{
   text-align: center;
   justify-content: center;
   text-decoration: none;
-}
-
-.tesseract-form {
-  font-family: 'Sofia Sans Condensed', sans-serif;
-  background-color: #efefef;
-  border-radius: 15px;
-  margin: 20px;
-  text-align: center;
-  justify-content: center;
-  padding: 10px;
-  color:#161717;
-  border: 1px solid #161717;
 }
 
 .review-container {
@@ -133,4 +126,41 @@ body{
 
 .black-label {
   color: #000;
+}
+
+.upvotes {
+  i{
+  font-size: 25px;
+  color: black;
+  }
+    a{
+      text-decoration: none;
+    }
+}
+
+.banner {
+  background-size: cover;
+  background-position: bottom center;
+  padding: 80px;
+  margin-bottom: 2rem;
+}
+
+.banner h1 {
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 24px;
+  font-weight: bolder;
+  color: white;
+  text-wrap: wrap;
+  letter-spacing: 3px;
+  font-variant: small-caps;
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.4);
+  width: 100%;
+}
+
+.banner p {
+  font-size: 20px;
+  color: white;
+  opacity: .7;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }

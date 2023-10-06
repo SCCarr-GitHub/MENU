@@ -99,7 +99,8 @@
 
 .featured-restaurants {
   height: 12rem;
-  overflow-x:scroll;
+  overflow-x: scroll;
+  overflow-y: hidden;
   white-space: nowrap;
 }
 
@@ -169,4 +170,9 @@ a{
 
 .info-icon{
   font-size: 26px;
+}
+
+.info-search-icon{
+  font-size: 26px;
+  margin-bottom: 0px;
 }

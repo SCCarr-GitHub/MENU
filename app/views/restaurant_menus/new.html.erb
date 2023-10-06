@@ -1,28 +1,24 @@
 <div data-controller="display-load-spinner">
   <div data-display-load-spinner-target="content">
-    <h1 class="home-header">Add Your Menu!</h1>
+    <h1 class="leaderboard-heading">Add Your Menu</h1>
     <div class="tesseract-container">
       <div class="tesseract-form d-flex justify-content-center align-items-center">
-        <%= form_with(model: [@restaurant, @restaurant_menu], data: { controller: "ocr", action: "submit->display-load-spinner#spin" }) do |form| %>
-
+        <%= form_with(model: [@restaurant, @restaurant_menu], data: { controller: "ocr" }) do |form| %>
           <div class="form-group text-center">
-            <%= form.label 'Describe Your Menu' %>
-            <%= form.text_field :description %>
+            <%= form.text_field :description, class: "describe-input", placeholder: "Describe your Menu" %>
           </div>
 
-          <div class="form-group-photo-upload">
-            <div class="text-center">
-              <%= form.file_field :photos, data: { ocr_target: "file", action: "change->ocr#upload"} %>
-            </div>
+          <div class="form-group form-group-photo-upload">
+            <%= form.file_field :photos, data: { ocr_target: "file", action: "change->ocr#upload"}, class: "no-br" %>
           </div>
 
           <div class="form-group text-center">
             <%= form.label 'Review Your Menu' %>
-            <%= form.text_area :photo_description, data: { ocr_target: "photo_description", rows: 4 } %>
+            <%= form.text_area :photo_description, data: { ocr_target: "photo_description", rows: 4 }, class: "menu-input" %>
           </div>
 
           <div class="form-group text-center">
-            <%= form.submit "Generate Menu" %>
+            <%= form.submit "Generate Menu", class: "no-br btn btn-outline-dark custom-width" %>
           </div>
         <% end %>
       </div>

@@ -77,9 +77,31 @@
     <%= link_to "Edit info", edit_restaurant_path(@this_restaurant), class: 'btn btn-outline-dark btn-sm' %>
 </div>
 
+<% if user_signed_in? %>
+  <% if current_user.id == @this_restaurant.user_id %>
+    <div class="links">
+      <div class="button-center">
+        <div class="d-grid gap-2">
+        <%= link_to "View Menu", restaurant_restaurant_menus_path(@this_restaurant), class: "btn btn-outline-dark custom-width" %></div>
+      </div>
+      <br>
+      <%= link_to "Add Menu", new_restaurant_restaurant_menu_path(@this_restaurant), class: 'btn btn-outline-dark btn-block' %>
+      <%= link_to "Log out", destroy_user_session_path, class: 'btn btn-outline-dark btn-block'%>
+    </div>
+  <% else %>
+      <div class="button-center">
+        <%= link_to "View Menu", restaurant_restaurant_menus_path(@this_restaurant), class: "btn btn-outline-dark custom-width" %></div>
+      </div>
+  <% end %>
+<% else %>
+  <div class="button-center">
+    <%= link_to "View Menu", restaurant_restaurant_menus_path(@this_restaurant), class: "btn btn-outline-dark custom-width" %></div>
+  </div>
+<% end %>
+
 <% if @this_restaurant.reviews.present? %>
   <div class="restaurant-show-card">
-    <h4 class="sub-heading">Reviews</h4>
+    <h4 class="leaderboard-heading">Reviews</h4>
     <ul class="list-group m-4">
       <% @this_restaurant.reviews.each do |review| %>
         <li class="list-group-item"><%= review.comment %></li>
@@ -113,33 +135,10 @@
 <% end %>
 
 <% if user_signed_in? %>
-  <% if current_user.id == @this_restaurant.user_id %>
-    <div class="links">
-      <div class="button-center">
-        <div class="d-grid gap-2">
-        <%= link_to "View Menu", restaurant_restaurant_menus_path(@this_restaurant), class: "btn btn-outline-dark custom-width" %></div>
-      </div>
-      <br>
-      <%= link_to "Add Menu", new_restaurant_restaurant_menu_path(@this_restaurant), class: 'btn btn-outline-dark btn-block' %>
-      <%= link_to "Log out", destroy_user_session_path, class: 'btn btn-outline-dark btn-block'%>
-    </div>
-  <% else %>
-      <div class="button-center">
-        <%= link_to "View Menu", restaurant_restaurant_menus_path(@this_restaurant), class: "btn btn-outline-dark custom-width" %></div>
-      </div>
-  <% end %>
-<% else %>
-  <div class="button-center">
-    <%= link_to "View Menu", restaurant_restaurant_menus_path(@this_restaurant), class: "btn btn-outline-dark custom-width" %></div>
-  </div>
-<% end %>
-
-
-<% if user_signed_in? %>
   <% if current_user.customer %>
     <div class="restaurant-show-card">
       <div class="m-4">
-        <h2 class="sub-heading" style="color: black;">Add a Review</h2>
+        <h2 class="leaderboard-heading" style="color: black;">Add a Review</h2>
         <%= simple_form_for [@this_restaurant, Review.new] do |form| %>
           <%= form.input :comment, label_html: { style: 'color: black;' } %>
           <%= form.input :rating, collection: [0, 1, 2, 3, 4, 5], label: "Select Rating", label_html: { style: 'color: black;' } %>

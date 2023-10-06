@@ -74,7 +74,11 @@
     <p class="info-icon"><i class="fa-solid fa-clock"></i></p>
     <p class="restaurant-card-info"><%= @this_restaurant.opening_time.strftime('%H:%M') %> - <%= @this_restaurant.closing_time.strftime('%H:%M') %></p>
   </div>
-    <%= link_to "Edit info", edit_restaurant_path(@this_restaurant), class: 'btn btn-outline-dark btn-sm' %>
+  <% if user_signed_in? %>
+      <% if current_user.restaurant = @restaurant %>
+        <%= link_to "Edit info", edit_restaurant_path(@this_restaurant), class: 'btn btn-outline-dark btn-sm' %>
+      <% end %>
+    <% end %>
 </div>
 
 <% if @this_restaurant.reviews.present? %>

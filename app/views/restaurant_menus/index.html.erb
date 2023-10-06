@@ -1,10 +1,11 @@
-<br>
+
 <div class="menu-container">
   <% unless @restaurant_items.empty? %>
-
     <div class="menu-section starter">
+      <%= link_to restaurant_path(@restaurant), class: "back-button" do %>
+        <i class="fa-solid fa-circle-arrow-left"></i>
+      <% end %>
       <h2 class="restaurant-heading">Starters</h2>
-      <br>
       <div class="row">
         <% @starters.each do |item| %>
           <div class="col-md-6">

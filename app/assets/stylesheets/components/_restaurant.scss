@@ -75,7 +75,7 @@
 
 .restaurant-heading{
   text-align: center;
-  font-family:Georgia, 'Times New Roman', Times, serif;
+  font-family: Georgia, 'Times New Roman', Times, serif;
   font-weight: bolder;
   font-variant: small-caps;
   margin-top: 0.5rem;
@@ -99,7 +99,8 @@
 
 .featured-restaurants {
   height: 12rem;
-  overflow-x:scroll;
+  overflow-x: scroll;
+  overflow-y: hidden;
   white-space: nowrap;
 }
 

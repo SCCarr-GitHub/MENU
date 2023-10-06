@@ -45,30 +45,30 @@
                         </div>
                       <% end %>
                     <% end %>
-                  <div class="upvotes">
-                      <% if current_user.customer %>
-                        <% unless current_user.customer.ratings.exists?(item_id: item.id) %>
-                          <%= link_to upvote_path(item), method: :post do %>
-                            <div class="upvotes">
-                              <i class="far fa-thumbs-up"></i>
-                            </div>
-                          <% end %>
-                        <% else %>
-                          <%= link_to upvote_path(item), method: :post do %>
-                            <div class="upvotes">
-                              <i class="fas fa-thumbs-up"></i>
-                            </div>
+                    <div class="upvotes">
+                        <% if current_user.customer %>
+                          <% unless current_user.customer.ratings.exists?(item_id: item.id) %>
+                            <%= link_to upvote_path(item), method: :post do %>
+                              <div class="upvotes">
+                                <i class="far fa-thumbs-up"></i>
+                              </div>
+                            <% end %>
+                          <% else %>
+                            <%= link_to upvote_path(item), method: :post do %>
+                              <div class="upvotes">
+                                <i class="fas fa-thumbs-up"></i>
+                              </div>
+                            <% end %>
                           <% end %>
                         <% end %>
-                      <% end %>
-                    <% end %>
+                    </div>
+                  <% end %>
                 </div>
               </div>
             </div>
           </div>
         <% end %>
       </div>
-    </div>
     <br>
     <div class="menu-container">
       <div class="menu-section mains">

@@ -17,9 +17,14 @@
         <% @search_results.each do |result| %>
           <div class="card-body">
             <% if result.searchable_type == "Restaurant" %>
-              <h5 class="search-restaurant">
-                <%= link_to result.searchable.name, restaurant_path(result.searchable.id), class: "card-link" %>
-              </h5>
+
+              <div class="search-card-restaurant">
+                <h5 class="item-heading">
+                  <%= link_to result.searchable.name, restaurant_path(result.searchable.id), class: "card-link" %>
+                </h5>
+                <p class="info-search-icon"><i class="fa-solid fa-utensils"></i></p>
+              </div>
+
             <% else %>
               <%= link_to restaurant_menu_path(result.searchable.restaurant_menu), class: "card-link" do %>
                   <div class="search-card-body">
@@ -38,24 +43,21 @@
     <% end %>
     <% unless @search_results.any? %>
       <h2 class="search-heading">Top Rated Meals</h2>
-      <div class="row">
         <% @sample_top_rated.each do |item| %>
-          <div class="col-md-6">
-            <div class="card d-flex">
-              <div class="card-body d-flex justify-content-between">
-                <div>
-                  <h5 class="item-heading"><%=item.item_name %></h5>
-                  <p class="item-card-info">R<%=item.item_price %></p>
-                  <p class="item-card-info"><em><%=item.restaurant_menu.restaurant.name %></em></p>
-                </div>
-                <div>
-                  <p class="item-card-info"><%=pluralize(item.ratings.count,'vote')%> <i class="fa-regular fa-thumbs-up"></i></p>
-                </div>
+          <div class="card-body">
+            <div class="suggested-card-body p-3">
+              <div class="item-info">
+                <h5 class="item-heading"><%=item.item_name %></h5>
+                <p class="item-card-info">R<%=item.item_price %></p>
+                <p class="item-card-info"><em><%=item.restaurant_menu.restaurant.name %></em></p>
+              </div>
+              <div class="p-2">
+                <p class="item-card-info"><%=pluralize(item.ratings.count,'vote')%> <i class="fa-regular fa-thumbs-up"></i></p>
               </div>
             </div>
           </div>
+        </div>
         <% end %>
-      </div>
     <% end %>
   </div>
 

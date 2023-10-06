@@ -15,14 +15,14 @@ class ItemsController < ApplicationController
     Item.import_items_from_hash(@items, @restaurant_menu)
     redirect_to restaurant_restaurant_menus_path(@restaurant_menu.restaurant)
   end
-  
+
   def create
     @item = Item.new(item_params)
     @restaurant_menu = RestaurantMenu.find(params[:restaurant_menu_id])
     @item.restaurant_menu = @restaurant_menu
     respond_to do |format|
       if @item.save
-        redirect_to restaurant_restaurant_menus_path(@restaurant_menu)
+        redirect_to restaurant_restaurant_menus_path(@restaurant_menu.restaurant)
       else
         render :new, status: :unprocessable_entity
       end
@@ -35,7 +35,7 @@ class ItemsController < ApplicationController
     respond_to do |format|
       @item.update(item_params)
       if @item.update(item_params)
-        redirect_to restaurant_restaurant_menus_path(@restaurant_menu)
+        redirect_to restaurant_restaurant_menus_path(@restaurant_menu.restaurant)
       else
         render :edit, status: :unprocessable_entity
       end
@@ -46,7 +46,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @restaurant_menu = @item.restaurant_menu
     @item.destroy
-    redirect_to restaurant_restaurant_menus_path(@restaurant_menu), status: :see_other
+    redirect_to restaurant_restaurant_menus_path(@restaurant_menu.restaurant), status: :see_other
   end
 
   private

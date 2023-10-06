@@ -4,7 +4,6 @@
   text-align: center;
   justify-content: center;
   width: 390px;
-  color: white;
 }
 
 .tesseract-form {
@@ -12,20 +11,17 @@
   text-align: center;
   justify-content: center;
   background: linear-gradient(to bottom, #8e8e8e, #4c4c4c);
-  color: white;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
   text-align: center;
 }
 
 .tesseract-form div {
   margin-bottom: 20px;
-  color: white;
   border-radius: 10px;
 }
 
-label {
+.tesseract-form label {
   font-weight: bold;
-  color: grey;
   text-align: center;
   border-radius: 10px;
 }
@@ -40,4 +36,41 @@ textarea {
 
 .form-group-photo-upload {
   margin-left: 6rem;
+}
+
+.lds-circle {
+  display: inline-block;
+  transform: translateZ(1px);
+}
+.lds-circle > div {
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  background: black;
+  animation: lds-circle 4.8s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+@keyframes lds-circle {
+  0%, 100% {
+    animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
+  }
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(1800deg);
+    animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
+  }
+  100% {
+    transform: rotateY(3600deg);
+  }
+}
+
+.center-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
 }

@@ -98,7 +98,7 @@ User.create!(
 )
 
 User.create!(
-  email: "ginospizza@restaurant.com",
+  email: "ginos@restaurant.com",
   password: "password",
   restaurant_owner: true
 )
@@ -269,13 +269,13 @@ Restaurant.create!(
 )
 
 Restaurant.create!(
-  name: "Gino's Pizza",
+  name: "Gino's",
   category: "Italian",
   address: "10 Regent Road, Cape Town",
   phone_number: "123 456 7890",
   opening_time: Time.parse("12:00 PM"),
   closing_time: Time.parse("6:00 PM"),
-  user_id: User.find_by(email: "ginospizza@restaurant.com").id
+  user_id: User.find_by(email: "ginos@restaurant.com").id
 )
 
 Restaurant.create!(
@@ -326,7 +326,7 @@ sals = Restaurant.find_by(name: "Sal's")
 green_thai = Restaurant.find_by(name: "Green Thai")
 the_big_fish = Restaurant.find_by(name: "The Big Fish")
 old_greeks = Restaurant.find_by(name: "Old Greeks")
-ginos_pizza = Restaurant.find_by(name: "Gino's Pizza")
+ginos = Restaurant.find_by(name: "Gino's")
 chelsea_cafe = Restaurant.find_by(name: "Chelsea Cafe")
 gustavs = Restaurant.find_by(name: "Gustavs")
 jonos = Restaurant.find_by(name: "Jono's")
@@ -391,9 +391,9 @@ old_greeks_menu = RestaurantMenu.create!(
   restaurant: old_greeks
 )
 
-ginos_pizza_menu = RestaurantMenu.create!(
-  description: "Gino's Pizza",
-  restaurant: ginos_pizza
+ginos_menu = RestaurantMenu.create!(
+  description: "Gino's",
+  restaurant: ginos
 )
 
 chelsea_cafe_menu = RestaurantMenu.create!(
@@ -416,6 +416,7 @@ puts "Finished creating restaurant menus!"
 # # GENERATE ITEMS ON MENU!
 
 # puts "Creating menu items..."
+
 
 # Items for Hugo's Menu
 
@@ -482,13 +483,16 @@ Item.create!(
   restaurant_menu: hugos_mussels_menu
 )
 
+
 # General Menu Items
+
+# SALS
 
 Item.create!(
   category: "starter",
   item_name: "Salad",
   item_price: 80,
-  restaurant_menu: hugos_mussels_menu
+  restaurant_menu: sals_menu
 )
 
 Item.create!(
@@ -524,13 +528,6 @@ Item.create!(
   item_name: "3 Cheese Pizza",
   item_price: 170,
   restaurant_menu: sals_menu
-)
-
-Item.create!(
-  category: "main",
-  item_name: "3 Cheese Pizza",
-  item_price: 150,
-  restaurant_menu: ginos_pizza_menu
 )
 
 Item.create!(
@@ -589,7 +586,137 @@ Item.create!(
   restaurant_menu: sals_menu
 )
 
+# GINO'S MENU
+
+Item.create!(
+  category: "main",
+  item_name: "Vegan Cheese Pizza",
+  item_price: 150,
+  restaurant_menu: ginos_menu
+)
+
+Item.create!(
+  category: "main",
+  item_name: "Pepperoni Pizza",
+  item_price: 150,
+  restaurant_menu: ginos_menu
+)
+
+Item.create!(
+  category: "main",
+  item_name: "Calzone",
+  item_price: 150,
+  restaurant_menu: ginos_menu
+)
+
+Item.create!(
+  category: "main",
+  item_name: "Regina Pizza",
+  item_price: 150,
+  restaurant_menu: ginos_menu
+)
+
+Item.create!(
+  category: "main",
+  item_name: "Hawaiian Pizza",
+  item_price: 150,
+  restaurant_menu: ginos_menu
+)
+
+Item.create!(
+  category: "main",
+  item_name: "Margherita Pizza",
+  item_price: 150,
+  restaurant_menu: ginos_menu
+)
+
+# SHAWN'S PIZZA
+
+Item.create!(
+  category: "main",
+  item_name: "Crazy Cheese Pizza",
+  item_price: 190,
+  restaurant_menu: southside_shawns_menu
+)
+
 puts "Finished creating menu items!"
+
+puts "Creating ratings..."
+
+# Assuming you have the item and customer objects, you can create ratings for them.
+# You should replace these with your actual item and customer objects.
+
+item1 = Item.find_by(item_name: "Shrimp")
+item2 = Item.find_by(item_name: "Steak & Onyons")
+item3 = Item.find_by(item_name: "Mixed Meat Smoothie")
+item4 = Item.find_by(item_name: "Sardines")
+item5 = Item.find_by(item_name: "Lamb Chops")
+item6 = Item.find_by(item_name: "3 Cheese Pizza")
+item7 = Item.find_by(item_name: "Regina Pizza")
+item8 = Item.find_by(item_name: "Crazy Cheese Pizza")
+item9 = Item.find_by(item_name: "Mixed Meat Smoothie")
+
+customer1 = Customer.find_by(name: "JT")
+customer2 = Customer.find_by(name: "Liam")
+
+# Create ratings for items
+Rating.create!(
+  item_upvote: 4, # Replace with the actual rating value
+  customer: customer1, # Replace with the actual customer
+  item: item1 # Replace with the actual item
+)
+
+Rating.create!(
+  item_upvote: 5, # Replace with the actual rating value
+  customer: customer2, # Replace with the actual customer
+  item: item2 # Replace with the actual item
+)
+
+Rating.create!(
+  item_upvote: 5, # Replace with the actual rating value
+  customer: customer2, # Replace with the actual customer
+  item: item3 # Replace with the actual item
+)
+
+Rating.create!(
+  item_upvote: 5, # Replace with the actual rating value
+  customer: customer1, # Replace with the actual customer
+  item: item4 # Replace with the actual item
+)
+
+Rating.create!(
+  item_upvote: 5, # Replace with the actual rating value
+  customer: customer2, # Replace with the actual customer
+  item: item5 # Replace with the actual item
+)
+
+Rating.create!(
+  item_upvote: 4, # Replace with the actual rating value
+  customer: customer1, # Replace with the actual customer
+  item: item6 # Replace with the actual item
+)
+
+Rating.create!(
+  item_upvote: 3, # Replace with the actual rating value
+  customer: customer2, # Replace with the actual customer
+  item: item7 # Replace with the actual item
+)
+
+Rating.create!(
+  item_upvote: 4, # Replace with the actual rating value
+  customer: customer1, # Replace with the actual customer
+  item: item8 # Replace with the actual item
+)
+
+Rating.create!(
+  item_upvote: 5, # Replace with the actual rating value
+  customer: customer2, # Replace with the actual customer
+  item: item9 # Replace with the actual item
+)
+
+# Create more ratings as needed for other items and customers.
+
+puts "Finished creating ratings!"
 
 puts "..."
 puts "ALL DATA HAS BEEN GENERATED - (LFG!!!))"

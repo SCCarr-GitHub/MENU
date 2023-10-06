@@ -3,12 +3,12 @@
   display: flex;
   text-align: center;
   justify-content: center;
+  margin: 0 auto;
   width: 390px;
-  color: white;
 }
 
 .tesseract-form {
-  width: 90%;
+  width: 95%;
   text-align: center;
   justify-content: center;
   background: linear-gradient(to bottom, #8e8e8e, #4c4c4c);
@@ -24,15 +24,15 @@
 }
 
 label {
-  font-weight: bold;
-  color: grey;
+  font-weight: 400;
+  color: black;
   text-align: center;
   border-radius: 10px;
 }
 
 textarea {
   width: 80%;
-  height: 380px;
+  height: 400px;
   resize: vertical;
   text-align: center;
   border-radius: 10px;

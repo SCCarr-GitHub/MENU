@@ -12,12 +12,12 @@
   </div>
   <div class="menu-section search">
     <% if @search_results.any? %>
-      <h2 class="restaurant-heading">Search Results</h2>
+      <h2 class="search-heading">Search Results</h2>
       <br>
         <% @search_results.each do |result| %>
           <div class="card-body">
             <% if result.searchable_type == "Restaurant" %>
-              <h5 class="item-heading">
+              <h5 class="search-restaurant">
                 <%= link_to result.searchable.name, restaurant_path(result.searchable.id), class: "card-link" %>
               </h5>
             <% else %>
@@ -36,7 +36,6 @@
           </div>
         <% end %>
     <% end %>
-
     <% unless @search_results.any? %>
       <h2 class="search-heading">Top Rated Meals</h2>
       <div class="row">
@@ -61,7 +60,7 @@
   </div>
 
   <div class="mapbox mt-4">
-    <div style="width: 100%; height: 300px;"
+    <div style="width: 100%; height: 400px;"
       data-controller="map"
       data-map-markers-value="<%= @markers.to_json %>"
       data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
